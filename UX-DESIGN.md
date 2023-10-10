@@ -14,7 +14,7 @@ This is the app map for second hand goods trading platform.
 
 # Wireframe
 This is the wireframe for second hand goods trading platform.
-![Wireframe](/ux-design/Wireframe_1.png)
+![Wireframe](/ux-design/Wireframe_2.png)
 
 # Prototype
 https://www.figma.com/proto/9kNtHYRobNkrAlhPaHO9y9/Wireframe?page-id=0%3A1&type=design&node-id=10-680&viewport=545%2C-703%2C0.32&t=Ziom71iLmcjyX6JN-1&scaling=scale-down&starting-point-node-id=10%3A680&mode=design
