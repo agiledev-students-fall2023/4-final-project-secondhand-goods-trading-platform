@@ -44,6 +44,6 @@ Coming soon...
 
 ## Links to any additional Markdown documents or web pages that may be relevant reading about the project
 
-[Link to our UX Design Prototype](link_to_ux_design_prototype)
+[Link to our UX Design Prototype](UX-DESIGN.md)
 
 ## Anything else you think is important to communicate to people viewing the project
