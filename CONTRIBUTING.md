@@ -1,4 +1,4 @@
-# Team values
+# Team Values
 
 - Communication is the key to teamwork.
 - Follow the plan and finish your work on time.
@@ -8,7 +8,7 @@
 - On weekdays, team members are expected to respond to messages directed at them within 30 minutes, one hour on weekends.
 
 
-# Sprint cadence
+# Sprint Cadence
 
 - Sprint 0: 09/28 - 10/10
 - Sprint 1: 10/12 - 10/26
@@ -17,14 +17,14 @@
 - Sprint 4: 11/28 - 12/05
 
 
-# Daily standups
+# Daily Standups
 
 - Daily Standups are on Monday, Wednesday, and Friday at 5:00PM in Bobst Library
 - Attendance is required. Absence should be notified 24 hours in advance.
 - Each teammate is granted 1 grace per sprint and 1 grace per semester for emergencies. The per sprint grace should be notified 2 days in advance.
 
 
-# Coding standards
+# Coding Standards
 
 - VS Code
 - Always pull before starting to work 
@@ -39,7 +39,7 @@
 When we embarked on our educational journeys in the US, we encountered difficulties in establishing our new lives due to the absence of a seamless platform to facilitate our initial setup. Driven by our experiences and understanding of this unique challenge, we have collaborated to develop a solution tailored for college students navigating similar pathways. Our app endeavors to make buying and selling second-hand goods not only convenient but also a delight, through its thoughtful features and user-friendly functionality. Here’s to happy coding and to making an impact on the lives of other college students!
 
 
-# The Git workflow
+# The Git Workflow
 
 1. Follow the git workflow guide
 2. Commits to the project with a pull request
