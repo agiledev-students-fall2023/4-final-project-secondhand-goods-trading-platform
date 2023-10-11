@@ -5,6 +5,9 @@
 We propose to build a secondhand goods trading platform targeting college students specifically. College students, who often possess a limited amount of disposable income, are always circumscribed by a humble budget when they are adding school supplies, buying furniture, or making purchases in general. Therefore, we will establish a platform for college students to buy and sell reliable second-hand products with a budget-friendly price tag.
 
 ## Product Vision Statement
+Empowering college students to buy, sell, and connect effortlessly, ensuring affordability and sustainability at the heart of every exchange.
+
+## Brief User Requirements
 
 ### Theme: All users
 - Users will be able to register and log in.
@@ -47,3 +50,5 @@ Coming soon...
 [Link to our UX Design Prototype](UX-DESIGN.md)
 
 ## Anything else you think is important to communicate to people viewing the project
+
+Coming soon...
