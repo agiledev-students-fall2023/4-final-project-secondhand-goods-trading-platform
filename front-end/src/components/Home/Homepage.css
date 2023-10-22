@@ -4,15 +4,29 @@
   }
   
   .header {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
+    align-items: center;
+    border: 2px solid #e0e0e0; 
+    border-radius: 25px;  
+    overflow: hidden;  
+    padding: 5px;
+  }
+
+  .search-bar {
+    flex-grow: 1;
+    border: none;
+    outline: none;  
+    padding: 8px ;
+    font-size: 16px;
   }
   
   .categories {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-top: 10px;
   }
   
   .actions {
@@ -41,22 +55,22 @@
   }
 
   .icon-button img {
-    width: 70px; 
-    height: 60px; 
+    width: 34px; 
+    height: 29px;
   }
- 
+
+   .icon-button {
+    background-color: transparent;
+  }
+  
   .category-icon-button img {
     width: 70px;  
     height: 70px; 
   }
 
   .category-icon-button {
-    background-color: #9A86A9;
-    border-radius: 25%;
-  }
-
-  .icon-button  {
     background-color:transparent;
   }
-  
+
+
   

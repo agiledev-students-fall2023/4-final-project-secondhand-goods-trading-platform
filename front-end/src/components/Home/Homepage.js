@@ -32,8 +32,14 @@ function Homepage() {
             </section>
 
             <section className="actions">
-                <button className="icon-button"><img src={`${process.env.PUBLIC_URL}/sell-icon.png`} alt="Sell"/></button>
-                <button className="icon-button"><img src={`${process.env.PUBLIC_URL}/account-icon.png`} alt="Account"/></button>
+                <button className="icon-button">
+                    <img src={`${process.env.PUBLIC_URL}/seller-icon.png`} alt="Sell"/>
+                    <span>Looking to sell</span>
+                </button>
+                <button className="icon-button">
+                    <img src={`${process.env.PUBLIC_URL}/account-icon.png`} alt="Account"/>
+                    <span>Account profile</span>
+                </button>
             </section>
 
             <section className="items">
