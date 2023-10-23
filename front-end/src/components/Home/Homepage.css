@@ -1,44 +1,23 @@
 .homepage {
-    font-family: Arial, sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif ;
     padding: 20px;
   }
   
-  .header {
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    border: 2px solid #e0e0e0; 
-    border-radius: 25px;  
-    overflow: hidden;  
-    padding: 5px;
-  }
 
-  .search-bar {
-    flex-grow: 1;
-    border: none;
-    outline: none;  
-    padding: 8px ;
-    font-size: 16px;
-  }
-  
-  .categories {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
   .actions {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif ;
+
   }
   
   .item-listings {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif ;
+
   }
   
   .item-image {
@@ -47,33 +26,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
   }
   
   .item-name {
     text-align: center;
     margin-top: 10px;
-  }
-
-  .icon-button img {
-    width: 34px; 
-    height: 29px;
-  }
-
-   .icon-button {
-    background-color: transparent;
-    border: none;
-  }
-  
-  .category-icon-button img {
-    width: 70px;  
-    height: 70px; 
-  }
-
-  .category-icon-button {
-    background-color:transparent;
-
-    border: none;
-
+    font-family: Georgia, 'Times New Roman', Times, serif ;
   }
 
   .action-icon-button {
@@ -94,6 +53,14 @@
     width: 28px;
    }
 
+   .actions button:hover {
+    background-color: #7a24d2; 
+    color:#ffffff
+}
+
+.action-icon-button span {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
 
   

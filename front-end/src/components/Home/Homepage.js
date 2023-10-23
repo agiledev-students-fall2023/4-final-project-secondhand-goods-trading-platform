@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import Categories from '../Categories/Categories';
 import ItemListings from '../ItemListings/ItemListings.js';
 
+
 function Homepage() {
 
     const categories = [

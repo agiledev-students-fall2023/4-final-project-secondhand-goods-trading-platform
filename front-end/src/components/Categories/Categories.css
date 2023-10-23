@@ -16,3 +16,7 @@
 
   }
 
+  .categories button:hover {
+    background-color: #7a24d2; 
+}
+
