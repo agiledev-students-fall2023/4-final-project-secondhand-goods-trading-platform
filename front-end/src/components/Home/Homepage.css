@@ -61,6 +61,7 @@
 
    .icon-button {
     background-color: transparent;
+    border: none;
   }
   
   .category-icon-button img {
@@ -70,7 +71,29 @@
 
   .category-icon-button {
     background-color:transparent;
+
+    border: none;
+
   }
+
+  .action-icon-button {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    border: 1px solid #ccc;  
+    background-color: transparent;
+    padding: 5px 15px; 
+    border-radius: 25px; 
+    font-size: 14px; 
+    margin-left: 10px;
+    margin-right: 10px;
+    }
+
+  .action-icon-button img {
+    height: 28px;
+    width: 28px;
+   }
+
 
 
   

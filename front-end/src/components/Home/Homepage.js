@@ -1,5 +1,6 @@
 import React from 'react';
 import './Homepage.css';
+import ItemListings from '../ItemListings/ItemListings.js';
 
 function Homepage() {
     const items = Array(8).fill({
@@ -32,23 +33,18 @@ function Homepage() {
             </section>
 
             <section className="actions">
-                <button className="icon-button">
+                <button className="action-icon-button">
                     <img src={`${process.env.PUBLIC_URL}/seller-icon.png`} alt="Sell"/>
-                    <span>Looking to sell</span>
+                    <span>View Your Products</span>
                 </button>
-                <button className="icon-button">
+                <button className="action-icon-button">
                     <img src={`${process.env.PUBLIC_URL}/account-icon.png`} alt="Account"/>
-                    <span>Account profile</span>
+                    <span>Account Profile</span>
                 </button>
             </section>
 
             <section className="items">
-                {items.map((item, index) => (
-                    <div key={index} className="item">
-                        <img src={item.image} alt="Item" className="item-image"/>
-                        <p className="item-name">{item.name}</p>
-                    </div>
-                ))}
+                <ItemListings /> 
             </section>
         </div>
     );
