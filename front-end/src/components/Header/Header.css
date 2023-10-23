@@ -1,0 +1,29 @@
+.header {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #e0e0e0; 
+    border-radius: 25px;  
+    overflow: hidden;  
+    padding: 5px;
+  }
+
+  .search-bar {
+    flex-grow: 1;
+    border: none;
+    outline: none;  
+    padding: 8px ;
+    font-size: 16px;
+  }
+  .icon-button img {
+    width: 34px; 
+    height: 29px;
+  }
+
+   .icon-button {
+    background-color: transparent;
+    border: none;
+  }
+
