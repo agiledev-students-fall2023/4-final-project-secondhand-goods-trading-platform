@@ -9,14 +9,15 @@ function Header() {
 
     return (
         <header className="header">
-            <button className="icon-button"><img src={`${process.env.PUBLIC_URL}/home-icon.png`} alt="Home"/></button>
+            <Link to="/home">
+                <button className="icon-button"><img src={`${process.env.PUBLIC_URL}/home-icon.png`} alt="Home"/></button>
+            </Link>
 
-
-            {/*We want to render the components conditionally. If we are on any other page, searchbar takes us to search page. If we are already on search page, there is no need to go again.*/ }
+            {/*We want to render the search page conditionally. If we are on any other page, search bar takes us to search page. If we are already on search page, there is no need to go again*/ }
             {isSearchPage ? (
                 <input type="text" placeholder="Search here..." className="search-bar" />
             ) : (
-                <Link to="/SearchPage">
+                <Link to="/search">
                     <input type="text" placeholder="Search here..." className="search-bar" />
                 </Link>
             )}
@@ -26,7 +27,7 @@ function Header() {
                     <img src={`${process.env.PUBLIC_URL}/search-icon.png`} alt="Go" />
                 </button>
             ) : (
-                <Link to="/SearchPage">
+                <Link to="/search">
                     <button className="icon-button">
                         <img src={`${process.env.PUBLIC_URL}/search-icon.png`} alt="Go" />
                     </button>
