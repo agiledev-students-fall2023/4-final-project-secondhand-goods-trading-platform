@@ -7,13 +7,6 @@ import ItemListings from '../ItemListings/ItemListings.js';
 
 function Homepage() {
 
-    const categories = [
-        { name: 'furniture', icon: `${process.env.PUBLIC_URL}/furniture-icon.png` },
-        { name: 'study', icon: `${process.env.PUBLIC_URL}/study-icon.png` },
-        { name: 'electronics', icon: `${process.env.PUBLIC_URL}/electronics-icon.png` },
-        { name: 'clothes', icon: `${process.env.PUBLIC_URL}/clothes-icon.png` },
-    ];
-    
 
     return (
         <div className="homepage-container">

@@ -5,7 +5,9 @@ import { BrowserRouter as Router, Route, Routes,} from 'react-router-dom';
 
 import Login from './components/login/Login';
 import Homepage from './components/Home/Homepage';
-import SearchPage from './components/SearchPage/SearchPage';
+import SignUp from './components/SignUp/SignUp';
+import SearchResults from "./components/SearchResults/SearchResults";
+
 
 
 const App = props => {
@@ -20,8 +22,12 @@ const App = props => {
             {/* a route for the login page */}
             <Route path="/" element={<Login />} />
 
-            {/* a route for the search page */}
-            <Route path="/search" element={<SearchPage />} />
+             {/* a route for the search page */}
+             <Route path="/signup" element={<SignUp />} />
+
+              {/* a route for the search page */}
+              <Route path="/searchresults/for/:prompt" element={<SearchResults />} />
+
 
           </Routes>
         </main>

@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react'; 
 import './Header.css';
-import { Link, useLocation } from "react-router-dom"
+import { Link , useNavigate} from "react-router-dom"
 
 
 function Header() {
-    const location = useLocation(); 
-    const isSearchPage = location.pathname === "/SearchPage";
+
+    const [searchValue, setSearchValue] = useState('');
+    const navigate = useNavigate();
+
+    const handleSearchSubmit = () => {
+        console.log("Searched:", searchValue); // testing
+        navigate(`/searchresults/for/prompt=${searchValue}`);
+    };
+
+
 
     return (
         <header className="header">
@@ -13,26 +21,18 @@ function Header() {
                 <button className="icon-button"><img src={`${process.env.PUBLIC_URL}/home-icon.png`} alt="Home"/></button>
             </Link>
 
-            {/*We want to render the search page conditionally. If we are on any other page, search bar takes us to search page. If we are already on search page, there is no need to go again*/ }
-            {isSearchPage ? (
-                <input type="text" placeholder="Search here..." className="search-bar" />
-            ) : (
-                <Link to="/search">
-                    <input type="text" placeholder="Search here..." className="search-bar" />
-                </Link>
-            )}
+                <input 
+                type="text" 
+                placeholder="Search here..." 
+                className="search-bar" 
+                value={searchValue}
+                onChange={e => setSearchValue(e.target.value)} 
+            />
 
-            {isSearchPage ? (
-                <button className="icon-button">
-                    <img src={`${process.env.PUBLIC_URL}/search-icon.png`} alt="Go" />
-                </button>
-            ) : (
-                <Link to="/search">
-                    <button className="icon-button">
-                        <img src={`${process.env.PUBLIC_URL}/search-icon.png`} alt="Go" />
-                    </button>
-                </Link>
-            )}
+            <button className="icon-button" onClick={handleSearchSubmit}>
+                <img src={`${process.env.PUBLIC_URL}/search-icon.png`} alt="Go" />
+            </button>
+
         </header>
     );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
 
@@ -54,8 +54,11 @@ const Login = () => {
                 </div>
                 <div>
                     {errorMessage && <p className="error">{errorMessage}</p>}
-                    <button type="submit">Login/Sign up</button>
+                    <button type="submit">Login</button>
                 </div>
+
+                <Link to="/signup" style={{ textDecoration: 'underline' }}>Don't have an account? Sign up here</Link>
+
             </form>
         </div>
     );
