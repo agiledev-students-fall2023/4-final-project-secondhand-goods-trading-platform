@@ -1,0 +1,66 @@
+.homepage {
+    font-family: Georgia, 'Times New Roman', Times, serif ;
+    padding: 20px;
+  }
+  
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif ;
+
+  }
+  
+  .item-listings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif ;
+
+  }
+  
+  .item-image {
+    background-color: lightgray;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .item-name {
+    text-align: center;
+    margin-top: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif ;
+  }
+
+  .action-icon-button {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    border: 1px solid #ccc;  
+    background-color: transparent;
+    padding: 5px 15px; 
+    border-radius: 25px; 
+    font-size: 14px; 
+    margin-left: 10px;
+    margin-right: 10px;
+    }
+
+  .action-icon-button img {
+    height: 28px;
+    width: 28px;
+   }
+
+   .actions button:hover {
+    background-color: #7a24d2; 
+    color:#ffffff
+}
+
+.action-icon-button span {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+  

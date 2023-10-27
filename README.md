@@ -43,7 +43,6 @@ We welcome all forms of contributions from code to design or even ideas! To get 
 
 ## Instructions for building and testing (updating)
 
-Coming soon...
 
 ## Links to any additional Markdown documents or web pages that may be relevant reading about the project
 

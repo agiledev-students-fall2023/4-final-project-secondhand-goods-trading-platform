@@ -1,0 +1,33 @@
+.header {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #e0e0e0; 
+    border-radius: 25px;  
+    overflow: hidden;  
+    padding: 5px;
+
+    justify-content: space-between;
+    
+  }
+
+  .search-bar {
+    flex-grow: 1;
+    border: none;
+    outline: none;  
+    padding: 8px ;
+    font-size: 16px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  .icon-button img {
+    width: 34px; 
+    height: 29px;
+  }
+   .icon-button {
+    background-color: transparent;
+    border: none;
+  }
+
+
