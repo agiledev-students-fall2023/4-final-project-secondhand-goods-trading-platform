@@ -43,6 +43,21 @@ We welcome all forms of contributions from code to design or even ideas! To get 
 
 ## Instructions for building and testing (updating)
 
+Clone this repository to your local machine.
+
+### Front-end
+- Open terminal and type in the following commands:
+```bash
+cd front-end
+npm install
+npm start
+```
+- To login, please use the following information derived from the picsum list:
+```
+Username: Alejandro Escamilla
+Email: 0
+Password: 5000
+```
 
 ## Links to any additional Markdown documents or web pages that may be relevant reading about the project
 
