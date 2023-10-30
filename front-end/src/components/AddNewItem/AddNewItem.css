@@ -42,12 +42,13 @@
 
 .category {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
   }
 
 .category-button img {
-    width: 70px;  
-    height: 70px; 
+    width: 65px;  
+    height: 65px; 
 }
 
 .category-button {
@@ -65,10 +66,8 @@
 }
 
 
-
 .image-upload-container {
-    width: 400px;
-    height: 280px;
+    height: 250px;
     background-color: #e8e0ef;
     border: 1px solid #ccc;
     margin-left: auto;
@@ -81,7 +80,7 @@
 
 .image-upload-container img {
     width: auto;
-    max-height: 250px;
+    max-height: 215px;
     
 }
 
@@ -124,7 +123,7 @@ input[type="file"] {
     background-color: #E8E0EF;
     border: 1px solid #ccc;
     width: 100%;
-    margin-top: 14px;
+    margin-top: 13px;
     padding: 10px 20px;
   
     transition: background-color 0.3s ease;

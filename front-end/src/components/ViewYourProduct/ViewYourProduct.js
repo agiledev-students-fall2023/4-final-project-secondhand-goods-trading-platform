@@ -4,7 +4,6 @@ import './ViewYourProduct.css';
 import AddNewItem from '../AddNewItem/AddNewItem';
 import MySellingItems from '../MySellingItems/MySellingItems';
 
-
 import { Link } from 'react-router-dom';
 
 function ViewYourProduct(){

@@ -20,9 +20,10 @@
     border: 1px solid #ccc;  
     background-color: transparent;
     padding: 5px 2vm;
-    width: 60%; 
+    width: 85%; 
     border-radius: 25px; 
     font-size: 14px; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
     margin-left: auto;
     margin-right: auto;
     
