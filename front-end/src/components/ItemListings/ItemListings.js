@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./ItemListings.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Item(props) {
     const imageUrl = props.details.download_url  || process.env.PUBLIC_URL + '/listing-placeholder.png';
 
     return (
-        <article className="item">
-            <img src={imageUrl} alt={props.details.author} />
-            <span>{props.details.author}</span>
-        </article>
+            <article className="item">
+                <Link to="/buyerverproductdetail/for/:prompt"> <img src={imageUrl} alt={props.details.author} /> </Link>
+                <Link to="/buyerverproductdetail/for/:prompt"> <span>{props.details.author}</span> </Link>
+            </article>
     );
 }
 
