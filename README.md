@@ -7,25 +7,6 @@ We propose to build a secondhand goods trading platform targeting college studen
 ## Product Vision Statement
 Empowering college students to buy, sell, and connect effortlessly, ensuring affordability and sustainability at the heart of every exchange.
 
-## Brief User Requirements
-
-### Theme: All users
-- Users will be able to register and log in.
-- Users will be able to set and edit my personal information.
-- Users will be able to search and browse listed items.
-
-### Theme: Buyer
-- Users will be able to view order history.
-- Users will be able to share the item.
-- Users will be able to view the items by categories.
-- Users will be able to review the product information so that they can check the details to decide if they actually want to buy it.
-
-### Theme: Seller
-- Users will be able to post items for sale by adding relevant details like title, description, price, and optional images.
-- Users will be able to view their own listings.
-- Users will be able to delete their posted items.
-- Users will be able to contact the buyer so that they can communicate with the buyers about any issues they have with their purchases.
-
 ## Core Team Members
 
 - Anita Ye: [GitHub - Anita Ye](https://github.com/anitayyc)
