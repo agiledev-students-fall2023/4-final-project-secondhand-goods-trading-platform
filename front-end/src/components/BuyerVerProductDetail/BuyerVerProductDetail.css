@@ -60,10 +60,11 @@
     margin-top: 40px; /* Added this to separate from the image */
 }
 
-.product-info p {
-    margin-bottom: 15px;
-    line-height: 1.6;
+.product-info p.description {
+    white-space: pre-line;
+    word-wrap: break-word; 
 }
+
 
 .product-info strong {
     font-weight: bold; /* This will make the titles bold */
