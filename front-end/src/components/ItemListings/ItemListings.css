@@ -22,4 +22,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 1rem;
+    gap: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif ;
 }
+
+ 

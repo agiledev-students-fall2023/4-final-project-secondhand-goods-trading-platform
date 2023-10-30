@@ -8,8 +8,13 @@ function Item(props) {
 
     return (
             <article className="item">
-                <Link to="/buyerverproductdetail/for/:prompt"> <img src={imageUrl} alt={props.details.author} /> </Link>
-                <Link to="/buyerverproductdetail/for/:prompt"> <span>{props.details.author}</span> </Link>
+                <Link to={`/buyerverproductdetail/for/${props.details.id}`}>
+                    <img src={imageUrl} alt={props.details.author} />
+                </Link>
+                <Link to={`/buyerverproductdetail/for/${props.details.id}`}>
+                    <span>{props.details.author}</span>
+                </Link>
+
             </article>
     );
 }

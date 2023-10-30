@@ -36,7 +36,7 @@ const App = props => {
               <Route path="/searchresults/for/:prompt" element={<SearchResults />} />
 
               {/* a route for the buyerverproductdetail page */}
-              <Route path="/buyerverproductdetail/for/:prompt" element={<BuyerVerProductDetail />} />
+              <Route path="/buyerverproductdetail/for/:id" element={<BuyerVerProductDetail />} />
 
               {/* a route for the sellerverproductdetail page */}
               <Route path="/sellerverproductdetail/for/:prompt" element={<SellerVerProductDetail />} />
