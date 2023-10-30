@@ -14,6 +14,7 @@ function Item(props) {
                 <Link to={`/buyerverproductdetail/for/${props.details.id}`}>
                     <span>{props.details.author}</span>
                 </Link>
+
             </article>
     );
 }
