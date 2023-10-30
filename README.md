@@ -33,6 +33,15 @@ Empowering college students to buy, sell, and connect effortlessly, ensuring aff
 - Anthony Li: [GitHub - Anthony Li](https://github.com/anthonyLi3317)
 - Steven Li: [GitHub - Steven Li](https://github.com/ZiliangLi2002)
 
+## Assigned Roles
+
+The roles of product owner and scrum master will be rotated throughout the semester:
+
+### Sprint 1
+
+- **Product Owner:** Anthony Li
+- **Scrum Master:** Steven Li
+
 ## History of the project
 
 The concept for this project emerged from personal experiences and observations of college life. We recognized the financial constraints faced by many college students and identified a gap in the market for a dedicated second-hand trading platform. Our team united with the shared vision of making college life more affordable and sustainable, leading to the inception of this project.
