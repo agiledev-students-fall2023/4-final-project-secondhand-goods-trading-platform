@@ -18,8 +18,10 @@ function BuyerVerProductDetail() {
         });
     }, [id]);
 
-    if (!itemDetails) return <div>Loading...</div>; // Display a loading state or any other placeholder until data is fetched
+    if (!itemDetails) return <div>Loading...</div>; // Display a loading state
 
+
+    // fake fetch
     const imageUrl = itemDetails.download_url;
     const author = itemDetails.author;
     const price = itemDetails.width;

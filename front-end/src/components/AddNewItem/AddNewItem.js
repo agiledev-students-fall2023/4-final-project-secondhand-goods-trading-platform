@@ -42,7 +42,6 @@ function AddNewItem(){
     { name: 'electronics', icon: `${process.env.PUBLIC_URL}/electronics-icon.png` },
     { name: 'clothes', icon: `${process.env.PUBLIC_URL}/clothes-icon.png` },]
 
-
     return(
         <div>
             <Link to="/home">
@@ -120,8 +119,6 @@ function AddNewItem(){
                 <section>
                     <button className='publish-button' onClick={handlePublishProduct}>Publish Your New Product</button>
                 </section>
-            
-            
             </div>
         </div>
 

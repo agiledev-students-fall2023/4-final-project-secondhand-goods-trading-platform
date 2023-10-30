@@ -9,12 +9,12 @@ import SignUp from './components/SignUp/SignUp';
 import SearchResults from "./components/SearchResults/SearchResults";
 import BuyerVerProductDetail from './components/BuyerVerProductDetail/BuyerVerProductDetail';
 import SellerVerProductDetail from './components/SellerVerProductDetail/SellerVerProductDetail';
-import Account from './components/Account/Account';
-import EditProfile from './components/EditProfile/EditProfile';
-import OrderHistory from './components/OrderHistory/OrderHistory';
 import ViewYourProduct from "./components/ViewYourProduct/ViewYourProduct";
 import AddNewItem from './components/AddNewItem/AddNewItem';
 
+import Account from './components/Account/Account';
+import EditProfile from './components/EditProfile/EditProfile';
+import OrderHistory from './components/OrderHistory/OrderHistory';
 
 
 const App = props => {
@@ -45,6 +45,15 @@ const App = props => {
 
              {/* a route for the AddNewProduct page */}
              <Route path="/addnewitem" element={<AddNewItem />} />
+
+              {/* a route for the account page*/}
+              <Route path="/Account" element={<Account />} />
+
+              {/* a route for the EditProfile page*/}
+              <Route path="/EditProfile" element={<EditProfile />} />
+
+              {/* a route for the EditProfile page*/}
+              <Route path="/OrderHistory" element={<OrderHistory />} />
 
               {/* a route for the account page*/}
               <Route path="/Account" element={<Account />} />
