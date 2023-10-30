@@ -1,0 +1,138 @@
+.overall-container {
+    padding-left: 23px;
+    padding-right: 23px;
+    
+}
+
+.home-button img {
+    width: 34px; 
+    height: 29px;
+  }
+
+.home-button {
+    display: flex;
+    margin-top: 17px;
+    margin-left: 17px;
+    margin-right: 17px;
+    background-color: transparent;
+    border: none;
+}
+
+.entry{
+    padding-top: 5px;
+    display: flex;
+    font-size: 16px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.input-section input {
+    width: 100%;
+    display: flex;
+    
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+}
+
+.input-section input::placeholder {
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    opacity: 0.5;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.category-button img {
+    width: 65px;  
+    height: 65px; 
+}
+
+.category-button {
+    background-color:transparent;
+    border: none;
+    margin: 0 10px;
+
+    &:hover {
+        background-color: #7a24d2;
+    }
+
+    &:active {
+        background-color: #BFA9C7;
+    }
+}
+
+
+.image-upload-container {
+    height: 250px;
+    background-color: #e8e0ef;
+    border: 1px solid #ccc;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-upload-container img {
+    width: auto;
+    max-height: 215px;
+    
+}
+
+.placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.plus-icon {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.plus-icon img {
+    height: 40px;
+    width: 40px;
+
+}
+
+.publish-button {
+    font-size: 16px;
+    font-family: Georgia, 'Times New Roman', Times, serif;; 
+    background-color: #E8E0EF;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-top: 13px;
+    padding: 10px 20px;
+  
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #7a24d2;
+    }
+
+    &:active {
+        background-color: #BFA9C7;
+    }
+}
