@@ -66,7 +66,8 @@ function BuyerVerProductDetail() {
                     <button className="copy-link-button" onClick={copyLinkHandler}>Copy Link</button>
                 </div>
             </div>
-        </div>
+        </div>      
+        
     );
 }
 
