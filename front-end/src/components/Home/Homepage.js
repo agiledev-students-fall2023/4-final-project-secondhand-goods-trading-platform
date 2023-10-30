@@ -18,9 +18,11 @@ function Homepage() {
             <Categories />
 
             <section className="actions">
-                <Link to = "/viewyourproduct" className="action-icon-button">
-                    <img src={`${process.env.PUBLIC_URL}/seller-icon.png`} alt="Sell"/>
-                    <span>View Your Products</span>
+                <Link to = "/viewyourproduct">
+                    <button className="action-icon-button">
+                        <img src={`${process.env.PUBLIC_URL}/seller-icon.png`} alt="Sell"/>
+                        <span>View Your Products</span>
+                    </button>
                 </Link>
                 
                 <Link to="/Account"> {/* Link to the account page */}
