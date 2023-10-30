@@ -12,22 +12,6 @@
 
   }
   
-  .item-listings {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    font-family: Georgia, 'Times New Roman', Times, serif ;
-
-  }
-  
-  .item-image {
-    background-color: lightgray;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
   
   .item-name {
     text-align: center;
