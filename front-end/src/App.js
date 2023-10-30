@@ -7,7 +7,8 @@ import Login from './components/login/Login';
 import Homepage from './components/Home/Homepage';
 import SignUp from './components/SignUp/SignUp';
 import SearchResults from "./components/SearchResults/SearchResults";
-
+import BuyerVerProductDetail from './components/BuyerVerProductDetail/BuyerVerProductDetail';
+import SellerVerProductDetail from './components/SellerVerProductDetail/SellerVerProductDetail';
 
 
 const App = props => {
@@ -28,6 +29,11 @@ const App = props => {
               {/* a route for the search page */}
               <Route path="/searchresults/for/:prompt" element={<SearchResults />} />
 
+              {/* a route for the buyerverproductdetail page */}
+              <Route path="/buyerverproductdetail/for/:prompt" element={<BuyerVerProductDetail />} />
+
+              {/* a route for the sellerverproductdetail page */}
+              <Route path="/sellerverproductdetail/for/:prompt" element={<SellerVerProductDetail />} />
 
           </Routes>
         </main>
