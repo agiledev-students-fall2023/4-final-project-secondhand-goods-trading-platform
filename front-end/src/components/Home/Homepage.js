@@ -3,6 +3,7 @@ import './Homepage.css';
 import Header from '../Header/Header';
 import Categories from '../Categories/Categories';
 import ItemListings from '../ItemListings/ItemListings.js';
+import { Link } from 'react-router-dom';
 
 
 function Homepage() {
@@ -19,10 +20,12 @@ function Homepage() {
                     <img src={`${process.env.PUBLIC_URL}/seller-icon.png`} alt="Sell"/>
                     <span>View Your Products</span>
                 </button>
-                <button className="action-icon-button">
-                    <img src={`${process.env.PUBLIC_URL}/account-icon.png`} alt="Account"/>
-                    <span>Account Profile</span>
-                </button>
+                <Link to="/Account"> {/* Link to the account page */}
+                    <button className="action-icon-button">
+                        <img src={`${process.env.PUBLIC_URL}/account-icon.png`} alt="Account"/>
+                        <span>Account Profile</span>
+                    </button>
+                </Link>
             </section>
 
             <section className="items">
