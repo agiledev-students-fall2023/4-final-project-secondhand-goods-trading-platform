@@ -7,6 +7,8 @@ import Login from './components/login/Login';
 import Homepage from './components/Home/Homepage';
 import SignUp from './components/SignUp/SignUp';
 import SearchResults from "./components/SearchResults/SearchResults";
+import ViewYourProduct from "./components/ViewYourProduct/ViewYourProduct";
+import AddNewItem from './components/AddNewItem/AddNewItem';
 
 
 
@@ -27,6 +29,12 @@ const App = props => {
 
               {/* a route for the search page */}
               <Route path="/searchresults/for/:prompt" element={<SearchResults />} />
+
+              {/* a route for the ViewYourProduct page */}
+             <Route path="/viewyourproduct" element={<ViewYourProduct />} />
+
+             {/* a route for the AddNewProduct page */}
+             <Route path="/addnewitem" element={<AddNewItem />} />
 
 
           </Routes>
