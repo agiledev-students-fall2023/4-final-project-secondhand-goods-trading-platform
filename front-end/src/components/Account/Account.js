@@ -34,7 +34,11 @@ function Account() {
             <td>{userData ? userData.author : 'Loading...'}</td>
             <td>
               <Link to="/EditProfile">
-                <button className="edit-button">Edit</button>
+                <button className="edit-button">
+                <img src={`${process.env.PUBLIC_URL}/edit-icon.png`} alt="Account"
+                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
+                  />
+                </button>
               </Link>
             </td>
           </tr>
@@ -42,7 +46,11 @@ function Account() {
             <td>{userData ? userData.width : 'Loading...'}</td>
             <td>
               <Link to="/EditProfile">
-                <button className="edit-button">Edit</button>
+                <button className="edit-button">
+                <img src={`${process.env.PUBLIC_URL}/edit-icon.png`} alt="Account"
+                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
+                  />
+                </button>
               </Link>
             </td>
           </tr>
@@ -50,7 +58,10 @@ function Account() {
             <td>Card Ending: {userData ? userData.height : 'Loading...'}</td>
             <td>
               <Link to="/EditProfile">
-                <button className="edit-button">Edit</button>
+                <button className="edit-button">
+                  <img src={`${process.env.PUBLIC_URL}/edit-icon.png`} alt="Account"
+                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
+                  /></button>
               </Link>
             </td>
           </tr>
@@ -58,7 +69,11 @@ function Account() {
             <td> {userData ? userData.url : 'Loading...'}</td>
             <td>
               <Link to="/EditProfile">
-                <button className="edit-button">Edit</button>
+                <button className="edit-button">
+                <img src={`${process.env.PUBLIC_URL}/edit-icon.png`} alt="Account"
+                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
+                  />
+                </button>
               </Link>
             </td>
           </tr>
@@ -66,7 +81,11 @@ function Account() {
             <td> {userData ? userData.download_url : 'Loading...'}</td>
             <td>
               <Link to="/EditProfile">
-                <button className="edit-button">Edit</button>
+                <button className="edit-button">
+                <img src={`${process.env.PUBLIC_URL}/edit-icon.png`} alt="Account"
+                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
+                  />
+                </button>
               </Link>
             </td>
           </tr>
@@ -74,7 +93,11 @@ function Account() {
             <td>Order History</td>
             <td>
               <Link to="/OrderHistory">
-                <button className="view-button">View</button>
+                <button className="view-button">
+                <img src={`${process.env.PUBLIC_URL}/view-icon.png`} alt="Account"
+                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
+                  />
+                </button>
               </Link>
             </td>
           </tr>
