@@ -3,7 +3,7 @@ import './Homepage.css';
 import Header from '../Header/Header';
 import Categories from '../Categories/Categories';
 import ItemListings from '../ItemListings/ItemListings.js';
-import ViewYourProduct from '../ViewYourProduct/ViewYourProduct';
+
 
 import { Link } from 'react-router-dom';
 

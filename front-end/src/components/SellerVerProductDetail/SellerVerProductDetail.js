@@ -1,10 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './SellerVerProductDetail.css';
 import Header from '../Header/Header';
 import Slider from "react-slick";  // Importing the Slider component
+import { useParams } from 'react-router-dom';
 
 function SellerVerProductDetail() {
+    const { id } = useParams();
+
+    const [itemDetails, setItemDetails] = useState(null);
     const [productStatus, setProductStatus] = useState("Available"); // Set the initial state as 'Available'
+    
+    useEffect(() => {
+        // Assuming you're fetching data from the same API
+        axios.get(`https://picsum.photos/id/${id}/info`).then(response => {
+            setItemDetails(response.data);
+        });
+    }, [id]);
+
+    if (!itemDetails) return <div>Loading...</div>; // Display a loading state
+
+    // fake fetch
+    const imageUrl = itemDetails.download_url;
+    const author = itemDetails.author;
+    const price = itemDetails.width;
+
+    const authorHashValue = parseInt(author.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)) % 4 + 1;
+    const categories = ['Furnitures', 'School Supplies', 'Electronics', 'Clothes'];
+    const conditions = ['Used', 'New', '90% New', '75% New'];
+    
+    const category = categories[authorHashValue - 1];
+    const condition = conditions[authorHashValue - 1];
 
     const toggleStatus = () => {
         if (productStatus === "Available") {
@@ -48,30 +74,26 @@ function SellerVerProductDetail() {
                     {/* Carousel Component */}
                     <Slider {...settings}>
                         <div className="each-pic">
-                            <img src="https://picsum.photos/200/300?random=1" alt="Item 1"/>
+                            <img src={imageUrl} alt="Item 1"/>
+                        </div>
+                        {/* Add placeholder images for the remaining slides */}
+                        <div className="each-pic">
+                            <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 2"/>
                         </div>
                         <div className="each-pic">
-                            <img src="https://picsum.photos/200/300?random=2" alt="Item 2"/>
+                            <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 3"/>
                         </div>
                         <div className="each-pic">
-                            <img src="https://picsum.photos/200/300?random=3" alt="Item 3"/>
-                        </div>
-                        <div className="each-pic">
-                            <img src="https://picsum.photos/200/300?random=4" alt="Item 4"/>
+                            <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 4"/>
                         </div>
                     </Slider>
                 </div>
                 <div className="product-info">
-                    <p><strong>Price:</strong> $23.99</p>
-                    <p><strong>Category:</strong> Zibaroo</p>
-                    <p><strong>Condition:</strong> Used</p>
-                    <p><strong>Seller Contact Info:</strong> (+1) 123-456-7890</p>
-                    <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
-                    vehicula mauris id magna varius, vitae vestibulum tortor pulvinar. Fusce euismod sollicitudin ante,
-                    nec tincidunt orci finibus at. Quisque pharetra, augue vel aliquam fermentum, justo sapien facilisis
-                    nulla, non euismod purus lorem eu est. Vestibulum ante ipsum primis in faucibus orci luctus et 
-                    ultrices posuere cubilia curae; Nullam ultrices velit sit amet est ultricies, ac blandit turpis 
-                    tincidunt.</p>
+                    <p><strong>Price:</strong> ${price}</p>
+                    <p><strong>Category:</strong> {category}</p>
+                    <p><strong>Condition:</strong> {condition}</p>
+                    <p><strong>Seller Contact Info:</strong> {author}</p>
+                    <p className="description"><strong>Description:</strong> {imageUrl.repeat(5).split('https://')}</p>
                 </div>
                 <div className="button-container">
                     <button className="take-off-button" onClick={toggleStatus}>Take Off / Launch</button> {/* Added the "Take Off / Launch" button */}
