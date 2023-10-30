@@ -12,7 +12,7 @@ function SellerVerProductDetail() {
             alert('Your product is taken off!')
         } else {
             setProductStatus("Available");
-            alert('Your product is available!')
+            alert('Your product is launched and made available!')
         }
     };
 
@@ -74,7 +74,7 @@ function SellerVerProductDetail() {
                     tincidunt.</p>
                 </div>
                 <div className="button-container">
-                    <button className="take-off-button" onClick={toggleStatus}>Take Off</button> {/* Added the "Take Off" button */}
+                    <button className="take-off-button" onClick={toggleStatus}>Take Off / Launch</button> {/* Added the "Take Off / Launch" button */}
                     <button className="copy-link-button" onClick={copyLinkHandler}>Copy Link</button>
                 </div>
             </div>
