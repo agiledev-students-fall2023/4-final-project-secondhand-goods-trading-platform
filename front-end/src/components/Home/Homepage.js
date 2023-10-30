@@ -22,10 +22,13 @@ function Homepage() {
                     <img src={`${process.env.PUBLIC_URL}/seller-icon.png`} alt="Sell"/>
                     <span>View Your Products</span>
                 </Link>
-                <button className="action-icon-button">
-                    <img src={`${process.env.PUBLIC_URL}/account-icon.png`} alt="Account"/>
-                    <span>Account Profile</span>
-                </button>
+                
+                <Link to="/Account"> {/* Link to the account page */}
+                    <button className="action-icon-button">
+                        <img src={`${process.env.PUBLIC_URL}/account-icon.png`} alt="Account"/>
+                        <span>Account Profile</span>
+                    </button>
+                </Link>
             </section>
 
             <section className="items">

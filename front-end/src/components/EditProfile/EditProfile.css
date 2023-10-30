@@ -1,0 +1,56 @@
+
+.edit-container {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    padding: 10px 50px;
+    position: relative; /* Making it relative to position the Home icon at the top left */
+    max-width: 500px; /* Max-width for the entire container */
+    margin: 50px auto;
+  }
+
+.edit-container a {
+    text-decoration: none; /* Remove underline from the "Home" link */
+    color: #b279e7; /* Link color */
+    margin-bottom: 20px; /* Adjust spacing */
+    align-self: flex-start; /* Align the link to the left */
+  }
+
+.edit-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centering the edit items */
+}
+
+.edit-item {
+    width: 80%; /* Reduced width to 80% to bring them closer to the center */
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.edit-item label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    
+}
+
+.edit-item input {
+    padding: 5px;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    width: 100%;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.edit-item input:focus {
+    border-bottom-color: #a6a6d2;
+    outline: none;
+}
