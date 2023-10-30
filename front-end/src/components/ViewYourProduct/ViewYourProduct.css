@@ -1,0 +1,34 @@
+.viewyourproduct {
+    margin-top: 12px;
+    margin-left: 12px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;  
+    padding: 5px;
+
+    justify-content: space-between;
+    
+  }
+
+  .add-new-item-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border: 1px solid #ccc;  
+    background-color: transparent;
+    padding: 5px 2vm;
+    width: 60%; 
+    border-radius: 25px; 
+    font-size: 14px; 
+    margin-left: auto;
+    margin-right: auto;
+    
+    }
+
+  .add-new-item-button img {
+    height: 28px;
+    width: 28px;
+   }

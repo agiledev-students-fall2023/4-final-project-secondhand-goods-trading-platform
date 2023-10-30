@@ -12,6 +12,9 @@ import SellerVerProductDetail from './components/SellerVerProductDetail/SellerVe
 import Account from './components/Account/Account';
 import EditProfile from './components/EditProfile/EditProfile';
 import OrderHistory from './components/OrderHistory/OrderHistory';
+import ViewYourProduct from "./components/ViewYourProduct/ViewYourProduct";
+import AddNewItem from './components/AddNewItem/AddNewItem';
+
 
 
 const App = props => {
@@ -37,6 +40,11 @@ const App = props => {
 
               {/* a route for the sellerverproductdetail page */}
               <Route path="/sellerverproductdetail/for/:prompt" element={<SellerVerProductDetail />} />
+              {/* a route for the ViewYourProduct page */}
+             <Route path="/viewyourproduct" element={<ViewYourProduct />} />
+
+             {/* a route for the AddNewProduct page */}
+             <Route path="/addnewitem" element={<AddNewItem />} />
 
               {/* a route for the account page*/}
               <Route path="/Account" element={<Account />} />
