@@ -43,11 +43,22 @@ We welcome all forms of contributions from code to design or even ideas! To get 
 
 ## Instructions for building and testing (updating)
 
+### Clone the source code from Github
+
+1. Run ``git clone https://github.com/agiledev-students-fall2023/4-final-project-secondhand-goods-trading-platform`` in the source control bar to create a local repository in your desired folder.
+1. Install [Node.js](https://nodejs.org/en) on its offical website if you don’t have it installed on your computer.
+1. Open your cloned folder in VS Code
+
+### Running and Testing the Front End
+
+1. Navigate into the front-end directory (use ``cd ../`` to back to main folder and use ``cd front-end``)
+1. Run ``npm install`` and ``npm start`` to develop, navigate, and test the front end
+
+### Running and Testing the Backend Server
+
+Incoming...
 
 ## Links to any additional Markdown documents or web pages that may be relevant reading about the project
 
 [Link to our UX Design Prototype](UX-DESIGN.md)
 
-## Anything else you think is important to communicate to people viewing the project
-
-Coming soon...
