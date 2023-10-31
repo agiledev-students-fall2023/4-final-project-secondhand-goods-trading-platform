@@ -12,7 +12,7 @@ function Item(props) {
                     <img src={imageUrl} alt={props.details.author} />
                 </Link>
                 <Link to={`/buyerverproductdetail/for/${props.details.id}`}>
-                    <span>{props.details.author}</span>
+                    <p>{props.details.author}</p>
                 </Link>
 
             </article>
