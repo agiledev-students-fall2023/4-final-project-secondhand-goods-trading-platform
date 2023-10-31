@@ -25,7 +25,7 @@
   .account-container th,
   .account-container td {
     border: 2px solid #D3D3D3;
-    padding: 10px;
+    padding: 5px;
     text-align: left;
   }
   
@@ -39,7 +39,7 @@
     background-color: #b279e7;
     color: white;
     border: none;
-    padding: 6px 6px;
+    padding: 1px 2px;
     cursor: pointer;
     transition: background-color 0.3s;
     display: flex;
