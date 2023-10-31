@@ -7,12 +7,14 @@ import { useParams } from 'react-router-dom';
 
 import { getCategory } from '../Utils/Utils';
 
-
+// Define the main component function
 function BuyerVerProductDetail() {
     const { id } = useParams();
 
+    // State to store item details fetched from the API
     const [itemDetails, setItemDetails] = useState(null);
     
+    // useEffect to perform a side effect: fetching data from an API
     useEffect(() => {
         // Assuming you're fetching data from the same API
         axios.get(`https://picsum.photos/id/${id}/info`).then(response => {
@@ -27,7 +29,8 @@ function BuyerVerProductDetail() {
     const imageUrl = itemDetails.download_url;
     const author = itemDetails.author;
     const price = itemDetails.width;
-    
+
+    // Calculate a hash value based on the author's name to pseudo-randomly select a category and condition
     const authorHashValue = parseInt(author.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)) % 4 + 1;
     /*const categories = ['Furniture', 'Study Supplies', 'Electronics', 'Clothes'];*/
     const conditions = ['Used', 'New', '90% New', '75% New'];
@@ -48,6 +51,7 @@ function BuyerVerProductDetail() {
             });
     };
 
+    // Settings for the Slider component
     const settings = {
         dots: true,
         infinite: true,
