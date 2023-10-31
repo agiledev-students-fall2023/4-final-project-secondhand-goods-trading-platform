@@ -26,7 +26,7 @@ function SellerVerProductDetail() {
     const price = itemDetails.width;
 
     const authorHashValue = parseInt(author.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)) % 4 + 1;
-    const categories = ['Furnitures', 'School Supplies', 'Electronics', 'Clothes'];
+    const categories = ['Furniture', 'Study Supplies', 'Electronics', 'Clothes'];
     const conditions = ['Used', 'New', '90% New', '75% New'];
     
     const category = categories[authorHashValue - 1];
