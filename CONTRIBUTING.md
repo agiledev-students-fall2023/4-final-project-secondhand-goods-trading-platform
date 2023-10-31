@@ -48,4 +48,17 @@ When we embarked on our educational journeys in the US, we encountered difficult
 
 # How to Build and Test Project
 
-To be determined … This would be updated as we develop the app further throughout the semester. 
+## Clone the source code from Github
+
+1. Run ``git clone https://github.com/agiledev-students-fall2023/4-final-project-secondhand-goods-trading-platform`` in the source control bar to create a local repository in your desired folder.
+1. Install [Node.js](https://nodejs.org/en) on its offical website if you don’t have it installed on your computer.
+1. Open your cloned folder in VS Code.
+
+## Running and Testing the Front End
+
+1. Navigate into the front-end directory (use ``cd ../`` to back to main folder and use ``cd front-end``).
+1. Run ``npm install``, ``npm install react-slick slick-carousel``, and ``npm start`` to develop, navigate, and test the front end.
+
+## Running and Testing the Backend Server
+
+Incoming...
