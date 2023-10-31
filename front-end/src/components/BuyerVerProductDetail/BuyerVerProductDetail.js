@@ -5,6 +5,8 @@ import Header from '../Header/Header';
 import Slider from "react-slick";  // Importing the Slider component
 import { useParams } from 'react-router-dom';
 
+import { getCategory } from '../Utils/Utils';
+
 
 function BuyerVerProductDetail() {
     const { id } = useParams();
@@ -27,10 +29,11 @@ function BuyerVerProductDetail() {
     const price = itemDetails.width;
 
     const authorHashValue = parseInt(author.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)) % 4 + 1;
-    const categories = ['Furnitures', 'School Supplies', 'Electronics', 'Clothes'];
+    /*const categories = ['Furniture', 'Study Supplies', 'Electronics', 'Clothes'];*/
     const conditions = ['Used', 'New', '90% New', '75% New'];
     
-    const category = categories[authorHashValue - 1];
+    //const category = categories[authorHashValue - 1];
+    const category = getCategory(author);
     const condition = conditions[authorHashValue - 1];
 
     // Event handler function for copying the hyperlink

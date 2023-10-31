@@ -11,10 +11,10 @@ import BuyerVerProductDetail from './components/BuyerVerProductDetail/BuyerVerPr
 import SellerVerProductDetail from './components/SellerVerProductDetail/SellerVerProductDetail';
 import ViewYourProduct from "./components/ViewYourProduct/ViewYourProduct";
 import AddNewItem from './components/AddNewItem/AddNewItem';
-
 import Account from './components/Account/Account';
 import EditProfile from './components/EditProfile/EditProfile';
 import OrderHistory from './components/OrderHistory/OrderHistory';
+import CategoryPage from './components/CategoryPage/CategoryPage';
 
 
 const App = props => {
@@ -56,14 +56,8 @@ const App = props => {
               {/* a route for the EditProfile page*/}
               <Route path="/OrderHistory" element={<OrderHistory />} />
 
-              {/* a route for the account page*/}
-              <Route path="/Account" element={<Account />} />
-
-              {/* a route for the EditProfile page*/}
-              <Route path="/EditProfile" element={<EditProfile />} />
-
-              {/* a route for the EditProfile page*/}
-              <Route path="/OrderHistory" element={<OrderHistory />} />
+              {/* a route for each category*/}
+              <Route path="/categorypage/for/:category" element={<CategoryPage />} />
 
           </Routes>
         </main>
