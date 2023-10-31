@@ -13,15 +13,9 @@
     background-color:transparent;
 
     border: none;
-
-    &:hover {
-      background-color: #7a24d2;
-    }
-
-    &:active {
-      background-color: #BFA9C7;
-    }
   }
 
-
+  .categories button:hover {
+    background-color: #7a24d2;
+  }
 
