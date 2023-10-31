@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom';
 
 import { getCategory } from '../Utils/Utils';
 
-// Define the main component function
 function BuyerVerProductDetail() {
     const { id } = useParams();
 
@@ -16,7 +15,6 @@ function BuyerVerProductDetail() {
     
     // useEffect to perform a side effect: fetching data from an API
     useEffect(() => {
-        // Assuming you're fetching data from the same API
         axios.get(`https://picsum.photos/id/${id}/info`).then(response => {
             setItemDetails(response.data);
         });
@@ -32,10 +30,8 @@ function BuyerVerProductDetail() {
 
     // Calculate a hash value based on the author's name to pseudo-randomly select a category and condition
     const authorHashValue = parseInt(author.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)) % 4 + 1;
-    /*const categories = ['Furniture', 'Study Supplies', 'Electronics', 'Clothes'];*/
     const conditions = ['Used', 'New', '90% New', '75% New'];
-    
-    //const category = categories[authorHashValue - 1];
+
     const category = getCategory(author);
     const condition = conditions[authorHashValue - 1];
 
@@ -100,7 +96,6 @@ function BuyerVerProductDetail() {
                 </div>
             </div>
         </div>      
-        
     );
 }
 

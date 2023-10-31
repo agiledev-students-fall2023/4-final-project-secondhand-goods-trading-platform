@@ -1,13 +1,9 @@
 import React from 'react';
 import './ViewYourProduct.css';
-
-import AddNewItem from '../AddNewItem/AddNewItem';
 import MySellingItems from '../MySellingItems/MySellingItems';
-
 import { Link } from 'react-router-dom';
 
 function ViewYourProduct(){
-
     return(
         <div>
             <section className='viewyourproduct'>
@@ -24,7 +20,6 @@ function ViewYourProduct(){
             <section className='Selling-Items'>
                 <MySellingItems />
             </section>
-
         </div>
     )
 }
