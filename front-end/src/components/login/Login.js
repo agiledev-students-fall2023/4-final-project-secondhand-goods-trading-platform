@@ -15,26 +15,20 @@ const Login = () => {
         e.preventDefault();
         
         try {
-            // Temporarily Use piscum dataset for verification 
-            const { data } = await axios.get('https://picsum.photos/v2/list');
-
-            console.log(username, email, password);
-            const user = data.find(photo => 
-                photo.author === username && 
-                photo.id === email && 
-                photo.width.toString() === password // Convert width to string for comparison
-            );
-
-            if (user) {
-                // Successful login
-                navigate('/home');     // Redirect to homepage
-            } else {
-                setErrorMessage('Invalid username, email, or password. Please try again.');
-            }
+          const payload = { username, email, password }; // Assuming email is not needed for login based on your backend code
+          const { data } = await axios.post('http://localhost:3001/api/login', payload); 
+          
+          if (data && data.user) {
+            navigate('/home'); // Redirect to homepage
+          } else {
+            setErrorMessage('Invalid username or password. Please try again.');
+          }
         } catch (error) {
-            console.error("There was an error fetching the data", error);
+          console.error("There was an error logging in", error);
+          setErrorMessage('An error occurred. Please try again later.');
         }
-    }
+      }
+      
 
     return (
         <div className="login-page">
