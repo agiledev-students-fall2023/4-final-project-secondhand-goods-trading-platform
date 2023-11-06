@@ -1,13 +1,16 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const sinon = require('sinon');
+const axios = require('axios'); 
 const { expect } = chai;
-const app = require('../app'); // Adjust the path to wherever your app.js is located
+const app = require('../app'); 
 
 chai.use(chaiHttp);
 
 describe('Item Listings API', () => {
-  // Test for GET request
+  
   describe('GET /api/item-listings', () => {
+    // This test is for successful fetch
     it('should get all item listings', (done) => {
       chai.request(app)
         .get('/api/item-listings')
@@ -19,25 +22,33 @@ describe('Item Listings API', () => {
         });
     });
 
-    let axiosGetStub;
+    // Describe error handling in the axios call
+    describe('when there is an error fetching item listings', () => {
+      let axiosGetStub;
 
-  beforeEach(() => {
-    // Replace the actual axios.get function with a stub that throws an error
-    axiosGetStub = sinon.stub(axios, 'get').rejects(new Error('Network Error'));
-  });
+      /*NOTE: we are mocking the database with API. 
+              when we want to test for errors, the axios.get won't be able to always give us error.
+              So we mock the error with sinon.stub()
+        */ 
+      beforeEach(() => {
+        // temporarily change the get function to return an error
+        axiosGetStub = sinon.stub(axios, 'get').rejects(new Error('Network Error'));
+      });
 
-  afterEach(() => {
-    // Restore the actual function
-    axiosGetStub.restore();
-  });
+      afterEach(() => {
+        // Restore the axios.get call to its original state
+        axiosGetStub.restore();
+      });
 
-  it('should handle errors when fetching item listings', (done) => {
-    chai.request(app)
-      .get('/api/item-listings')
-      .end((err, res) => {
-        expect(res).to.have.status(500);
-        expect(res.text).to.equal('An error occurred while fetching item listings.');
-        done();
+      it('should handle errors when fetching item listings', (done) => {
+        chai.request(app)
+          .get('/api/item-listings')
+          .end((err, res) => {
+            expect(err).to.be.null;
+            expect(res).to.have.status(500);
+            expect(res.text).to.equal('An error occurred while fetching item listings.');
+            done();
+          });
       });
     });
   });
