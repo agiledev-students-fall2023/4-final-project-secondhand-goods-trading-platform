@@ -12,29 +12,27 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+      e.preventDefault();
+      
+      try {
+        const payload = { username, email, password };
+        const { data } = await axios.post('http://localhost:3001/api/login', payload); 
         
-        try {
-            // Temporarily Use piscum dataset for verification 
-            const { data } = await axios.get('https://picsum.photos/v2/list');
-
-            console.log(username, email, password);
-            const user = data.find(photo => 
-                photo.author === username && 
-                photo.id === email && 
-                photo.width.toString() === password // Convert width to string for comparison
-            );
-
-            if (user) {
-                // Successful login
-                navigate('/home');     // Redirect to homepage
-            } else {
-                setErrorMessage('Invalid username, email, or password. Please try again.');
-            }
-        } catch (error) {
-            console.error("There was an error fetching the data", error);
+        if (data && data.user) {
+          navigate('/home'); // Redirect to homepage
+        } else {
+          
         }
+      } catch (error) {
+        console.error("There was an error logging in", error);
+        if (error.response && error.response.data && error.response.data.message) {
+          setErrorMessage(error.response.data.message); // Use the server's error message
+        } else {
+          setErrorMessage('An error occurred. Please try again later.'); // Use a generic error message
+        }
+      }
     }
+      
 
     return (
         <div className="login-page">

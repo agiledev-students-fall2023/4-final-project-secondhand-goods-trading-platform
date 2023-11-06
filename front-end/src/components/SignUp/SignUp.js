@@ -18,10 +18,37 @@ const SignUp = () => {
             return;
         }
 
-        // TODO: Update back-end data, store the info
-        // Then redirect to the home page after "successful" sign-up.
-        navigate('/home');
+        try {
+            const response = await fetch('http://localhost:3001/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    email,
+                    password 
+                }),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                alert(data.message); // Show a success message
+                navigate('/home');
+            } else {
+                // Handle errors if the response is not ok (e.g., user already exists)
+                setErrorMessage(data.message);
+            }
+        } catch (error) {
+            // Handle network errors 
+            setErrorMessage('An error occurred while signing up.');
+            console.error('SignUp error:', error);
+        }
     }
+
+        
+    
 
     return (
         <div className="signup-page">
