@@ -24,14 +24,16 @@ function ItemListings({ items }) {
 
     useEffect(() => {
         async function fetchData() {
-            if(!items) { // Only fetch if items prop is not provided
-                const result = await axios(
-                    "https://picsum.photos/v2/list?page=3&limit=100"
-                );
-                setData(result.data);
+            if (!items) { // Only fetch if items prop is not provided
+                try {
+                    const result = await axios('http://localhost:3001/api/item-listings');
+                    setData(result.data);
+                } catch (error) {
+                    console.error('Error fetching item listings:', error);
+                }
             }
         }
-
+    
         fetchData();
     }, [items]);
 

@@ -10,7 +10,6 @@ const users = [
 
 // Login endpoint
 router.post('/login', (req, res) => {
-  console.log(users);
   const { username, email, password } = req.body;
 
   const user = users.find(u => u.username === username && u.email === email);
@@ -39,7 +38,6 @@ router.post('/signup', (req, res) => {
   // "Create" the user (just save it temporarily)
   const newUser = { username, email, password };
   users.push(newUser);
-  console.log(users);
 
   res.status(201).json({ message: 'Thank you for signing up!' });
 });
