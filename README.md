@@ -41,11 +41,13 @@ We welcome all forms of contributions from code to design or even ideas! To get 
 
 ### Running and Testing the Front End
 
+1. Open a new terminal (Git Bash).
 1. Navigate into the front-end directory (use ``cd ../`` to back to main folder and use ``cd front-end``).
 1. Run ``npm install`` and ``npm start`` to develop, navigate, and test the front end.
 
 ### Running and Testing the Backend Server
 
+1. Open a new terminal (Git Bash).
 1. Navigate into the back-end directory (use ``cd ../`` to back to main folder and use ``cd back-end``).
 1. Run ``npm install``.
 1. Run ``npm start`` to set the backend server running. Or, run ``npm test`` to see the results of all unit/integration tests.

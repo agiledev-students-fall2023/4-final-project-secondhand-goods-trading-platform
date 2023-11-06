@@ -12,22 +12,26 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+      e.preventDefault();
+      
+      try {
+        const payload = { username, email, password };
+        const { data } = await axios.post('http://localhost:3001/api/login', payload); 
         
-        try {
-          const payload = { username, email, password }; // Assuming email is not needed for login based on your backend code
-          const { data } = await axios.post('http://localhost:3001/api/login', payload); 
+        if (data && data.user) {
+          navigate('/home'); // Redirect to homepage
+        } else {
           
-          if (data && data.user) {
-            navigate('/home'); // Redirect to homepage
-          } else {
-            setErrorMessage('Invalid username or password. Please try again.');
-          }
-        } catch (error) {
-          console.error("There was an error logging in", error);
-          setErrorMessage('An error occurred. Please try again later.');
+        }
+      } catch (error) {
+        console.error("There was an error logging in", error);
+        if (error.response && error.response.data && error.response.data.message) {
+          setErrorMessage(error.response.data.message); // Use the server's error message
+        } else {
+          setErrorMessage('An error occurred. Please try again later.'); // Use a generic error message
         }
       }
+    }
       
 
     return (
