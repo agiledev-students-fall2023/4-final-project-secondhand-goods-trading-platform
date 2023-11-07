@@ -16,7 +16,6 @@ import EditProfile from './components/EditProfile/EditProfile';
 import OrderHistory from './components/OrderHistory/OrderHistory';
 import CategoryPage from './components/CategoryPage/CategoryPage';
 
-
 const App = props => {
   return (
     <div className="App">

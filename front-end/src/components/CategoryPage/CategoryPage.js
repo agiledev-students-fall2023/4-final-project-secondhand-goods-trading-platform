@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { getCategory } from '../Utils/Utils';
+import Menu from '../Menu/Menu';
 
 import './CategoryPage.css';
 
@@ -47,9 +48,7 @@ function CategoryPage({ items }) {
     return (
         <div>
             <section className='categorypage'>
-                <Link to="/home">
-                        <button className="icon-button"><img src={`${process.env.PUBLIC_URL}/home-icon.png`} alt="Home"/></button>
-                </Link>
+                <Menu />
                 <section className='categoryname'>
                     Category: {category}
                 </section>
