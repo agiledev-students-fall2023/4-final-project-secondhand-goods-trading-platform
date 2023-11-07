@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Account.css';
+import Menu from '../Menu/Menu';
 
 function Account() {
   const [userData, setUserData] = useState(null);
@@ -23,11 +24,7 @@ function Account() {
 
   return (
     <div className="account-container">
-      <Link to="/home">
-        <button className="icon-button">
-          <img src={`${process.env.PUBLIC_URL}/home-icon.png`} alt="Home" />
-        </button>
-      </Link>
+      <Menu />
       <table>
         <tbody>
           <tr>
