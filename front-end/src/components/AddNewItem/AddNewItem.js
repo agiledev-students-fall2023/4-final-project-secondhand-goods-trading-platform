@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './AddNewItem.css';
+import Menu from '../Menu/Menu';
 
 import { Link } from 'react-router-dom';
 
@@ -44,11 +45,7 @@ function AddNewItem(){
 
     return(
         <div>
-            <Link to="/home">
-                    <button className="home-button">
-                        <img src={`${process.env.PUBLIC_URL}/home-icon.png`} alt="Home"/>
-                    </button>
-            </Link>
+            <Menu />
             <div className='overall-container'>
                 <section className='entry'>
                     <p>Product Name:</p>

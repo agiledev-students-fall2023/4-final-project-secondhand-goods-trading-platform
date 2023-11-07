@@ -15,13 +15,11 @@ import Account from './components/Account/Account';
 import EditProfile from './components/EditProfile/EditProfile';
 import OrderHistory from './components/OrderHistory/OrderHistory';
 import CategoryPage from './components/CategoryPage/CategoryPage';
-import Menu from './components/Menu/Menu'; 
 
 const App = props => {
   return (
     <div className="App">
       <Router>
-        <Menu />
         <main className="App-main">
           <Routes>
             {/* a route for the home page */}

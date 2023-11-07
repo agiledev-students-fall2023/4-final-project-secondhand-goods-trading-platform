@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Header.css';
 import { Link , useNavigate} from "react-router-dom"
 
+import Menu from '../Menu/Menu'; 
+
 
 function Header() {
 
@@ -17,22 +19,25 @@ function Header() {
 
     return (
         <header className="header">
-            <Link to="/home">
-                <button className="icon-button"><img src={`${process.env.PUBLIC_URL}/home-icon.png`} alt="Home"/></button>
-            </Link>
+            {/* Replace the home icon with the Menu component */}
+            <Menu />
 
-                <input 
+
+            <div className="search-container">
+            <input 
                 type="text" 
                 placeholder="Search here..." 
                 className="search-bar" 
                 value={searchValue}
                 onChange={e => setSearchValue(e.target.value)} 
             />
+            
 
             <button className="icon-button" onClick={handleSearchSubmit}>
                 <img src={`${process.env.PUBLIC_URL}/search-icon.png`} alt="Go" />
             </button>
-
+            
+            </div>
         </header>
     );
 }

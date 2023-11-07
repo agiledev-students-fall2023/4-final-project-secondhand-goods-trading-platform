@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './EditProfile.css';
+import Menu from '../Menu/Menu'; 
 
 function EditProfile () {
   return (
     <div className="edit-container">
-        <Link to="/home">
-        <button className="icon-button"><img src={`${process.env.PUBLIC_URL}/home-icon.png`} alt="Home"/></button>
-      </Link>
+      <Menu />
       <div className="edit-section">
         <div className="edit-item">
           <label>Username:</label>

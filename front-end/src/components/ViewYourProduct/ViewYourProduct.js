@@ -2,14 +2,13 @@ import React from 'react';
 import './ViewYourProduct.css';
 import MySellingItems from '../MySellingItems/MySellingItems';
 import { Link } from 'react-router-dom';
+import Menu from '../Menu/Menu';
 
 function ViewYourProduct(){
     return(
         <div>
             <section className='viewyourproduct'>
-                <Link to="/home">
-                    <button className="icon-button"><img src={`${process.env.PUBLIC_URL}/home-icon.png`} alt="Home"/></button>
-                </Link>
+                <Menu />
                 
                 <Link to="/addnewitem" className="add-new-item-button">
                         <img src={`${process.env.PUBLIC_URL}/addIcon.png`} alt="AddNew"/>
