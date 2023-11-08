@@ -13,10 +13,12 @@ function BuyerVerProductDetail() {
     // State to store item details fetched from the API
     const [itemDetails, setItemDetails] = useState(null);
     
-    // useEffect to perform a side effect: fetching data from an API
     useEffect(() => {
-        axios.get(`https://picsum.photos/id/${id}/info`).then(response => {
+        // Update the URL to backend endpoint
+        axios.get(`/api/product-detail/${id}`).then(response => {
             setItemDetails(response.data);
+        }).catch(error => {
+            console.error('Error fetching product details:', error);
         });
     }, [id]);
 
