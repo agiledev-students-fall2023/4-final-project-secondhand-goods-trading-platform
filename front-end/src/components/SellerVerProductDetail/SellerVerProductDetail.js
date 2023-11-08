@@ -12,10 +12,15 @@ function SellerVerProductDetail() {
     const [productStatus, setProductStatus] = useState("Available"); // Set the initial state as 'Available'
     
     useEffect(() => {
-        // Assuming you're fetching data from the same API
-        axios.get(`https://picsum.photos/id/${id}/info`).then(response => {
-            setItemDetails(response.data);
-        });
+        // Update the URL to your backend endpoint
+        axios.get(`/api/seller-product-detail/${id}`)
+            .then(response => {
+                setItemDetails(response.data);
+                setProductStatus(response.data.status); // Set the status from the backend data
+            })
+            .catch(error => {
+                console.error('Error fetching seller product details:', error);
+            });
     }, [id]);
 
     if (!itemDetails) return <div>Loading...</div>; // Display a loading state
@@ -33,13 +38,15 @@ function SellerVerProductDetail() {
     const condition = conditions[authorHashValue - 1];
 
     const toggleStatus = () => {
-        if (productStatus === "Available") {
-            setProductStatus("Taken Off");
-            alert('Your product is taken off!')
-        } else {
-            setProductStatus("Available");
-            alert('Your product is launched and made available!')
-        }
+        const newStatus = productStatus === "Available" ? "Sold" : "Available";
+        axios.post(`/api/seller-product-detail/${id}/status`, { status: newStatus })
+            .then(() => {
+                setProductStatus(newStatus);
+                alert(`Your product status is now: ${newStatus}`);
+            })
+            .catch(err => {
+                console.error('Error updating status: ', err);
+            });
     };
 
     // Event handler function for copying the hyperlink
