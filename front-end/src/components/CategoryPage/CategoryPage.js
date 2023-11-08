@@ -31,10 +31,12 @@ function CategoryPage({ items }) {
     useEffect(() => {
         async function fetchData() {
             if(!items) { 
-                const result = await axios(
-                    "https://picsum.photos/v2/list?page=3&limit=100"
-                );
-                setData(result.data);
+                try { // fetch all products from back-end for now. During database integration, I will filter in the back-end
+                    const result = await axios('http://localhost:3001/api/item-listings');
+                    setData(result.data);
+                } catch (error) {
+                    console.error('Error fetching item from the category:', error);
+                }
             }
         }
 

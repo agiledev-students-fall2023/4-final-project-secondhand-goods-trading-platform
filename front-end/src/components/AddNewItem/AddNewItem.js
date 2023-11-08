@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import './AddNewItem.css';
 import Menu from '../Menu/Menu';
 
-import { Link } from 'react-router-dom';
+
+const categoryList = ['Furniture', 'Study Supplies', 'Electronics', 'Clothes'];
 
 function AddNewItem(){
 
     const [productName, setProductName] = useState('');
-    const [Category, setCategory] = useState('');
+    const [Category, setCategory] = useState(null);
     const [Price, setPrice] = useState('')
     const [Description, setDescription] = useState('')
+    const [errorMessage, setErrorMessage] = useState('');
 
     // for image upload
     const [Image, setImage] = useState(null);
@@ -34,14 +36,56 @@ function AddNewItem(){
     };
 
     // publish product
-    const handlePublishProduct = () => {
+    const handlePublishProduct = async (e) => {
+        e.preventDefault();
+
+        if (productName.length == 0 || productName.length > 20){
+            setErrorMessage('Please enter a valid name.');
+            return;
+        }
+
+        if (Price < 0.01 || isNaN(Number(Price))){
+            setErrorMessage('Please enter a valid price.');
+            return;
+        }
+
+        if (Description.length == 0){
+            setErrorMessage('Description cannot be empty.');
+            return;
+        }
+
+        if (Category === null) {
+            setErrorMessage('Please select a category.');
+            return;
+        }
+
+        try{
+            const response = await fetch('http://localhost:3001/api/add-new-item',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    productName,
+                    Category,
+                    Price,
+                    Description 
+                }),
+            });
+
+
+        }catch (error){ // network error
+            setErrorMessage('An error occurred while adding item.');
+        }
+
+
         console.log("Publish button clicked!");
     };
 
-    const categories = [{ name: 'furniture', icon: `${process.env.PUBLIC_URL}/furniture-icon.png` },
-    { name: 'study', icon: `${process.env.PUBLIC_URL}/study-icon.png` },
-    { name: 'electronics', icon: `${process.env.PUBLIC_URL}/electronics-icon.png` },
-    { name: 'clothes', icon: `${process.env.PUBLIC_URL}/clothes-icon.png` },]
+    const categories = [{ name: 'Furniture', icon: `${process.env.PUBLIC_URL}/furniture-icon.png` },
+    { name: 'Study Supplies', icon: `${process.env.PUBLIC_URL}/study-icon.png` },
+    { name: 'Electronics', icon: `${process.env.PUBLIC_URL}/electronics-icon.png` },
+    { name: 'Clothes', icon: `${process.env.PUBLIC_URL}/clothes-icon.png` },]
 
     return(
         <div>
@@ -68,7 +112,7 @@ function AddNewItem(){
                         key={index} 
                         //value = {Category}
                         className="category-button"
-                        onClick={() => setCategory(index)}>
+                        onClick={() => setCategory(categoryList[index])}>
                         <img src={category.icon} alt={category.name} />
                     </button>
                 ))}
@@ -114,6 +158,7 @@ function AddNewItem(){
                 <button onClick={handlePublish}>Upload Picture</button>
 
                 <section>
+                    {errorMessage && <p className="error">{errorMessage}</p>}
                     <button className='publish-button' onClick={handlePublishProduct}>Publish Your New Product</button>
                 </section>
             </div>
