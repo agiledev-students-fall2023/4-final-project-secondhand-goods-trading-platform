@@ -56,7 +56,7 @@
     border: none;
     margin: 0 10px;
 
-    &:hover {
+    &:hover, &.selected {
         background-color: #7a24d2;
     }
 

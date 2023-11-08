@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import './AddNewItem.css';
 import Menu from '../Menu/Menu';
 
@@ -9,9 +10,11 @@ function AddNewItem(){
 
     const [productName, setProductName] = useState('');
     const [Category, setCategory] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(null);
     const [Price, setPrice] = useState('')
     const [Description, setDescription] = useState('')
     const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate();
 
     // for image upload
     const [Image, setImage] = useState(null);
@@ -73,11 +76,18 @@ function AddNewItem(){
                 }),
             });
 
+            const data = await response.json();
+            if (response.ok) {
+                alert(data.message); // Show a success message
+                navigate('/viewyourproduct');
+            } else {
+                // Handle errors if the response is not ok
+                setErrorMessage(data.message);
+            }
 
         }catch (error){ // network error
             setErrorMessage('An error occurred while adding item.');
         }
-
 
         console.log("Publish button clicked!");
     };
@@ -111,8 +121,11 @@ function AddNewItem(){
                     <button 
                         key={index} 
                         //value = {Category}
-                        className="category-button"
-                        onClick={() => setCategory(categoryList[index])}>
+                        className={`category-button ${selectedCategory === categoryList[index] ? 'selected' : ''}`}
+                        onClick={() => {
+                            setCategory(categoryList[index]);
+                            setSelectedCategory(categoryList[index]); // stay hover
+                        }}>
                         <img src={category.icon} alt={category.name} />
                     </button>
                 ))}
