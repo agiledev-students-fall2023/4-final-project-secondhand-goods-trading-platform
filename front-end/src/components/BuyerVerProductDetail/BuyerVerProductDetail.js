@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './BuyerVerProductDetail.css';
 import Header from '../Header/Header';
-import Slider from "react-slick";  // Importing the Slider component
+import Slider from "react-slick";
 import { useParams } from 'react-router-dom';
 
 import { getCategory } from '../Utils/Utils';
@@ -10,7 +10,6 @@ import { getCategory } from '../Utils/Utils';
 function BuyerVerProductDetail() {
     const { id } = useParams();
 
-    // State to store item details fetched from the API
     const [itemDetails, setItemDetails] = useState(null);
     
     useEffect(() => {
@@ -22,15 +21,12 @@ function BuyerVerProductDetail() {
         });
     }, [id]);
 
-    if (!itemDetails) return <div>Loading...</div>; // Display a loading state
+    if (!itemDetails) return <div>Loading...</div>;
 
-
-    // fake fetch
     const imageUrl = itemDetails.download_url;
     const author = itemDetails.author;
     const price = itemDetails.width;
 
-    // Calculate a hash value based on the author's name to pseudo-randomly select a category and condition
     const authorHashValue = parseInt(author.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)) % 4 + 1;
     const conditions = ['Used', 'New', '90% New', '75% New'];
 
@@ -39,7 +35,6 @@ function BuyerVerProductDetail() {
 
     // Event handler function for copying the hyperlink
     const copyLinkHandler = () => {
-        // This will copy the current page's URL to the clipboard
         navigator.clipboard.writeText(window.location.href)
             .then(() => {
                 alert('The link for this product is copied to clipboard!'); // A feedback for the user
@@ -49,7 +44,6 @@ function BuyerVerProductDetail() {
             });
     };
 
-    // Settings for the Slider component
     const settings = {
         dots: true,
         infinite: true,
@@ -67,12 +61,10 @@ function BuyerVerProductDetail() {
                     <div className="status-section">
                         <span>Status: Sold</span>
                     </div>
-                    {/* Carousel Component */}
                     <Slider {...settings}>
                         <div className="each-pic">
                             <img src={imageUrl} alt="Item 1"/>
                         </div>
-                        {/* Add placeholder images for the remaining slides */}
                         <div className="each-pic">
                             <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 2"/>
                         </div>

@@ -51,7 +51,6 @@ function SellerVerProductDetail() {
 
     // Event handler function for copying the hyperlink
     const copyLinkHandler = () => {
-        // This will copy the current page's URL to the clipboard
         navigator.clipboard.writeText(window.location.href)
             .then(() => {
                 alert('The link for this product is copied to clipboard!'); // A feedback for the user
@@ -78,12 +77,10 @@ function SellerVerProductDetail() {
                     <div className="status-section">
                         <span>Status: {productStatus}</span>
                     </div>
-                    {/* Carousel Component */}
                     <Slider {...settings}>
                         <div className="each-pic">
                             <img src={imageUrl} alt="Item 1"/>
                         </div>
-                        {/* Add placeholder images for the remaining slides */}
                         <div className="each-pic">
                             <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 2"/>
                         </div>
