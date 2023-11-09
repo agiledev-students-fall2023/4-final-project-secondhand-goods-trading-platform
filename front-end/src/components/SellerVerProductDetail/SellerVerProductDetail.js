@@ -12,10 +12,15 @@ function SellerVerProductDetail() {
     const [productStatus, setProductStatus] = useState("Available"); // Set the initial state as 'Available'
     
     useEffect(() => {
-        // Assuming you're fetching data from the same API
-        axios.get(`https://picsum.photos/id/${id}/info`).then(response => {
-            setItemDetails(response.data);
-        });
+        // Update the URL to your backend endpoint
+        axios.get(`/api/seller-product-detail/${id}`)
+            .then(response => {
+                setItemDetails(response.data);
+                setProductStatus(response.data.status); // Set the status from the backend data
+            })
+            .catch(error => {
+                console.error('Error fetching seller product details:', error);
+            });
     }, [id]);
 
     if (!itemDetails) return <div>Loading...</div>; // Display a loading state
@@ -33,18 +38,19 @@ function SellerVerProductDetail() {
     const condition = conditions[authorHashValue - 1];
 
     const toggleStatus = () => {
-        if (productStatus === "Available") {
-            setProductStatus("Taken Off");
-            alert('Your product is taken off!')
-        } else {
-            setProductStatus("Available");
-            alert('Your product is launched and made available!')
-        }
+        const newStatus = productStatus === "Available" ? "Sold" : "Available";
+        axios.post(`/api/seller-product-detail/${id}/status`, { status: newStatus })
+            .then(() => {
+                setProductStatus(newStatus);
+                alert(`Your product status is now: ${newStatus}`);
+            })
+            .catch(err => {
+                console.error('Error updating status: ', err);
+            });
     };
 
     // Event handler function for copying the hyperlink
     const copyLinkHandler = () => {
-        // This will copy the current page's URL to the clipboard
         navigator.clipboard.writeText(window.location.href)
             .then(() => {
                 alert('The link for this product is copied to clipboard!'); // A feedback for the user
@@ -71,12 +77,10 @@ function SellerVerProductDetail() {
                     <div className="status-section">
                         <span>Status: {productStatus}</span>
                     </div>
-                    {/* Carousel Component */}
                     <Slider {...settings}>
                         <div className="each-pic">
                             <img src={imageUrl} alt="Item 1"/>
                         </div>
-                        {/* Add placeholder images for the remaining slides */}
                         <div className="each-pic">
                             <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 2"/>
                         </div>

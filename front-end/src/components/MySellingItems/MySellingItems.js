@@ -24,11 +24,13 @@ function MySellingItems({ myitems }) {
 
     useEffect(() => {
         async function fetchData() {
-            if(!myitems) { // fetch from the random photo generator
-                const result = await axios(
-                    "https://picsum.photos/v2/list?page=3&limit=100"
-                );
-                setData(result.data);
+            if(!myitems) { // fetch from the back-end
+                try{
+                    const result = await axios('http://localhost:3001/api/my-selling-items');
+                    setData(result.data);
+                }catch (error){
+                    console.error('Error fetching my selling items:', error);
+                }
             }
         }
 
