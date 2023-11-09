@@ -2,6 +2,8 @@
 const users = [
     {
         username: 'user1',
+        email: 'user1@example.com', 
+        password: 'pass1',
         phone: '(+1)123-456-7890',
         addressLine1: '872C Apple Hall',
         addressLine2: 'New York NY1234',
@@ -9,6 +11,8 @@ const users = [
     },
     {
       username: 'user2',
+      email: 'user2@example.com', 
+      password: 'pass2',
       phone: '987-654-3210',
       addressLine1: '456 Elm St',
       addressLine2: '',

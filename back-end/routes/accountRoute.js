@@ -20,7 +20,5 @@ router.get('/account', (req, res) => {
   }
 });
 
-// Update user account info (if needed)
-// You can uncomment and implement this route if you want to update user data.
 
 module.exports = router;
