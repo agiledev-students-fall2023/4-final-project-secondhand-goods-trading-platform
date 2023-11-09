@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Account.css';
 import axios from 'axios';
+import Menu from '../Menu/Menu';
 
 function Account() {
   const [userData, setUserData] = useState({});
@@ -11,30 +12,28 @@ function Account() {
   useEffect(() => {
     // Fetch user account info when the component mounts
     // TODO: local storage
-    /* 
+    
     const loggedInUser = localStorage.getItem('loggedInUser'); // Get the username from local storage
 
     if (!loggedInUser) {
       setMessage('User not authenticated');
       return;
-    }*/
+    }
     axios
-      .get('http://localhost:3001/api/account')
-      .then((response) => {
-        setUserData(response.data.user);
-      })
-      .catch((error) => {
-        console.error('Error fetching user account info', error);
-      });
+    .get(`http://localhost:3001/api/account?username=${loggedInUser}`)
+    .then((response) => {
+      setUserData(response.data.user);
+    })
+    .catch((error) => {
+      console.error('Error fetching user account info', error);
+    });
+  
   }, []);
 
   return (
     <div className="account-container">
-      <Link to="/home">
-        <button className="icon-button">
-          <img src={`${process.env.PUBLIC_URL}/home-icon.png`} alt="Home" />
-        </button>
-      </Link>
+      <Menu />
+        
       <table>
         <tbody>
           <tr>
