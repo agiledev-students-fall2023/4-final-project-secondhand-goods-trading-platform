@@ -34,8 +34,8 @@ const SignUp = () => {
             const data = await response.json();
     
             if (response.ok) {
-                localStorage.setItem('loggedInUser', data.user.username);
                 alert(data.message); // Show a success message
+                localStorage.setItem('loggedInUser', data.user.username);
                 navigate('/home');
             } else {
                 // Handle errors if the response is not ok (e.g., user already exists)
