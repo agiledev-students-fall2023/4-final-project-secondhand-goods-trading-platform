@@ -19,6 +19,7 @@
     max-width: 500px;
     border-collapse: collapse;
     margin-top: 20px; /* Add spacing between the "Home" link and the table */
+    align-items: center;
   }
   
   .account-container th,

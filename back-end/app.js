@@ -10,7 +10,9 @@ const sellerVerProductDetailRoute = require('./routes/sellerVerProductDetailRout
 const mySellingItemsRoute = require('./routes/mySellingItemsRoute')
 const categoryPageRoute = require('./routes/categoryPageRoute')
 const addNewItemRoute= require('./routes/addNewItemRoute');
-
+const accountRoute= require('./routes/accountRoute');
+const editProfileRoute = require('./routes/editProfileRoute');
+//const { default: EditProfile } = require("../front-end/src/components/EditProfile/EditProfile");
 
 // we will put some server logic here later...
 app.use(cors()); // Enable CORS for all origins in case of different ports
@@ -22,6 +24,7 @@ app.use('/api', sellerVerProductDetailRoute);
 app.use('/api', mySellingItemsRoute);
 app.use('/api', categoryPageRoute);
 app.use('/api', addNewItemRoute);
-
+app.use('/api', accountRoute);
+app.use('/api', editProfileRoute);
 // export the express app we created to make it available to other modules
 module.exports = app
