@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Account.css';
+import axios from 'axios';
 
 function Account() {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
-    // Fetch data from the API when the component mounts
-    fetch('https://picsum.photos/v2/list')
-      .then((response) => response.json())
-      .then((data) => {
-        // Assuming data is an array of objects
-        if (data && data.length > 0) {
-          // Use the first object from the array (you can modify this as needed)
-          setUserData(data[0]);
-        }
+    // Fetch user account info when the component mounts
+    axios
+      .get('http://localhost:3001/api/account')
+      .then((response) => {
+        setUserData(response.data.user);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching user account info', error);
       });
   }, []);
 
@@ -31,59 +30,70 @@ function Account() {
       <table>
         <tbody>
           <tr>
-            <td>{userData ? userData.author : 'Loading...'}</td>
+            <td>{userData.username}</td>
             <td>
               <Link to="/EditProfile">
                 <button className="edit-button">
-                <img src={`${process.env.PUBLIC_URL}/edit-icon.png`} alt="Account"
-                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
+                  <img
+                    src={`${process.env.PUBLIC_URL}/edit-icon.png`}
+                    alt="Edit"
+                    style={{ width: '40px', height: '40px' }}
                   />
                 </button>
               </Link>
             </td>
           </tr>
           <tr>
-            <td>{userData ? userData.width : 'Loading...'}</td>
+            <td>{userData.phone}</td>
             <td>
               <Link to="/EditProfile">
                 <button className="edit-button">
-                <img src={`${process.env.PUBLIC_URL}/edit-icon.png`} alt="Account"
-                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
+                  <img
+                    src={`${process.env.PUBLIC_URL}/edit-icon.png`}
+                    alt="Edit"
+                    style={{ width: '40px', height: '40px' }}
                   />
                 </button>
               </Link>
             </td>
           </tr>
           <tr>
-            <td>Card Ending: {userData ? userData.height : 'Loading...'}</td>
+            <td>Card Ending: {userData.payment}</td>
             <td>
               <Link to="/EditProfile">
                 <button className="edit-button">
-                  <img src={`${process.env.PUBLIC_URL}/edit-icon.png`} alt="Account"
-                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
-                  /></button>
-              </Link>
-            </td>
-          </tr>
-          <tr>
-            <td> {userData ? userData.url : 'Loading...'}</td>
-            <td>
-              <Link to="/EditProfile">
-                <button className="edit-button">
-                <img src={`${process.env.PUBLIC_URL}/edit-icon.png`} alt="Account"
-                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
+                  <img
+                    src={`${process.env.PUBLIC_URL}/edit-icon.png`}
+                    alt="Edit"
+                    style={{ width: '40px', height: '40px' }}
                   />
                 </button>
               </Link>
             </td>
           </tr>
           <tr>
-            <td> {userData ? userData.download_url : 'Loading...'}</td>
+            <td>{userData.addressLine1}</td>
             <td>
               <Link to="/EditProfile">
                 <button className="edit-button">
-                <img src={`${process.env.PUBLIC_URL}/edit-icon.png`} alt="Account"
-                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
+                  <img
+                    src={`${process.env.PUBLIC_URL}/edit-icon.png`}
+                    alt="Edit"
+                    style={{ width: '40px', height: '40px' }}
+                  />
+                </button>
+              </Link>
+            </td>
+          </tr>
+          <tr>
+            <td>{userData.addressLine2}</td>
+            <td>
+              <Link to="/EditProfile">
+                <button className="edit-button">
+                  <img
+                    src={`${process.env.PUBLIC_URL}/edit-icon.png`}
+                    alt="Edit"
+                    style={{ width: '40px', height: '40px' }}
                   />
                 </button>
               </Link>
@@ -94,8 +104,10 @@ function Account() {
             <td>
               <Link to="/OrderHistory">
                 <button className="view-button">
-                <img src={`${process.env.PUBLIC_URL}/view-icon.png`} alt="Account"
-                  style={{ width: '40px', height: '40px' }} // Adjust the size as needed
+                  <img
+                    src={`${process.env.PUBLIC_URL}/view-icon.png`}
+                    alt="View"
+                    style={{ width: '40px', height: '40px' }}
                   />
                 </button>
               </Link>
@@ -103,6 +115,7 @@ function Account() {
           </tr>
         </tbody>
       </table>
+      {message && <p className="message">{message}</p>}
     </div>
   );
 }
