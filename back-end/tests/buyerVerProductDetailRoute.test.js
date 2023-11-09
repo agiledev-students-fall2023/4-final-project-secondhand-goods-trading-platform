@@ -4,14 +4,13 @@ const sinon = require('sinon');
 const axios = require('axios');
 const app = require('../app'); 
 const { expect } = chai;
-
 chai.use(chaiHttp);
 
 describe('BuyerVerProductDetailRoute', () => {
   describe('GET /api/product-detail/:id', () => {
     it('should get product detail for a given id', (done) => {
       chai.request(app)
-        .get('/api/product-detail/1') // Use an ID that will return a successful response from Picsum
+        .get('/api/product-detail/1')
         .end((err, res) => {
           expect(err).to.be.null;
           expect(res).to.have.status(200);
@@ -33,7 +32,7 @@ describe('BuyerVerProductDetailRoute', () => {
 
       it('should handle errors during product detail fetch', (done) => {
         chai.request(app)
-          .get('/api/product-detail/1') // Use an ID that would typically succeed to simulate failure
+          .get('/api/product-detail/1')
           .end((err, res) => {
             expect(err).to.be.null;
             expect(res).to.have.status(500);
@@ -44,5 +43,3 @@ describe('BuyerVerProductDetailRoute', () => {
     });
   });
 });
-
-// path: back-end/tests/sellerVerProductDetailRoute.test.js

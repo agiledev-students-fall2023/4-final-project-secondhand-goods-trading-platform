@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import './AddNewItem.css';
 import Menu from '../Menu/Menu';
 
-
 const categoryList = ['Furniture', 'Study Supplies', 'Electronics', 'Clothes'];
 
 function AddNewItem(){
@@ -62,18 +61,22 @@ function AddNewItem(){
             return;
         }
 
+        if (!Image) {
+            setErrorMessage('Please upload a picture.');
+            return;
+          }
+
+        const formData = new FormData();
+        formData.append('productName', productName);
+        formData.append('Category', Category);
+        formData.append('Price', Price);
+        formData.append('Description', Description);
+        formData.append('image', Image);
+
         try{
             const response = await fetch('http://localhost:3001/api/add-new-item',{
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    productName,
-                    Category,
-                    Price,
-                    Description 
-                }),
+                body: formData
             });
 
             const data = await response.json();
