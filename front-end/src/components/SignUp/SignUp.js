@@ -34,6 +34,7 @@ const SignUp = () => {
             const data = await response.json();
     
             if (response.ok) {
+                localStorage.setItem('loggedInUser', data.user.username);
                 alert(data.message); // Show a success message
                 navigate('/home');
             } else {
