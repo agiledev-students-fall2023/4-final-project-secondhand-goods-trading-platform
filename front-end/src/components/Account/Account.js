@@ -10,6 +10,14 @@ function Account() {
 
   useEffect(() => {
     // Fetch user account info when the component mounts
+    // TODO: local storage
+    /* 
+    const loggedInUser = localStorage.getItem('loggedInUser'); // Get the username from local storage
+
+    if (!loggedInUser) {
+      setMessage('User not authenticated');
+      return;
+    }*/
     axios
       .get('http://localhost:3001/api/account')
       .then((response) => {

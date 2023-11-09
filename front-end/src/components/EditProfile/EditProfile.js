@@ -35,7 +35,7 @@ function EditProfile() {
     axios
       .put('http://localhost:3001/api/edit-profile', userData)
       .then(() => {
-        setMessage('Profile information updated');
+        setMessage('Account information updated!');
       })
       .catch((error) => {
         console.error('Error updating user profile', error);

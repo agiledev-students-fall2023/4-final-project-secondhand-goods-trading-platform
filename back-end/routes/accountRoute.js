@@ -9,8 +9,9 @@ router.get('/account', (req, res) => {
   // For simplicity, let's assume the user is already authenticated
 
   // Get the user based on some identifier (e.g., username)
-  const username = 'user1'; // Replace this with the actual authenticated user
-
+  const username = 'user1'; 
+  //TODO: local storage 
+  //const username = req.params.username;
   const user = users.find((u) => u.username === username);
 
   if (user) {

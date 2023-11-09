@@ -19,6 +19,7 @@ const Login = () => {
         const { data } = await axios.post('http://localhost:3001/api/login', payload); 
         
         if (data && data.user) {
+          localStorage.setItem('loggedInUser', data.user.username);
           navigate('/home'); // Redirect to homepage
         } else {
           
