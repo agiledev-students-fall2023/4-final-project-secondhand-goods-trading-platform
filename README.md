@@ -50,6 +50,7 @@ We welcome all forms of contributions from code to design or even ideas! To get 
 1. Open a new terminal (Git Bash).
 1. Navigate into the back-end directory (use ``cd ../`` to back to main folder and use ``cd back-end``).
 1. Run ``npm install``.
+1. Run ``npm install multer``, check if there is a folder called "uploads" in the back-end directory.
 1. Run ``npm start`` to set the backend server running. Or, first run ``npm install --save-dev mocha chai c8 sinon chai-http nyc`` and then run ``npm test`` to see the results of all unit/integration tests.
 
 ### Temporary Login Instructions
