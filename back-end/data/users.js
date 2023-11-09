@@ -4,7 +4,7 @@ const users = [
         username: 'user1',
         phone: '(+1)123-456-7890',
         addressLine1: '872C Apple Hall',
-        addressLine2: 'New York NY12345',
+        addressLine2: 'New York NY1234',
         payment: '1234',
     },
     {
@@ -16,6 +16,5 @@ const users = [
     },
     // Add more user data as needed
   ];
-  
-  module.exports = users;
+module.exports = users;
   
