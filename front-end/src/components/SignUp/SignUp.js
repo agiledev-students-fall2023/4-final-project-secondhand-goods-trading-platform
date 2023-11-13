@@ -35,7 +35,7 @@ const SignUp = () => {
     
             if (response.ok) {
                 alert(data.message); // Show a success message
-                localStorage.setItem('loggedInUser', data.user.username);
+                localStorage.setItem('loggedInUser', username);
                 navigate('/home');
             } else {
                 // Handle errors if the response is not ok (e.g., user already exists)

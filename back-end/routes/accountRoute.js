@@ -6,6 +6,8 @@ const users = require('../data/users');
 
 // Get user account info
 router.get('/account', (req, res) => {
+
+
   // For simplicity, let's assume the user is already authenticated
 
   // Get the user based on some identifier (e.g., username)

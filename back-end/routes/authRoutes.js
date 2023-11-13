@@ -1,14 +1,8 @@
 const express = require('express');
 const router = express.Router();
+
 const users = require('../data/users');
-// Hardcoded user data
-/*
-const users = [
-  { username: 'user1', email: 'user1@example.com', password: 'pass1' },
-  { username: 'user2', email: 'user2@example.com', password: 'pass2' },
-  { username: 'user3', email: 'user3@example.com', password: 'pass3' }
-];
-*/
+
 
 // Login endpoint
 router.post('/login', (req, res) => {

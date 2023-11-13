@@ -20,6 +20,8 @@ const Login = () => {
         
         if (data && data.user) {
           localStorage.setItem('loggedInUser', data.user.username);
+          console.log(localStorage.getItem('loggedInUser'));
+
           navigate('/home'); // Redirect to homepage
         } else {
           
