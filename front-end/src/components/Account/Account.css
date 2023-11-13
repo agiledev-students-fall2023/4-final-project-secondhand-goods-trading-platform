@@ -1,61 +1,69 @@
 /* Account Page Styles */
 .account-container {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding: 20px;
-  }
-  
-  .account-container a {
-    text-decoration: none; /* Remove underline from the "Home" link */
-    color: #b279e7; /* Link color */
-    margin-bottom: 20px; /* Adjust spacing */
-    align-self: flex-start; /* Align the link to the left */
-  }
-  
-  .account-container table {
-    width: 100%;
-    max-width: 500px;
-    border-collapse: collapse;
-    margin-top: 20px; /* Add spacing between the "Home" link and the table */
-    align-items: center;
-  }
-  
-  .account-container th,
-  .account-container td {
-    border: 2px solid #D3D3D3;
-    padding: 5px;
-    text-align: left;
-  }
-  
-  .account-container th {
-    background-color: #b279e7;
-    color: white;
-  }
-  
-  .account-container .edit-button,
-  .account-container .view-button {
-    background-color: #b279e7;
-    color: white;
-    border: none;
-    padding: 1px 2px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-  }
-  
-  .account-container .edit-button:hover,
-  .account-container .view-button:hover {
-    background-color: #7a24d2;
-  }
-  
-  /* Add spacing between rows */
-  .account-container tr {
-    margin-top: 20px;
-    height: 80px;
-  }
+  justify-content: space-between; /* Add this to push the content to top and bottom */
+  height: calc(100vh - 40px); 
+  padding: 20px;
+  padding-top: 40px; /* Increase padding-top to push content lower from the header */
+  font-family: 'Georgia', serif; /* Ensure Georgia font is used */
+  color: #5d5475; 
+}
 
+.user-data {
+  margin-top:  40px;
+  background-color: #e6e1f5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(93, 84, 117, 0.2);
+  margin-bottom: 20px;
+}
 
-  
+.user-data div {
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-align: left; /* Align text to the left */
+}
+
+/* Adjust button styling for a longer width */
+.edit-profile-button,
+.view-order-history-button {
+  font-family: 'Georgia', serif; 
+  background-color: #7a24d2;
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Increase padding for larger buttons */
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 30px; /* Adjust for rounder corners */
+  font-size: 18px; /* Increase font size for better readability */
+  font-weight: bold;
+  text-align: center; /* Center text inside the button */
+  margin-top: auto;
+  margin-bottom: 20px; /* Increase space between buttons */
+  width: 250px; /* Increase button width to full container width */
+  max-width: 400px; /* Set max-width to align with user data card width */
+  display: block; /* Ensure buttons are block level */
+}
+
+/* Center the buttons container while keeping the buttons' text aligned */
+.edit-profile-container,
+.view-order-history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the buttons container */
+}
+
+.edit-profile-button:hover,
+.view-order-history-button:hover {
+  background-color: #9b50d2; /* Lighter violet on hover */
+  box-shadow: 0 2px 4px #5d5475; /* Shadow for a 'lifted button' effect */
+  transform: translateY(-2px); /* Move the button up a bit when hovered */
+}
+
+.message {
+  color: #b279e7;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
