@@ -46,18 +46,18 @@ function AddNewItem(){
             return;
         }
 
+        if (!Category) {
+            setErrorMessage('Please select a category.');
+            return;
+        }
+
         if (Price < 0.01 || isNaN(Number(Price))){
             setErrorMessage('Please enter a valid price.');
             return;
         }
 
-        if (Description.length == 0){
+        if (!Description){
             setErrorMessage('Description cannot be empty.');
-            return;
-        }
-
-        if (Category === null) {
-            setErrorMessage('Please select a category.');
             return;
         }
 
