@@ -15,16 +15,22 @@ function EditProfile() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    // Fetch user account info when the component mounts
-    axios
-      .get('http://localhost:3001/api/account')
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+      setMessage('User not authenticated');
+      return;
+    }
+  
+    // Use the account info route to fetch user data, if it's suitable
+    axios.get(`http://localhost:3001/api/account?username=${loggedInUser}`)
       .then((response) => {
-        setUserData(response.data.user);
+        setUserData(response.data.user || {});
       })
       .catch((error) => {
-        console.error('Error fetching user account info', error);
+        console.error('Error fetching user profile', error);
       });
   }, []);
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,8 +38,7 @@ function EditProfile() {
   };
 
   const handleSaveClick = () => {
-    axios
-      .put('http://localhost:3001/api/edit-profile', userData)
+    axios.put(`http://localhost:3001/api/edit-profile?username=${userData.username}`, userData)
       .then(() => {
         setMessage('Account information updated!');
       })
