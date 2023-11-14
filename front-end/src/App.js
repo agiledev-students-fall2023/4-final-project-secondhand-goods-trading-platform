@@ -56,7 +56,7 @@ const App = props => {
               <Route path="/OrderHistory" element={<OrderHistory />} />
 
               {/* a route for each category*/}
-              <Route path="/categorypage/for/:category" element={<CategoryPage />} />
+              <Route path="/category/for/:category" element={<CategoryPage />} />
 
           </Routes>
         </main>

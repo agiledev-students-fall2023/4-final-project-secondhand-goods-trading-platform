@@ -17,15 +17,15 @@
     align-items: center;
     justify-content: center;
     gap: 3px;
-    border: 1px solid #ccc;  
+    border: none;  
     background-color: transparent;
     padding: 5px 2vm;
-    width: 85%; 
+    width: 50%; 
     border-radius: 25px; 
-    font-size: 14px; 
+    font-size: 18px; 
     font-family: Georgia, 'Times New Roman', Times, serif;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 25%;
     
     }
 
