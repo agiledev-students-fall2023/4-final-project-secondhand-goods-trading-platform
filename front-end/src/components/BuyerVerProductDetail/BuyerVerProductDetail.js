@@ -79,7 +79,7 @@ function BuyerVerProductDetail() {
                 </div>
                 <div className="product-info">
                     <p><strong>Price:</strong> ${price}</p>
-                    <p><strong>Category:</strong> {category}</p>
+                    <p><strong>Category:</strong> {category === 'StudySupplies' ? 'Study Supplies' : category}</p>
                     <p><strong>Condition:</strong> {condition}</p>
                     <p><strong>Seller Contact Info:</strong> {author}</p>
                     <p className="description"><strong>Description:</strong> {imageUrl.repeat(5).split('https://')}</p>

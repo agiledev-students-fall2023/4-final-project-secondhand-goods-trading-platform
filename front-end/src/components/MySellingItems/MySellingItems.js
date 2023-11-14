@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 function MyItem(props) {
     const imageUrl = props.details.download_url  || process.env.PUBLIC_URL + '/listing-placeholder.png';
-
     return (
         <article className="myitem">
             <Link to={`/sellerverproductdetail/for/${props.details.id}`}>
@@ -21,7 +20,6 @@ function MyItem(props) {
 
 function MySellingItems({ myitems }) {
     const [data, setData] = useState([]);
-
     useEffect(() => {
         async function fetchData() {
             if(!myitems) { // fetch from the back-end
@@ -33,7 +31,6 @@ function MySellingItems({ myitems }) {
                 }
             }
         }
-
         fetchData();
     }, [myitems]);
 

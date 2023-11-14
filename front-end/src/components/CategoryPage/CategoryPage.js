@@ -52,7 +52,8 @@ function CategoryPage({ items }) {
             <section className='categorypage'>
                 <Menu />
                 <section className='categoryname'>
-                    Category: {category}
+                    {/* Check if the category is 'StudySupplies' and modify it to 'Study Supplies' */}
+                    Category: {category === 'StudySupplies' ? 'Study Supplies' : category}
                 </section>
             </section>
 
