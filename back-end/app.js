@@ -2,6 +2,44 @@
 const express = require("express") // CommonJS import style!
 const app = express() // instantiate an Express object
 const cors = require('cors');
+const morgan = require("morgan") // middleware for nice logging of incoming HTTP requests
+require("dotenv").config({ silent: true }) // load environmental variables from a hidden file named .env
+
+
+// the following are used for authentication with JSON Web Tokens
+const jwt = require("jsonwebtoken")
+const passport = require("passport")
+
+// use this JWT strategy within passport for authentication handling
+const jwtStrategy = require("./config/jwt-config.js") // import setup options for using JWT in passport
+passport.use(jwtStrategy)
+
+// tell express to use passport middleware
+app.use(passport.initialize())
+
+// mongoose models for MongoDB data manipulation
+const mongoose = require("mongoose")
+const User = require("./models/User.js")
+
+// connect to the database
+// console.log(`Conneting to MongoDB at ${process.env.MONGODB_URI}`)
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log(`Connected to MongoDB.`);
+  })
+  .catch(err => {
+    console.log(`Error connecting to MongoDB user account authentication will fail: ${err}`);
+  });
+
+
+
+// set up some useful middleware
+app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
+
+
+// use express's builtin body-parser middleware to parse any data included in a request
+app.use(express.json()) // decode JSON-formatted incoming POST data
+app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
 
 const authRoutes = require('./routes/authRoutes');
 const itemListingRoute = require('./routes/itemListingRoute');
