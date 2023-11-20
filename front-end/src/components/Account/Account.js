@@ -42,7 +42,7 @@ function Account() {
       <Menu />
       <div className="user-data">
       <div><strong>Username:</strong> {displayDataOrPlaceholder(userData.username, 'username')}</div>
-      <div><strong>Email/Tel:</strong> {displayDataOrPlaceholder(userData.phone, 'contact')}</div>
+      <div><strong>Email/Tel:</strong> {displayDataOrPlaceholder(userData.email, 'contact')}</div>
       <div><strong>Payment Method:</strong>
   {userData.payment ? <div>Card Ending {userData.payment}</div> : <div>No card info yet, add some sparkle! ✨</div>}
 </div>
