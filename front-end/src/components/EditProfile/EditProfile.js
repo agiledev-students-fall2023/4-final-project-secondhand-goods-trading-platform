@@ -61,11 +61,11 @@ function EditProfile() {
           />
         </div>
         <div className="edit-item">
-          <label>Phone number:</label>
+          <label>Contact:</label>
           <input
-            type="tel"
-            name="phone"
-            value={userData.phone}
+            type="text"
+            name="email"
+            value={userData.email}
             onChange={handleInputChange}
           />
         </div>

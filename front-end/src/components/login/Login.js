@@ -19,10 +19,10 @@ const Login = () => {
         const { data } = await axios.post('http://localhost:3001/api/login', payload); 
         
         if (data && data.token) {
-          localStorage.setItem('loggedInUser', JSON.stringify({ username: data.username, token: data.token }));
+          localStorage.setItem('loggedInUser', username);
           navigate('/home'); // Redirect to homepage
         }else {
-          
+        
         }
       } catch (error) {
         console.error("There was an error logging in", error);

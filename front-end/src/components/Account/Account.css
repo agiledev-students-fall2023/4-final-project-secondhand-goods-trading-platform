@@ -24,8 +24,7 @@
 }
 
 /* Adjust button styling for a longer width */
-.edit-profile-button,
-.view-order-history-button {
+.account-button {
   font-family: 'Georgia', serif; 
   background-color: #7a24d2;
   color: white;
@@ -45,15 +44,14 @@
 }
 
 /* Center the buttons container while keeping the buttons' text aligned */
-.edit-profile-container,
-.view-order-history-container {
+.edit-profile-container {
   display: flex;
   flex-direction: column;
   align-items: center; /* Center the buttons container */
 }
 
-.edit-profile-button:hover,
-.view-order-history-button:hover {
+
+.account-button:hover {
   background-color: #9b50d2; /* Lighter violet on hover */
   box-shadow: 0 2px 4px #5d5475; /* Shadow for a 'lifted button' effect */
   transform: translateY(-2px); /* Move the button up a bit when hovered */
