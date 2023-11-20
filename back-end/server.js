@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const server = require("./app") // load up the web server
+require("dotenv").config({ silent: true }) // load environmental variables from a hidden file named .env
 
 const port = process.env.PORT || 3001; // the port to listen to for incoming requests
 
