@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Account.css';
 import Menu from '../Menu/Menu';
 import axios from 'axios';
 
-
-
 function Account() {
   const [userData, setUserData] = useState({});
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem('loggedInUser');
@@ -25,6 +25,14 @@ function Account() {
         console.error('Error fetching user account info', error);
       });
   }, []);
+
+
+  // Logout function
+  const handleLogout = () => {
+    // remove user from localStorage
+    localStorage.removeItem('loggedInUser');
+    navigate('/'); // Redirect to the login page
+  };
 
 
   function displayDataOrPlaceholder(data, field) {
@@ -56,13 +64,12 @@ function Account() {
 
       <div className="edit-profile-container">
         <Link to="/EditProfile">
-          <button className="edit-profile-button">Edit Profile</button>
+          <button className="account-button">Edit Profile</button>
         </Link>
-      </div>
-      <div className="view-order-history-container">
         <Link to="/OrderHistory">
-          <button className="view-order-history-button">View Order History</button>
+            <button className="account-button">View Order History</button>
         </Link>
+        <button onClick={handleLogout} className="account-button">Logout</button>
       </div>
       {message && <p className="message">{message}</p>}
     </div>
