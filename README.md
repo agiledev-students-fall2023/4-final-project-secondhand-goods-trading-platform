@@ -51,6 +51,10 @@ We welcome all forms of contributions from code to design or even ideas! To get 
 
 ### Run the database
 
+First of all, please create a `.env` file in both `front-end` and `back-end` folders.
+
+Copy the `.env.example` into your `.env`.
+
 To quickly set up a MongoDB database for use with this app, we use [Docker](https://www.docker.com), which must be
 
 - install and run [docker desktop](https://www.docker.com/get-started)
@@ -60,8 +64,7 @@ Start up a MongoDB database:
 
 - run command, `docker run --name mongodb_dockerhub -p 27018:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=secret -d mongo:latest`
 
-You now have a MongoDB database running on `localhost` port `27018`, with an `admin` user account with password, `password`
-
+You now have a MongoDB database running on `localhost` port `27018`, with an `admin` user account with password, `password`.
 
 ### Running and Testing the Front End
 
@@ -75,14 +78,6 @@ You now have a MongoDB database running on `localhost` port `27018`, with an `ad
 1. Navigate into the back-end directory (use ``cd ../`` to back to main folder and use ``cd back-end``).
 1. Run ``npm install``.
 1. Run ``npm start`` to set the backend server running. Or, run ``npm test`` to see the results of all unit/integration tests.
-
-### Temporary Login Instructions
-
-Please log in using the following credentials:
-
-- **Username:** `user1`
-- **Email:** `user1@example.com`
-- **Password:** `pass1`
 
 ## Links to any additional Markdown documents or web pages that may be relevant reading about the project
 
