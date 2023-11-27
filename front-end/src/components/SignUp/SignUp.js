@@ -37,9 +37,12 @@ const SignUp = () => {
                 alert(data.message); // Show a success message
                 localStorage.setItem('loggedInUser', username);
                 navigate('/home');
+            } else if (response.status === 400) {
+                const errorMessages = data.errors.map(error => error.msg).join(', ');
+                setErrorMessage(`Validation errors: ${errorMessages}`);
             } else {
-                // Handle errors if the response is not ok (e.g., user already exists)
-                setErrorMessage(data.message);
+                // Handle other errors
+                setErrorMessage(data.message || 'An error occurred while signing up.');
             }
         } catch (error) {
             // Handle network errors 
