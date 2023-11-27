@@ -36,24 +36,7 @@ router.post('/add-new-item', upload.single('image'), productValidationMiddleware
     
     const { productName, Category, Price, Description } = req.body;
     const file = req.file;
-    /*
-    // product detail validation backend
-    if (productName.length == 0 || productName.length > 20) {
-        return res.status(400).json({ message: 'Please enter a valid name.' });
-    }
 
-    if (!Category) {
-        return res.status(400).json({ message: 'Please select a category.' });
-    }
-
-    if (Price < 0.01 || isNaN(Number(Price))){
-        return res.status(400).json({ message: 'Please enter a valid price.' });
-    }
-
-    if (!Description){
-        return res.status(400).json({ message: 'Description cannot be empty.' });
-    }
-    */
     if (!req.file) {
         return res.status(400).json({ message: 'Please upload a picture.' });
     }
