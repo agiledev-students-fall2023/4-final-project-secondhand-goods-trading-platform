@@ -3,6 +3,8 @@ const multer = require('multer');
 const router = express.Router();
 const path = require('path');
 
+const { body, validationResult } = require('express-validator');
+
 // hardcode the product information in the back-end for now.
 const products = [];
 
@@ -17,10 +19,24 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage})
 
-router.post('/add-new-item', upload.single('image'), (req, res) => {
+const productValidationMiddlewares = [
+    body('productName').trim().isLength({ min: 1, max: 20 }).withMessage('Please enter a valid ame.'),
+    body('Category').not().isEmpty().withMessage('Please select a category.'),
+    body('Price').isFloat({ min: 0.01 }).withMessage('Please enter a valid price.'),
+    body('Description').not().isEmpty().withMessage('Description cannot be empty.')
+];
+
+router.post('/add-new-item', upload.single('image'), productValidationMiddlewares, (req, res) => {
+    const errors = validationResult(req);
+
+    // Check for validation errors
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    
     const { productName, Category, Price, Description } = req.body;
     const file = req.file;
-
+    /*
     // product detail validation backend
     if (productName.length == 0 || productName.length > 20) {
         return res.status(400).json({ message: 'Please enter a valid name.' });
@@ -37,11 +53,10 @@ router.post('/add-new-item', upload.single('image'), (req, res) => {
     if (!Description){
         return res.status(400).json({ message: 'Description cannot be empty.' });
     }
-
+    */
     if (!req.file) {
         return res.status(400).json({ message: 'Please upload a picture.' });
     }
-
 
     const newProduct = {
         id: products.length + 1, // temporary id
