@@ -20,6 +20,7 @@ app.use(passport.initialize())
 // mongoose models for MongoDB data manipulation
 const mongoose = require("mongoose")
 const User = require("./models/User.js")
+const Product = require("./models/Product.js")
 
 // connect to the database
 // console.log(`Conneting to MongoDB at ${process.env.MONGODB_URI}`)
@@ -31,7 +32,7 @@ mongoose.connect(process.env.MONGODB_URI)
     console.log(`Error connecting to MongoDB user account authentication will fail: ${err}`);
   });
 
-
+mongoose.set('debug', true); // Enable Mongoose debugging
 
 // set up some useful middleware
 app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
@@ -64,5 +65,6 @@ app.use('/api', mySellingItemsRoute);
 app.use('/api', addNewItemRoute);
 app.use('/api', accountRoute);
 app.use('/api', editProfileRoute);
+app.use('/uploads', express.static('uploads'));
 // export the express app we created to make it available to other modules
 module.exports = app

@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./ItemListings.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 function Item(props) {
-    const imageUrl = props.details.download_url  || process.env.PUBLIC_URL + '/listing-placeholder.png';
+    //const imageUrl = props.details.imagePath || process.env.PUBLIC_URL + '/listing-placeholder.png';
+    const imageUrl = `http://localhost:3001/uploads/${props.details.imagePath}`;
+    const productName = props.details.productName;
+    const productId = props.details._id; // Assuming MongoDB's default _id is used as the unique identifier
 
     return (
-            <article className="item">
-                <Link to={`/buyerverproductdetail/for/${props.details.id}`}>
-                    <img src={imageUrl} alt={props.details.author} />
-                </Link>
-                <Link to={`/buyerverproductdetail/for/${props.details.id}`}>
-                    <p>{props.details.author}</p>
-                </Link>
-
-            </article>
+        <article className="item">
+            <Link to={`/buyerverproductdetail/for/${productId}`}>
+                <img src={imageUrl} alt={productName} />
+            </Link>
+            <Link to={`/buyerverproductdetail/for/${productId}`}>
+                <p>{productName}</p>
+            </Link>
+        </article>
     );
 }
 
@@ -26,8 +27,14 @@ function ItemListings({ items }) {
         async function fetchData() {
             if (!items) { // Only fetch if items prop is not provided
                 try {
-                    const result = await axios('http://localhost:3001/api/item-listings');
-                    setData(result.data);
+                    const response = await fetch('http://localhost:3001/api/item-listings');
+                    if (response.ok) {
+                        const items = await response.json();
+                        console.log(items); // Logging the fetched data
+                        setData(items);
+                    } else {
+                        throw new Error('Network response was not ok.');
+                    }
                 } catch (error) {
                     console.error('Error fetching item listings:', error);
                 }
