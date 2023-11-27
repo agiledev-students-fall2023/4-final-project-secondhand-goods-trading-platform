@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
+const Product = require('../models/Product.js');
 
-// Endpoint for item listings
 router.get('/item-listings', async (req, res) => {
   try {
-    // Fake it with picsum API
-    const response = await axios.get("https://picsum.photos/v2/list?page=3&limit=100");
-    // Return the data to the frontend
-    res.json(response.data);
+    const products = await Product.find({});
+    console.log("Fetched Products:", products); // This line logs the fetched data
+    res.json(products);
   } catch (error) {
     console.error('Error fetching item listings:', error);
     res.status(500).send('An error occurred while fetching item listings.');

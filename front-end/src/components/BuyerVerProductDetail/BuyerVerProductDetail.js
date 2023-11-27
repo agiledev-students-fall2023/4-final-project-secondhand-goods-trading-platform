@@ -1,37 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import './BuyerVerProductDetail.css';
 import Header from '../Header/Header';
 import Slider from "react-slick";
 import { useParams } from 'react-router-dom';
 
-import { getCategory } from '../Utils/Utils';
 
 function BuyerVerProductDetail() {
     const { id } = useParams();
-
     const [itemDetails, setItemDetails] = useState(null);
     
     useEffect(() => {
-        // Update the URL to backend endpoint
-        axios.get(`/api/product-detail/${id}`).then(response => {
-            setItemDetails(response.data);
-        }).catch(error => {
-            console.error('Error fetching product details:', error);
-        });
+        async function fetchProductDetails() {
+            try {
+                const response = await fetch(`/api/product-detail/${id}`);
+                if (response.ok) {
+                    const product = await response.json();
+                    setItemDetails(product);
+                } else {
+                    throw new Error('Failed to fetch product details.');
+                }
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+            }
+        }
+
+        fetchProductDetails();
     }, [id]);
 
     if (!itemDetails) return <div>Loading...</div>;
 
-    const imageUrl = itemDetails.download_url;
-    const author = itemDetails.author;
-    const price = itemDetails.width;
-
-    const authorHashValue = parseInt(author.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)) % 4 + 1;
-    const conditions = ['Used', 'New', '90% New', '75% New'];
-
-    const category = getCategory(author);
-    const condition = conditions[authorHashValue - 1];
+    // Using the new schema properties
+    const imageUrl = `http://localhost:3001/uploads/${itemDetails.imagePath}`;
+    const productName = itemDetails.productName;
+    const price = itemDetails.price;
+    const category = itemDetails.category;
+    const description = itemDetails.description;
 
     // Event handler function for copying the hyperlink
     const copyLinkHandler = () => {
@@ -63,27 +66,26 @@ function BuyerVerProductDetail() {
                     </div>
                     <Slider {...settings}>
                         <div className="each-pic">
-                            <img src={imageUrl} alt="Item 1"/>
+                            <img src={imageUrl} alt={productName}/>
+                        </div>
+                        {/* Additional images can be added here if available */}
+                        <div className="each-pic">
+                            <img src={imageUrl} alt={productName}/>
                         </div>
                         <div className="each-pic">
-                            <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 2"/>
+                            <img src={imageUrl} alt={productName}/>
                         </div>
                         <div className="each-pic">
-                            <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 3"/>
-                        </div>
-                        <div className="each-pic">
-                            <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 4"/>
+                            <img src={imageUrl} alt={productName}/>
                         </div>
                     </Slider>
 
                 </div>
                 <div className="product-info">
+                    <p><strong>Name:</strong> {productName}</p>
                     <p><strong>Price:</strong> ${price}</p>
-                    <p><strong>Category:</strong> {category === 'StudySupplies' ? 'Study Supplies' : category}</p>
-                    <p><strong>Condition:</strong> {condition}</p>
-                    <p><strong>Seller Contact Info:</strong> {author}</p>
-                    <p className="description"><strong>Description:</strong> {imageUrl.repeat(5).split('https://')}</p>
-
+                    <p><strong>Category:</strong> {category}</p>
+                    <p><strong>Description:</strong> {description}</p>
                 </div>
                 <div className="button-container">
                     <button className="copy-link-button" onClick={copyLinkHandler}>Copy Link</button>
