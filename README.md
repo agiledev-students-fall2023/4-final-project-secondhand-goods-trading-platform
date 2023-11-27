@@ -66,7 +66,7 @@ Copy the `.env.example` into your `.env`.
 1. Open a new terminal (Git Bash).
 1. Navigate into the back-end directory (use ``cd ../`` to back to main folder and use ``cd back-end``).
 1. Run ``npm install``.
-1. Run ``npm start`` to set the backend server running. Or, run ``npm test`` to see the results of all unit/integration tests.
+1. Run ``npm start`` to set the backend server running. 
 
 ## Links to any additional Markdown documents or web pages that may be relevant reading about the project
 
