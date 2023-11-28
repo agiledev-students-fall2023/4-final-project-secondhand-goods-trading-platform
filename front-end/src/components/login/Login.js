@@ -20,6 +20,8 @@ const Login = () => {
         
         if (data && data.token) {
           localStorage.setItem('loggedInUser', username);
+          localStorage.setItem('token', data.token);
+          axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
           navigate('/home'); // Redirect to homepage
         }else {
         

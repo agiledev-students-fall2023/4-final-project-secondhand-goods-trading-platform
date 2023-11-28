@@ -74,8 +74,18 @@ function AddNewItem(){
         formData.append('image', Image);
 
         try{
+            const token = localStorage.getItem('token');
+
+            if(!token) {
+                setErrorMessage('No authentication token found. Please log in.');
+                return;
+            }
+
             const response = await fetch('http://localhost:3001/api/add-new-item',{
                 method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
                 body: formData
             });
 
@@ -85,14 +95,14 @@ function AddNewItem(){
                 navigate('/viewyourproduct');
             } else {
                 // Handle errors if the response is not ok
-                setErrorMessage(data.message);
+                console.log('Response OK is false:', response);
+                setErrorMessage(data.message || 'An error occurred while adding the item.');
             }
 
         }catch (error){ // network error
+            console.error('Catch block error:', error);
             setErrorMessage('An error occurred while adding item.');
         }
-
-        console.log("Publish button clicked!");
     };
 
     const categories = [{ name: 'Furniture', icon: `${process.env.PUBLIC_URL}/furniture-icon.png` },
