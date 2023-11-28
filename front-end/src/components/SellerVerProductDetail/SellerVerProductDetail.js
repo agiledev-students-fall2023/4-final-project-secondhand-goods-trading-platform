@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom';
 function SellerVerProductDetail() {
     const { id } = useParams();
     const [itemDetails, setItemDetails] = useState(null);
-    const [productStatus, setProductStatus] = useState("Available");
     
     useEffect(() => {
         async function fetchProductDetails() {
@@ -16,7 +15,6 @@ function SellerVerProductDetail() {
                 if (response.ok) {
                     const product = await response.json();
                     setItemDetails(product);
-                    setProductStatus(product.status);
                 } else {
                     throw new Error('Failed to fetch product details.');
                 }
@@ -35,25 +33,6 @@ function SellerVerProductDetail() {
     const price = itemDetails.price;
     const category = itemDetails.category;
     const description = itemDetails.description;
-
-    const toggleStatus = () => {
-        const newStatus = productStatus === "Available" ? "Sold" : "Available";
-        fetch(`/api/seller-product-detail/${id}/status`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ status: newStatus }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            setProductStatus(data.status);
-            alert(`Your product status is now: ${data.status}`);
-        })
-        .catch(err => {
-            console.error('Error updating status: ', err);
-        });
-    };
 
     // Event handler function for copying the hyperlink
     const copyLinkHandler = () => {
@@ -74,6 +53,30 @@ function SellerVerProductDetail() {
         slidesToScroll: 1
     };
 
+    const deleteProduct = async () => {
+        if (itemDetails && itemDetails.status === 'Sold') {
+            alert('You cannot take off this product as it has already been sold.');
+            return;
+        }
+        const confirmDelete = window.confirm('Do you really want to take off this product?');
+        if (confirmDelete) {
+            try {
+                const response = await fetch(`/api/seller-product-detail/${id}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    alert('Product has been successfully taken off.');
+                    // Redirect to MySellingItems.js page or another appropriate page
+                    window.location.href = '/viewyourproduct';
+                } else {
+                    alert('Failed to take off the product.');
+                }
+            } catch (error) {
+                console.error('Error taking off product:', error);
+            }
+        }
+    };
+
     return (
         <div className="product-detail-container"> 
             <Header />
@@ -81,7 +84,7 @@ function SellerVerProductDetail() {
             <div className="product-detail-content">
                 <div className="item-picture">
                     <div className="status-section">
-                        <span>Status: {productStatus}</span>
+                        <span>Status: {itemDetails.status}</span>
                     </div>
                     <Slider {...settings}>
                         <div className="each-pic">
@@ -106,7 +109,7 @@ function SellerVerProductDetail() {
                     <p><strong>Description:</strong> {description}</p>
                 </div>
                 <div className="button-container">
-                    <button className="take-off-button" onClick={toggleStatus}>Take Off / Launch</button> {/* Added the "Take Off / Launch" button */}
+                <button className="take-off-button" onClick={deleteProduct}>Take Off Product</button>
                     <button className="copy-link-button" onClick={copyLinkHandler}>Copy Link</button>
                 </div>
             </div>
