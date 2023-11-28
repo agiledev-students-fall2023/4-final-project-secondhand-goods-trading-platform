@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import './SellerVerProductDetail.css';
 import Header from '../Header/Header';
 import Slider from "react-slick";  // Importing the Slider component
@@ -7,46 +6,53 @@ import { useParams } from 'react-router-dom';
 
 function SellerVerProductDetail() {
     const { id } = useParams();
-
     const [itemDetails, setItemDetails] = useState(null);
-    const [productStatus, setProductStatus] = useState("Available"); // Set the initial state as 'Available'
+    const [productStatus, setProductStatus] = useState("Available");
     
     useEffect(() => {
-        // Update the URL to your backend endpoint
-        axios.get(`/api/seller-product-detail/${id}`)
-            .then(response => {
-                setItemDetails(response.data);
-                setProductStatus(response.data.status); // Set the status from the backend data
-            })
-            .catch(error => {
+        async function fetchProductDetails() {
+            try {
+                const response = await fetch(`/api/seller-product-detail/${id}`);
+                if (response.ok) {
+                    const product = await response.json();
+                    setItemDetails(product);
+                    setProductStatus(product.status);
+                } else {
+                    throw new Error('Failed to fetch product details.');
+                }
+            } catch (error) {
                 console.error('Error fetching seller product details:', error);
-            });
+            }
+        }
+
+        fetchProductDetails();
     }, [id]);
 
     if (!itemDetails) return <div>Loading...</div>; // Display a loading state
 
-    // fake fetch
-    const imageUrl = itemDetails.download_url;
-    const author = itemDetails.author;
-    const price = itemDetails.width;
-
-    const authorHashValue = parseInt(author.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)) % 4 + 1;
-    const categories = ['Furniture', 'Study Supplies', 'Electronics', 'Clothes'];
-    const conditions = ['Used', 'New', '90% New', '75% New'];
-    
-    const category = categories[authorHashValue - 1];
-    const condition = conditions[authorHashValue - 1];
+    const imageUrl = `http://localhost:3001/uploads/${itemDetails.imagePath}`;
+    const productName = itemDetails.productName;
+    const price = itemDetails.price;
+    const category = itemDetails.category;
+    const description = itemDetails.description;
 
     const toggleStatus = () => {
         const newStatus = productStatus === "Available" ? "Sold" : "Available";
-        axios.post(`/api/seller-product-detail/${id}/status`, { status: newStatus })
-            .then(() => {
-                setProductStatus(newStatus);
-                alert(`Your product status is now: ${newStatus}`);
-            })
-            .catch(err => {
-                console.error('Error updating status: ', err);
-            });
+        fetch(`/api/seller-product-detail/${id}/status`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status: newStatus }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            setProductStatus(data.status);
+            alert(`Your product status is now: ${data.status}`);
+        })
+        .catch(err => {
+            console.error('Error updating status: ', err);
+        });
     };
 
     // Event handler function for copying the hyperlink
@@ -79,25 +85,25 @@ function SellerVerProductDetail() {
                     </div>
                     <Slider {...settings}>
                         <div className="each-pic">
-                            <img src={imageUrl} alt="Item 1"/>
+                            <img src={imageUrl} alt={productName}/>
+                        </div>
+                        {/* Additional images can be added here if available */}
+                        <div className="each-pic">
+                            <img src={imageUrl} alt={productName}/>
                         </div>
                         <div className="each-pic">
-                            <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 2"/>
+                            <img src={imageUrl} alt={productName}/>
                         </div>
                         <div className="each-pic">
-                            <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 3"/>
-                        </div>
-                        <div className="each-pic">
-                            <img src={imageUrl || process.env.PUBLIC_URL + '/listing-placeholder.png'} alt="Item 4"/>
+                            <img src={imageUrl} alt={productName}/>
                         </div>
                     </Slider>
                 </div>
                 <div className="product-info">
+                    <p><strong>Name:</strong> {productName}</p>
                     <p><strong>Price:</strong> ${price}</p>
-                    <p><strong>Category:</strong> {category === 'StudySupplies' ? 'Study Supplies' : category}</p>
-                    <p><strong>Condition:</strong> {condition}</p>
-                    <p><strong>Seller Contact Info:</strong> {author}</p>
-                    <p className="description"><strong>Description:</strong> {imageUrl.repeat(5).split('https://')}</p>
+                    <p><strong>Category:</strong> {category}</p>
+                    <p><strong>Description:</strong> {description}</p>
                 </div>
                 <div className="button-container">
                     <button className="take-off-button" onClick={toggleStatus}>Take Off / Launch</button> {/* Added the "Take Off / Launch" button */}
