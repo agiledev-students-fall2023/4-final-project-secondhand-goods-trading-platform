@@ -21,6 +21,19 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  addressLine1: {
+    type: String,
+    required: false,
+  },
+  addressLine2: {
+    type: String,
+    required: false,
+  },
+  payment: {
+    type: String,
+    required: false,
+  },
+
 })
 
 // hash the password before the user is saved
