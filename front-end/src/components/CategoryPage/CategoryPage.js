@@ -2,64 +2,69 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { getCategory } from '../Utils/Utils';
+//import { getCategory } from '../Utils/Utils';
 import Menu from '../Menu/Menu';
 
 import './CategoryPage.css';
 
 function Item(props) {
-    const imageUrl = props.details.download_url  || process.env.PUBLIC_URL + '/listing-placeholder.png';
+    const imageUrl = `http://localhost:3001/uploads/${props.details.imagePath}`;
+    const productName = props.details.productName;
+    const productId = props.details._id;
 
     return (
-            <article className="item">
-                <Link to={`/buyerverproductdetail/for/${props.details.id}`}>
-                    <img src={imageUrl} alt={props.details.author} />
-                </Link>
-                <Link to={`/buyerverproductdetail/for/${props.details.id}`}>
-                    <p>{props.details.author}</p>
-                </Link>
+        <article className="item">
+            <Link to={`/buyerverproductdetail/for/${productId}`}>
+                <img src={imageUrl} alt={productName} />
+            </Link>
+            <Link to={`/buyerverproductdetail/for/${productId}`}>
+                <p>{productName}</p>
+            </Link>
 
-            </article>
+        </article>
     );
 }
 
-function CategoryPage({ items }) {
-    const { category } = useParams();
+function CategoryPage() {
+    let { category } = useParams();
+
+    if (category === 'StudySupplies') {
+        category = 'Study Supplies';
+    }
 
     const [data, setData] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
-            if(!items) { 
-                try { // fetch all products from back-end for now. During database integration, I will filter in the back-end
-                    const result = await axios('http://localhost:3001/api/item-listings');
-                    setData(result.data);
-                } catch (error) {
-                    console.error('Error fetching item from the category:', error);
-                }
+            
+            try {
+                const response = await axios.get(`http://localhost:3001/api/category/for/${encodeURIComponent(category)}`);
+                setData(response.data);
+            } catch (error) {
+                console.error('Error fetching items from the category:', error);
             }
+            
         }
 
         fetchData();
-    }, [items]);
+    }, [category]);
 
-    const displayItems = items || data; 
+    //const displayItems = items || data; 
 
-    const filteredItems = category ? displayItems.filter(item => getCategory(item.author) === category) : displayItems;
+    //const filteredItems = category ? displayItems.filter(item => getCategory(item.author) === category) : displayItems;
 
     return (
         <div>
             <section className='categorypage'>
                 <Menu />
                 <section className='categoryname'>
-                    {/* Check if the category is 'StudySupplies' and modify it to 'Study Supplies' */}
-                    Category: {category === 'StudySupplies' ? 'Study Supplies' : category}
+                    Category: {category}
                 </section>
             </section>
 
             <section className="item-listings">
-                {filteredItems.map((item, index) => (
-                    <Item key={index} details={item} />
+                {data.map((item, index) => (
+                    <Item key={item._id || index} details={item} />
                 ))}
             </section>
 

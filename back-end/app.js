@@ -47,7 +47,7 @@ const itemListingRoute = require('./routes/itemListingRoute');
 const buyerVerProductDetailRoute = require('./routes/buyerVerProductDetailRoute');
 const sellerVerProductDetailRoute = require('./routes/sellerVerProductDetailRoute');
 const mySellingItemsRoute = require('./routes/mySellingItemsRoute')
-//const categoryPageRoute = require('./routes/categoryPageRoute')
+const categoryPageRoute = require('./routes/categoryPageRoute')
 const addNewItemRoute= require('./routes/addNewItemRoute');
 const accountRoute= require('./routes/accountRoute');
 const editProfileRoute = require('./routes/editProfileRoute');
@@ -61,7 +61,7 @@ app.use('/api', itemListingRoute);
 app.use('/api', buyerVerProductDetailRoute);
 app.use('/api', sellerVerProductDetailRoute);
 app.use('/api', mySellingItemsRoute);
-//app.use('/api', categoryPageRoute);
+app.use('/api', categoryPageRoute);
 app.use('/api', addNewItemRoute);
 app.use('/api', accountRoute);
 app.use('/api', editProfileRoute);
