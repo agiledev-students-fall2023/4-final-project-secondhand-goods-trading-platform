@@ -58,9 +58,15 @@ function BuyerVerProductDetail() {
 
     const buyProduct = async () => {
         if (itemDetails.status === 'Sold') {
-            alert('You have already bought this item.');
+            alert('This product has already been sold. You cannot buy it anymore.');
             return;
         }
+
+        const confirmPurchase = window.confirm('Are you sure you want to buy this product?');
+        if (!confirmPurchase) {
+            return; // If the user clicks "Cancel", stop the function
+        }
+
         try {
             const response = await fetch(`/api/product-detail/${id}/buy`, {
                 method: 'POST'
