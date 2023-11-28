@@ -13,30 +13,22 @@ function OrderHistory() {
       try {
         const loggedInUserData = localStorage.getItem('loggedInUser');
         if (!loggedInUserData) {
-          throw new Error('User not authenticated');
+          console.error('User not authenticated');
+          setLoading(false);
+          return;
         }
 
-        let username;
-        try {
-          username = JSON.parse(loggedInUserData).username;
-        } catch {
-          username = loggedInUserData;
-        }
-
-        if (!username) {
-          throw new Error('User not authenticated');
-        }
+        // Directly use username from local storage in Axios request
+        const username = typeof loggedInUserData === 'string' ? loggedInUserData : JSON.parse(loggedInUserData).username; // Adjust based on your storage format
 
         const response = await axios.get(`http://localhost:3001/api/order-history?username=${username}`);
-        
         if (response.status === 200) {
           setOrders(response.data);
         } else {
-          throw new Error(`Error fetching order history: ${response.statusText}`);
+          console.error('Error fetching order history:', response.statusText);
         }
       } catch (error) {
-        console.error(error.message);
-        setLoading(false);
+        console.error('Error fetching order history:', error);
       } finally {
         setLoading(false);
       }
