@@ -1,40 +1,55 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./MySellingItems.css";
 import { Link } from "react-router-dom";
 
 function MyItem(props) {
-    const imageUrl = props.details.download_url  || process.env.PUBLIC_URL + '/listing-placeholder.png';
+    const imageUrl = `http://localhost:3001/uploads/${props.details.imagePath}`;
+    const productName = props.details.productName;
+    const productId = props.details._id;
     return (
         <article className="myitem">
-            <Link to={`/sellerverproductdetail/for/${props.details.id}`}>
-                <img src={imageUrl} alt={props.details.author} />
+            <Link to={`/sellerverproductdetail/for/${productId}`}>
+                <img src={imageUrl} alt={productName} />
             </Link>
-            <Link to={`/sellerverproductdetail/for/${props.details.id}`}>
-                <p>{props.details.author}</p>
+            <Link to={`/sellerverproductdetail/for/${productId}`}>
+                <p>{productName}</p>
             </Link>
             
         </article>
     );
 }
 
-function MySellingItems({ myitems }) {
+function MySellingItems({ items }) {
     const [data, setData] = useState([]);
+
     useEffect(() => {
         async function fetchData() {
-            if(!myitems) { // fetch from the back-end
-                try{
-                    const result = await axios('http://localhost:3001/api/my-selling-items');
-                    setData(result.data);
-                }catch (error){
+            if (!items){
+                try {
+                    // Send the token in the request to the backend
+                    const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+                    const result = await fetch('http://localhost:3001/api/my-selling-items', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    });
+                    if (result.ok) {
+                        const items = await result.json();
+                        console.log(items); // Logging the fetched data
+                        setData(items);
+                    } else {
+                        throw new Error('Network response was not ok.');
+                    }
+                } catch (error) {
                     console.error('Error fetching my selling items:', error);
                 }
             }
         }
-        fetchData();
-    }, [myitems]);
 
-    const displayItems = myitems || data;
+        fetchData();
+    }, [items]);
+
+    const displayItems = items || data;
 
     return (
         <section className="my-item-listings">
