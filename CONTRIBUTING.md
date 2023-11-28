@@ -49,6 +49,11 @@ When we embarked on our educational journeys in the US, we encountered difficult
 1. Install [Node.js](https://nodejs.org/en) on its offical website if you don’t have it installed on your computer.
 1. Open your cloned folder in VS Code.
 
+## Running the database
+
+1. First of all, please create a `.env` file in both `front-end` and `back-end` folders.
+1. Copy the `.env.example` respectively in `front-end` and `back-end` folders into your created two `.env` files.
+
 ## Running and Testing the Front End
 
 1. Open a new terminal (Git Bash).

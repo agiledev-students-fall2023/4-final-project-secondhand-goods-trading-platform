@@ -33,6 +33,11 @@ The roles of product owner and scrum master will be rotated throughout the semes
 - **Product Owner:** Siqi Wang
 - **Scrum Master:** Anita Ye
 
+### Sprint 4
+
+- **Product Owner:** Steven Li
+- **Scrum Master:** Anthony Li
+
 ## History of the project
 
 The concept for this project emerged from personal experiences and observations of college life. We recognized the financial constraints faced by many college students and identified a gap in the market for a dedicated second-hand trading platform. Our team united with the shared vision of making college life more affordable and sustainable, leading to the inception of this project.
@@ -53,7 +58,7 @@ We welcome all forms of contributions from code to design or even ideas! To get 
 
 First of all, please create a `.env` file in both `front-end` and `back-end` folders.
 
-Copy the `.env.example` into your `.env`.
+Copy the `.env.example` respectively in `front-end` and `back-end` folders into your created two `.env` files.
 
 ### Running and Testing the Front End
 
