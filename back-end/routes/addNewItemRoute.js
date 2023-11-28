@@ -42,7 +42,6 @@ router.post('/add-new-item', upload.single('image'), productValidationMiddleware
     }
 
     // Retrieve the token from the Authorization header
-    console.log(req.headers['authorization']);
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) {
         return res.status(401).json({ message: 'Please log in first.' });
