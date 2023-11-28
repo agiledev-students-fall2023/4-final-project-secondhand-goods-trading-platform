@@ -35,6 +35,7 @@ function BuyerVerProductDetail() {
     const price = itemDetails.price;
     const category = itemDetails.category;
     const description = itemDetails.description;
+    const productStatus = itemDetails.status;
 
     // Event handler function for copying the hyperlink
     const copyLinkHandler = () => {
@@ -55,6 +56,27 @@ function BuyerVerProductDetail() {
         slidesToScroll: 1
     };
 
+    const buyProduct = async () => {
+        if (itemDetails.status === 'Sold') {
+            alert('You have already bought this item.');
+            return;
+        }
+        try {
+            const response = await fetch(`/api/product-detail/${id}/buy`, {
+                method: 'POST'
+            });
+            const data = await response.json();
+            if (response.ok) {
+                setItemDetails({ ...itemDetails, status: 'Sold' });
+                alert(data.message);
+            } else {
+                alert(data);
+            }
+        } catch (error) {
+            console.error('Error buying product:', error);
+        }
+    };
+
     return (
         <div className="product-detail-container"> 
             <Header />
@@ -62,7 +84,7 @@ function BuyerVerProductDetail() {
             <div className="product-detail-content">
                 <div className="item-picture">
                     <div className="status-section">
-                        <span>Status: Sold</span>
+                        <span>Status: {productStatus}</span>
                     </div>
                     <Slider {...settings}>
                         <div className="each-pic">
@@ -88,6 +110,7 @@ function BuyerVerProductDetail() {
                     <p><strong>Description:</strong> {description}</p>
                 </div>
                 <div className="button-container">
+                    <button className="buy-button" onClick={buyProduct}>Buy Product</button>
                     <button className="copy-link-button" onClick={copyLinkHandler}>Copy Link</button>
                 </div>
             </div>
