@@ -33,7 +33,6 @@ const UserSchema = new Schema({
     type: String,
     required: false,
   },
-
   products: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product' 
