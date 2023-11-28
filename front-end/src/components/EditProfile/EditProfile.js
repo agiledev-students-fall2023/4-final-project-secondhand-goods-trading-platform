@@ -38,14 +38,20 @@ function EditProfile() {
   };
 
   const handleSaveClick = () => {
-    axios.put(`http://localhost:3001/api/edit-profile?username=${userData.username}`, userData)
-      .then(() => {
+    axios
+      .put(`http://localhost:3001/api/edit-profile?username=${userData.username}`, userData)
+      .then((response) => {
+        const updatedUser = response.data.user;
         setMessage('Account information updated!');
+        
+        // Update the state with the updated user data (optional)
+        setUserData(updatedUser);
       })
       .catch((error) => {
         console.error('Error updating user profile', error);
       });
   };
+  
 
   return (
     <div className="edit-container">
