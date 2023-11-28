@@ -42,13 +42,7 @@ function Account() {
     }
     // Data is either empty or too long, so we put it on the next line
     // Also apply a placeholder if there is no data
-    return (
-      <div>
-        {data
-          ? `${field === 'address' ? 'Address: ' : ''}${data}`
-          : `No ${field} yet, add some sparkle! ✨`}
-      </div>
-    );
+    return <div>{data || `No ${field} yet, add some sparkle! ✨`}</div>;
   }
   
   return (
