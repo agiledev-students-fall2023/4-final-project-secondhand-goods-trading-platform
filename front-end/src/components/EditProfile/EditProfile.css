@@ -29,6 +29,7 @@
   .edit-item label {
     font-size: 16px;
     margin-bottom: 5px;
+    font-weight: bold; /* Make labels bold like in the Account page */
   }
   
   .edit-item input {
