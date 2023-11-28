@@ -19,4 +19,23 @@ router.get('/product-detail/:id', async (req, res) => {
     }
   });
 
+  router.post('/product-detail/:id/buy', async (req, res) => {
+    const { id } = req.params;
+    try {
+      const product = await Product.findById(id);
+      if (!product) {
+        return res.status(404).send('Product not found.');
+      }
+      if (product.status === 'Sold') {
+        return res.status(400).send('Product already sold.');
+      }
+      product.status = 'Sold';
+      await product.save();
+      res.json({ message: 'Product purchased successfully', product });
+    } catch (error) {
+      console.error('Error updating product status:', error);
+      res.status(500).send('An error occurred while updating product status.');
+    }
+  });
+
 module.exports = router;
