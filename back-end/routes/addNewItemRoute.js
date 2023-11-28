@@ -4,9 +4,9 @@ const router = express.Router();
 const path = require('path');
 
 const { body, validationResult } = require('express-validator');
-
-// hardcode the product information in the back-end for now.
-const products = [];
+const jwt = require('jsonwebtoken');
+const Product = require('../models/Product');
+const User = require('../models/User');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb){
@@ -26,7 +26,7 @@ const productValidationMiddlewares = [
     body('Description').not().isEmpty().withMessage('Description cannot be empty.')
 ];
 
-router.post('/add-new-item', upload.single('image'), productValidationMiddlewares, (req, res) => {
+router.post('/add-new-item', upload.single('image'), productValidationMiddlewares, async (req, res) => {
     const errors = validationResult(req);
 
     // Check for validation errors
@@ -41,20 +41,46 @@ router.post('/add-new-item', upload.single('image'), productValidationMiddleware
         return res.status(400).json({ message: 'Please upload a picture.' });
     }
 
-    const newProduct = {
-        id: products.length + 1, // temporary id
-        productName: productName,
-        category: Category,
-        price: parseFloat(Price).toFixed(2), //two decimal places
-        description: Description,
-        imagePath: `../uploads/${file.originalname}`
-    };
-    products.push(newProduct);
+    // Retrieve the token from the Authorization header
+    console.log(req.headers['authorization']);
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+        return res.status(401).json({ message: 'Please log in first.' });
+    }
 
-    res.status(201).json({
-        message: "New product added successfully",
-        product: newProduct
-    });
+    try {
+        // Verify and decode the token to get the user's ID
+        const decoded = jwt.verify(token, process.env.JWT_SECRET); 
+        const userId = decoded.id;
+
+        // Create a new product 
+        const newProduct = new Product({
+            productName: productName,
+            category: Category,
+            price: parseFloat(Price).toFixed(2),
+            description: Description,
+            imagePath: `${file.originalname}`,
+            user: userId // associate the product with the user's ID
+        });
+        // Save the product
+        const savedProduct = await newProduct.save();
+
+        // Push the product's ObjectId to the user's products array
+        await User.findByIdAndUpdate(userId, { $push: { products: savedProduct._id } });
+
+        return res.status(201).json({
+            message: "New product added successfully",
+            product: newProduct
+        });
+
+    } catch (error) {
+        if (error.name === 'JsonWebTokenError') {
+            return res.status(401).json({ message: 'Invalid token.' });
+        }
+        // other errors
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while saving the product.' });
+    }
 });
 
 router.use('../uploads', express.static(path.join(__dirname, '../uploads')));
