@@ -7,14 +7,16 @@ router.get("/order-history", async (req, res) => {
   const username = req.query.username;
 
   try {
-    const user = await User.findOne({ username }).populate("products");
+    const user = await User.findOne({ username });
 
-    if (user) {
-      const orderHistory = user.products || []; // Check if products field exists
-      res.status(200).json(orderHistory);
-    } else {
-      res.status(404).json({ message: "User not found" });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
+
+    // Assuming that the user model has a field named 'orderHistory'
+    const orderHistory = user.orderHistory || [];
+
+    res.status(200).json(orderHistory);
   } catch (error) {
     console.error("Error fetching order history:", error);
     res.status(500).json({ message: "Internal server error" });
