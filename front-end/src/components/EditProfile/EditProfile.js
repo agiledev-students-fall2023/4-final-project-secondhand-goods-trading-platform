@@ -7,7 +7,7 @@ import Menu from '../Menu/Menu';
 function EditProfile() {
   const [userData, setUserData] = useState({
     username: '',
-    phone: '',
+    email: '', // Add the email field to the initial state
     addressLine1: '',
     addressLine2: '',
     payment: '',
@@ -24,7 +24,13 @@ function EditProfile() {
     // Use the account info route to fetch user data, if it's suitable
     axios.get(`http://localhost:3001/api/account?username=${loggedInUser}`)
       .then((response) => {
-        setUserData(response.data.user || {});
+        const userDataFromApi = response.data.user || {};
+        
+        // Ensure the email field is included in the state
+        setUserData((prevUserData) => ({
+          ...prevUserData,
+          ...userDataFromApi,
+        }));
       })
       .catch((error) => {
         console.error('Error fetching user profile', error);
