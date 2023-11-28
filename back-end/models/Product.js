@@ -9,6 +9,11 @@ const productSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User' // Reference to the User model
+  },
+  status: {
+    type: String,
+    default: 'Available', // Default status is 'Available'
+    enum: ['Available', 'Sold']
   }
 });
 

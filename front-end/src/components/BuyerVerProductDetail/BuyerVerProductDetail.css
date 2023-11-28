@@ -30,7 +30,7 @@
     background-color: rgba(255, 255, 255, 0.7); 
     padding: 10px 20px;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 14px;
     z-index: 2;  /* ensures that the status section appears on top of other elements */
 }
 
@@ -48,6 +48,26 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     margin-top: 10px;
     margin-left: auto; /* This will push the button to the right */
+}
+
+.copy-link-button:hover {
+    background-color: #7a24d2;
+    color: #ffffff;
+}
+
+.buy-button {
+    border: 1px solid #ccc;
+    background-color: #e8e0ef;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-top: 10px;
+}
+
+.buy-button:hover {
+    background-color: #7a24d2;
+    color: #ffffff;
 }
 
 .copy-link-button:hover {
