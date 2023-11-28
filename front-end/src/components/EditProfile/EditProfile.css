@@ -50,7 +50,7 @@
   
   /* Match the style of the "Save" button with the "account-button" class */
   .save-button {
-    background-color: #7a24d2;
+    background-color: #7a24d2; /* Match the purple color */
     color: white;
     border: none;
     padding: 15px 30px; /* Increase padding for larger buttons */
@@ -66,7 +66,7 @@
   }
   
   .save-button:hover {
-    background-color: #9b50d2; /* Lighter violet on hover */
+    background-color: #9b50d2; /* Lighter violet on hover, matching the style */
     box-shadow: 0 2px 4px #5d5475; /* Shadow for a 'lifted button' effect */
     transform: translateY(-2px); /* Move the button up a bit when hovered */
   }
