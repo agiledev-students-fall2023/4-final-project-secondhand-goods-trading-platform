@@ -1,18 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
+const Product = require('../models/Product.js');
 
-// Endpoint for item listings, can filter category during database integration
-router.get('/category/:category', async (req, res) => {
-    //const { category } = req.params;
+router.get('/category/for/:category', async (req, res) => {
+    
   try {
-    // Fake it with picsum API
-    const response = await axios.get("https://picsum.photos/v2/list?page=3&limit=100");
-    // Return the data to the frontend
-    res.json(response.data);
+    const category = req.params.category;
+
+    const products = await Product.find({ category: category });
+    console.log("Fetched Products in category:", category, products); 
+
+    res.json(products);
   } catch (error) {
+    
     console.error('Error fetching item listings:', error);
     res.status(500).send('An error occurred while fetching item listings.');
+  
   }
 });
 
