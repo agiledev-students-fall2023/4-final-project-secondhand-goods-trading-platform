@@ -58,7 +58,6 @@ function EditProfile() {
       });
   };
   
-
   return (
     <div className="edit-container">
       <Menu />
@@ -108,7 +107,7 @@ function EditProfile() {
             onChange={handleInputChange}
           />
         </div>
-        <button onClick={handleSaveClick}>Save</button>
+        <button onClick={handleSaveClick} className="save-button">Save</button>
       </div>
       {message && <p className="message">{message}</p>}
     </div>
