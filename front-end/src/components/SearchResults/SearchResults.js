@@ -7,7 +7,7 @@ import ItemListings from '../ItemListings/ItemListings';
 const SearchResults = () => {
 
     const { prompt } = useParams();
-    const searchText = prompt.replace('prompt=', '');
+    const searchText = decodeURIComponent(prompt.replace('prompt=', ''));
 
     const [data, setData] = useState([]);
 
@@ -22,10 +22,10 @@ const SearchResults = () => {
         };
 
         fetchData();
-    }, []);
+    }, [prompt]);
 
     const filteredData = data.filter(item =>
-        item.author.toLowerCase().includes(searchText.toLowerCase())
+        item.productName.toLowerCase().includes(searchText.toLowerCase())
     );
 
     return (
