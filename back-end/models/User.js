@@ -21,6 +21,19 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  addressLine1: {
+    type: String,
+    required: false,
+  },
+  addressLine2: {
+    type: String,
+    required: false,
+  },
+  payment: {
+    type: String,
+    required: false,
+  },
+
   products: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product' 
