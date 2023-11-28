@@ -1,3 +1,4 @@
+/* EditProfile.css */
 
 .edit-container {
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -9,29 +10,29 @@
     max-width: 500px; /* Max-width for the entire container */
     margin: 50px auto;
   }
-
-.edit-section {
+  
+  .edit-section {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center; /* Centering the edit items */
-}
-
-.edit-item {
+  }
+  
+  .edit-item {
     width: 80%; /* Reduced width to 80% to bring them closer to the center */
     margin: 15px 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-}
-
-.edit-item label {
+  }
+  
+  .edit-item label {
     font-size: 16px;
     margin-bottom: 5px;
-    
-}
-
-.edit-item input {
+    font-weight: bold; /* Make labels bold like in the Account page */
+  }
+  
+  .edit-item input {
     padding: 5px;
     font-size: 14px;
     border: none;
@@ -40,11 +41,33 @@
     width: 100%;
     background-color: transparent;
     box-shadow: none;
-}
-
-.edit-item input:focus {
+  }
+  
+  .edit-item input:focus {
     border-bottom-color: #a6a6d2;
     outline: none;
-}
-
-
+  }
+  
+  /* Match the style of the "Save" button with the "account-button" class */
+  .save-button {
+    background-color: #7a24d2; /* Match the purple color */
+    color: white;
+    border: none;
+    padding: 15px 30px; /* Increase padding for larger buttons */
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 30px; /* Adjust for rounder corners */
+    font-size: 18px; /* Increase font size for better readability */
+    font-weight: bold;
+    text-align: center; /* Center text inside the button */
+    margin-top: 20px; /* Increase space between button and inputs */
+    width: 100%; /* Make the button span the width of the container */
+    max-width: 400px; /* Set max-width to align with input fields */
+  }
+  
+  .save-button:hover {
+    background-color: #9b50d2; /* Lighter violet on hover, matching the style */
+    box-shadow: 0 2px 4px #5d5475; /* Shadow for a 'lifted button' effect */
+    transform: translateY(-2px); /* Move the button up a bit when hovered */
+  }
+  
