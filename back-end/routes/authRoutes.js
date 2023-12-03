@@ -53,20 +53,23 @@ router.post('/signup', [
   body('password')
     .isStrongPassword().withMessage('Password must be strong (at least 8 characters, including 1 uppercase, 1 lowercase, 1 number, and 1 symbol)'),
 ], async (req, res) => {
+
+  const { username, email, password } = req.body;
+  console.log('we are in signup!');
+
+  // Check if the user already exists
+  const userExists = await User.findOne({ $or: [{ email }] });
+
+  if (userExists) {
+    return res.status(401).json({ message: 'User already exists' });
+  }
+
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const errorMessages = errors.array().map(err => ({ msg: err.msg, param: err.param }));
     return res.status(400).json({ message: 'Validation errors', errors: errorMessages });
   }
-  const { username, email, password } = req.body;
-  console.log('we are in signup!');
 
-  // Check if the user already exists
-  const userExists = await User.findOne({ $or: [{ username }, { email }] });
-
-  if (userExists) {
-    return res.status(400).json({ message: 'User already exists' });
-  }
 
   // Create a new user instance and save to the database
   const newUser = new User({ username, email, password});
