@@ -1,4 +1,4 @@
-# Use Node.js v14 as the base image
+# Use Node.js v16 as the base image
 FROM node:16
 
 # Create app directory
