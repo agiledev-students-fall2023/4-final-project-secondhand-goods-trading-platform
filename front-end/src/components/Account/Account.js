@@ -18,7 +18,7 @@ function Account() {
       return;
     }
     axios
-      .get(`http://localhost:3001/api/account?username=${loggedInUser}`)
+      .get(`http://167.172.230.126:3001/api/account?username=${loggedInUser}`)
       .then((response) => {
         setUserData(response.data.user);
       })

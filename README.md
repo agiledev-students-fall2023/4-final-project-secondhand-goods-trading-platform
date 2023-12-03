@@ -73,6 +73,12 @@ Copy the `.env.example` respectively in `front-end` and `back-end` folders into 
 1. Run ``npm install``.
 1. Run ``npm start`` to set the backend server running. 
 
+## Deployment
+
+The application has been deployed to a Digital Ocean Droplet and is available at the following URL:
+
+Live Version: [http://167.172.230.126/](http://167.172.230.126/)
+
 ## Links to any additional Markdown documents or web pages that may be relevant reading about the project
 
 [Link to our UX Design Prototype](UX-DESIGN.md)
