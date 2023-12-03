@@ -2,9 +2,9 @@ name: Docker CI
 
 on:
   push:
-    branches: [ "test-branch" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "test-branch" ]
+    branches: [ "master" ]
 
 jobs:
   build-and-deploy:
@@ -28,6 +28,6 @@ jobs:
         passphrase: ${{ secrets.SSH_PASSPHRASE }}  
         script: |
           cd 4-final-project-secondhand-goods-trading-platform
-          git pull origin test-branch
+          git pull origin master
           docker-compose down
           docker-compose up --build -d
