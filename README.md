@@ -81,9 +81,9 @@ Live Version: [http://167.172.230.126/](http://167.172.230.126/)
 
 ## Extra Credit
 
-- Docker container for backend and frontend
-- Continuous integration with GitHub Actions
-- Continuous deployment with GitHub Actions
+1. Docker container for backend and frontend
+1. Continuous integration with GitHub Actions
+1. Continuous deployment with GitHub Actions
 
 ## Links to any additional Markdown documents or web pages that may be relevant reading about the project
 
