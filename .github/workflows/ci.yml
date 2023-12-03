@@ -2,16 +2,16 @@ name: Docker CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "test-branch" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "test-branch" ]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build and run Docker containers
+    - name: Build and run Dockercd  containers
       run: |
         docker-compose up --build -d
         docker-compose ps
