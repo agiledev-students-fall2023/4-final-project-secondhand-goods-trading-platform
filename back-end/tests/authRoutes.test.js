@@ -60,23 +60,33 @@ describe('Authentication', () => {
       
   
     });
+
+    const User = require('../models/User')
     
     describe('/POST signup', () => {
-        it('it should register a new user', (done) => {
-          chai.request(server)
-            .post('/api/signup')
-            .send({
-              username: 'newuser',
-              email: 'newuser@example.com', 
-              password: 'Pass123@@'
-            })
-            .end((err, res) => {
-              expect(res).to.have.status(201);
-              expect(res.body).to.be.an('object');
-              expect(res.body.message).to.equal('Thank you for signing up!');
-              done();
-            });
-        });
+      it('it should register a new user', async () => { // use async here
+        const testUserData = {
+          username: 'user4test',
+          email: 'user4test@example.com', 
+          password: 'Pass123@@'
+        };
+    
+        const res = await chai.request(server)
+          .post('/api/signup')
+          .send(testUserData);
+    
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.an('object');
+        expect(res.body.message).to.equal('Thank you for signing up!');
+    
+        // Cleanup: delete the test user
+        try {
+          await User.deleteOne({ email: testUserData.email });
+        } catch (deleteErr) {
+          throw new Error('Error cleaning up test user: ' + deleteErr);
+        }
+      });
+  
     
         it('it should not register a user with an existing email or username', (done) => {
           chai.request(server)
