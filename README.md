@@ -79,6 +79,12 @@ The application has been deployed to a Digital Ocean Droplet and is available at
 
 Live Version: [http://167.172.230.126/](http://167.172.230.126/)
 
+## Extra Credit
+
+- Docker container for backend and frontend
+- Continuous integration with GitHub Actions
+- Continuous deployment with GitHub Actions
+
 ## Links to any additional Markdown documents or web pages that may be relevant reading about the project
 
 [Link to our UX Design Prototype](UX-DESIGN.md)
