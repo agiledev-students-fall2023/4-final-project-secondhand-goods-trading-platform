@@ -1,0 +1,33 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    # Build and run Docker containers
+    - name: Build and run Docker containers
+      run: |
+        docker-compose up --build -d
+        docker-compose ps
+
+    # SSH and Deploy to DigitalOcean Droplet
+    - name: Deploy to DigitalOcean Droplet
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.DROPLET_IP }}
+        username: ${{ secrets.DROPLET_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}  
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}  
+        script: |
+          cd 4-final-project-secondhand-goods-trading-platform
+          git pull origin master
+          docker-compose down
+          docker-compose up --build -d
