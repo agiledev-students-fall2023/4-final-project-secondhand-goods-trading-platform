@@ -19,7 +19,7 @@ const SignUp = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:3001/api/signup', {
+            const response = await fetch('http://167.172.230.126:3001/api/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,11 +38,18 @@ const SignUp = () => {
                 localStorage.setItem('loggedInUser', username);
                 navigate('/home');
             } else if (response.status === 400) {
-                const errorMessages = data.errors.map(error => error.msg).join(', ');
-                setErrorMessage(`Validation errors: ${errorMessages}`);
+                console.log("validation error.");
+                if (data.errors && Array.isArray(data.errors)) {
+                    const errorMessages = data.errors.map(error => error.msg).join(', ');
+                    setErrorMessage(`Validation errors: ${errorMessages}`);
+                } else {
+                    // If the errors array is not present, use the main message from the response
+                    setErrorMessage(data.message || 'Validation error occurred.');
+                }
             } else {
                 // Handle other errors
-                setErrorMessage(data.message || 'An error occurred while signing up.');
+                console.log("other error.")
+                setErrorMessage(data.message);
             }
         } catch (error) {
             // Handle network errors 
