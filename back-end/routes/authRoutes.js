@@ -61,7 +61,7 @@ router.post('/signup', [
   const userExists = await User.findOne({ $or: [{ email }] });
 
   if (userExists) {
-    return res.status(401).json({ message: 'User already exists' });
+    return res.status(400).json({ message: 'User already exists' });
   }
 
   const errors = validationResult(req);
