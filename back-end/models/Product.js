@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema({
   status: {
     type: String,
     default: 'Available', // Default status is 'Available'
-    enum: ['Available', 'Sold']
+    enum: ['Available', 'Pending Purchase Approval', 'Sold']
   }
 });
 

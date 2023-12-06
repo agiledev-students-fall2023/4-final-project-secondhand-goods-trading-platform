@@ -26,16 +26,17 @@ router.get('/product-detail/:id', async (req, res) => {
       if (!product) {
         return res.status(404).send('Product not found.');
       }
-      if (product.status === 'Sold') {
-        return res.status(400).send('Product already sold.');
+      if (product.status !== 'Available') {
+        return res.status(400).send('Product is not available for purchase.');
       }
-      product.status = 'Sold';
+      product.status = 'Pending Purchase Approval';
       await product.save();
-      res.json({ message: 'Product purchased successfully', product });
+      res.json({ message: 'Please wait for seller approval.', product });
     } catch (error) {
       console.error('Error updating product status:', error);
       res.status(500).send('An error occurred while updating product status.');
     }
   });
+  
 
 module.exports = router;

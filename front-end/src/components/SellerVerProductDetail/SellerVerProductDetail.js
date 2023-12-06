@@ -77,6 +77,38 @@ function SellerVerProductDetail() {
         }
     };
 
+    const approvePurchase = async () => {
+        if (itemDetails.status === 'Sold') {
+          alert('This item is already sold so you cannot approve purchase.');
+          return;
+        }
+
+        if (itemDetails.status === 'Available') {
+            alert('The product is available. No need to approve.');
+            return;
+        }
+        
+        const confirmApproval = window.confirm('Are you sure you want to approve this purchase?');
+        if (!confirmApproval) {
+            return; // If the user clicks "Cancel", stop the function
+        }
+
+        try {
+          const response = await fetch(`/api/seller-product-detail/${id}/approve`, {
+            method: 'POST'
+          });
+          const data = await response.json();
+          if (response.ok) {
+            setItemDetails({ ...itemDetails, status: 'Sold' });
+            alert(data.message);
+          } else {
+            alert(data);
+          }
+        } catch (error) {
+          console.error('Error approving purchase:', error);
+        }
+      };
+
     return (
         <div className="product-detail-container"> 
             <Header />
@@ -109,8 +141,11 @@ function SellerVerProductDetail() {
                     <p><strong>Description:</strong> {description}</p>
                 </div>
                 <div className="button-container">
-                <button className="take-off-button" onClick={deleteProduct}>Take Off Product</button>
+                    <button className="take-off-button" onClick={deleteProduct}>Take Off Product</button>
                     <button className="copy-link-button" onClick={copyLinkHandler}>Copy Link</button>
+                </div>
+                <div className="approve-purchase-container">
+                    <button className="approve-purchase-button" onClick={approvePurchase}>Approve Purchase</button>
                 </div>
             </div>
         </div>

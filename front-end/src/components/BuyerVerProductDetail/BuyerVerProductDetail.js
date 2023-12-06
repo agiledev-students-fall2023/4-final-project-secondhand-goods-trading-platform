@@ -57,23 +57,27 @@ function BuyerVerProductDetail() {
     };
 
     const buyProduct = async () => {
-        if (itemDetails.status === 'Sold') {
-            alert('This product has already been sold. You cannot buy it anymore.');
+        if (itemDetails.status !== 'Available') {
+            if (itemDetails.status === 'Pending Purchase Approval') {
+                alert('This Product is pending for purchase approval. Cannot buy Now.');
+            } else if (itemDetails.status === 'Sold') {
+                alert('This product has already been sold. You cannot buy it anymore.');
+            }
             return;
         }
-
+    
         const confirmPurchase = window.confirm('Are you sure you want to buy this product?');
         if (!confirmPurchase) {
             return; // If the user clicks "Cancel", stop the function
         }
-
+    
         try {
             const response = await fetch(`/api/product-detail/${id}/buy`, {
                 method: 'POST'
             });
             const data = await response.json();
             if (response.ok) {
-                setItemDetails({ ...itemDetails, status: 'Sold' });
+                setItemDetails({ ...itemDetails, status: 'Pending Purchase Approval' });
                 alert(data.message);
             } else {
                 alert(data);
@@ -82,6 +86,7 @@ function BuyerVerProductDetail() {
             console.error('Error buying product:', error);
         }
     };
+    
 
     return (
         <div className="product-detail-container"> 
