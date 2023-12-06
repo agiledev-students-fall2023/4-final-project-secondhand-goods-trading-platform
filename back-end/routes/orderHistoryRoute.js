@@ -7,14 +7,14 @@ router.get("/order-history", async (req, res) => {
   const username = req.query.username;
 
   try {
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username }).populate('products');  // Populate the products
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
     // Assuming that the user model has a field named 'orderHistory'
-    const orderHistory = user.orderHistory || [];
+    const orderHistory = user.products || [];
 
     res.status(200).json(orderHistory);
   } catch (error) {
