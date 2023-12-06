@@ -14,5 +14,7 @@ services:
       context: ./front-end
     ports:
       - "80:80"
+    volumes:
+      - ./nginx-config:/etc/nginx/conf.d 
     environment:
       - NODE_ENV=production
