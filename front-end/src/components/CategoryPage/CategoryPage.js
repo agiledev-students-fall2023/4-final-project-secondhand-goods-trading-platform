@@ -8,7 +8,7 @@ import Menu from '../Menu/Menu';
 import './CategoryPage.css';
 
 function Item(props) {
-    const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePath}`;
+    const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePaths[0]}`;
     const productName = props.details.productName;
     const productId = props.details._id;
 
