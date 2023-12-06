@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Item(props) {
     //const imageUrl = props.details.imagePath || process.env.PUBLIC_URL + '/listing-placeholder.png';
-    const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePath}`;
+    const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePaths[0]}`;
     const productName = props.details.productName;
     const productId = props.details._id; // Assuming MongoDB's default _id is used as the unique identifier
 

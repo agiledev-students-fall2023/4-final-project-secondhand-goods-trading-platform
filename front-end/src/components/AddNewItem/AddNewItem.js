@@ -176,7 +176,7 @@ function AddNewItem(){
                 </section>
                 
                 <section className="image-upload-container">
-                    {previewImages[0] ? ( // only preview the first image
+                    {previewImages[0] ? ( // only preview the first picture
                         <div className="image-preview">
                             <img src={previewImages[0]} alt="Preview 1" />
                         </div>
