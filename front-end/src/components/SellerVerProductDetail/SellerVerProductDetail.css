@@ -105,7 +105,7 @@
 }
 
 .approve-purchase-container {
-    margin-top: 20px; /* Add margin above the buttons */
+    margin-top: 25px; /* Add margin above the buttons */
     text-align: center; /* Center the buttons */
     display: flex;
     flex-direction: column; /* Stack buttons vertically */
