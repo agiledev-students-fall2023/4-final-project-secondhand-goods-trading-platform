@@ -28,7 +28,6 @@ function SellerVerProductDetail() {
 
     if (!itemDetails) return <div>Loading...</div>; // Display a loading state
 
-    const imageUrl = `http://localhost:3001/uploads/${itemDetails.imagePath}`;
     const productName = itemDetails.productName;
     const price = itemDetails.price;
     const category = itemDetails.category;
@@ -151,17 +150,17 @@ function SellerVerProductDetail() {
                     </div>
                     <Slider {...settings}>
                         <div className="each-pic">
-                            <img src={imageUrl} alt={productName}/>
+                            <img src={`http://167.172.230.126:3001/uploads/${itemDetails.imagePaths[0]}`} alt={productName}/>
                         </div>
                         {/* Additional images can be added here if available */}
                         <div className="each-pic">
-                            <img src={imageUrl} alt={productName}/>
+                            <img src={`http://167.172.230.126:3001/uploads/${itemDetails.imagePaths[1]}`} alt={productName}/>
                         </div>
                         <div className="each-pic">
-                            <img src={imageUrl} alt={productName}/>
+                            <img src={`http://167.172.230.126:3001/uploads/${itemDetails.imagePaths[2]}`} alt={productName}/>
                         </div>
                         <div className="each-pic">
-                            <img src={imageUrl} alt={productName}/>
+                            <img src={`http://167.172.230.126:3001/uploads/${itemDetails.imagePaths[3]}`} alt={productName}/>
                         </div>
                     </Slider>
                 </div>

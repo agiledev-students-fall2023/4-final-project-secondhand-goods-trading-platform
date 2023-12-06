@@ -8,7 +8,7 @@ import Menu from '../Menu/Menu';
 import './CategoryPage.css';
 
 function Item(props) {
-    const imageUrl = `http://localhost:3001/uploads/${props.details.imagePath}`;
+    const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePath}`;
     const productName = props.details.productName;
     const productId = props.details._id;
 
@@ -38,7 +38,7 @@ function CategoryPage() {
         async function fetchData() {
             
             try {
-                const response = await axios.get(`http://localhost:3001/api/category/for/${encodeURIComponent(category)}`);
+                const response = await axios.get(`http://167.172.230.126:3001/api/category/for/${encodeURIComponent(category)}`);
                 setData(response.data);
             } catch (error) {
                 console.error('Error fetching items from the category:', error);

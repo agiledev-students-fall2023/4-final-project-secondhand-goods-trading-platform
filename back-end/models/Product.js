@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
   category: String,
   price: Number,
   description: String,
-  imagePath: String,
+  imagePaths: [String],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User' // Reference to the User model
