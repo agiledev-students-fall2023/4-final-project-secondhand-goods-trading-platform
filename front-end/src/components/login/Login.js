@@ -16,7 +16,7 @@ const Login = () => {
       
       try {
         const payload = { username, email, password };
-        const { data } = await axios.post('http://167.172.230.126:3001/api/login', payload); 
+        const { data } = await axios.post('http://localhost:3001/api/login', payload); 
         
         if (data && data.token) {
           localStorage.setItem('loggedInUser', username);

@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storage})
+const upload = multer({ storage: storage }).array('image', 4); // Allow up to 4 images
 
 const productValidationMiddlewares = [
     body('productName').trim().isLength({ min: 1, max: 20 }).withMessage('Please enter a valid ame.'),
@@ -26,7 +26,7 @@ const productValidationMiddlewares = [
     body('Description').not().isEmpty().withMessage('Description cannot be empty.')
 ];
 
-router.post('/add-new-item', upload.single('image'), productValidationMiddlewares, async (req, res) => {
+router.post('/add-new-item', upload, productValidationMiddlewares, async (req, res) => {
     const errors = validationResult(req);
 
     // Check for validation errors
@@ -35,10 +35,10 @@ router.post('/add-new-item', upload.single('image'), productValidationMiddleware
     }
     
     const { productName, Category, Price, Description } = req.body;
-    const file = req.file;
+    const files = req.files;
 
-    if (!req.file) {
-        return res.status(400).json({ message: 'Please upload a picture.' });
+    if (!files || files.length === 0) {
+        return res.status(400).json({ message: 'Please upload at least one picture.' });
     }
 
     // Retrieve the token from the Authorization header
@@ -52,13 +52,15 @@ router.post('/add-new-item', upload.single('image'), productValidationMiddleware
         const decoded = jwt.verify(token, process.env.JWT_SECRET); 
         const userId = decoded.id;
 
+        const imagePaths = files.map(file => file.originalname);
+
         // Create a new product 
         const newProduct = new Product({
             productName: productName,
             category: Category,
             price: parseFloat(Price).toFixed(2),
             description: Description,
-            imagePath: `${file.originalname}`,
+            imagePaths: imagePaths,
             user: userId // associate the product with the user's ID
         });
         // Save the product

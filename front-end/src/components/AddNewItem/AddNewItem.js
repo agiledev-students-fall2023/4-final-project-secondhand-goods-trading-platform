@@ -16,25 +16,26 @@ function AddNewItem(){
     const navigate = useNavigate();
 
     // for image upload
-    const [Image, setImage] = useState(null);
-    const [previewImage, setPreviewImage] = useState(null);
+    const [images, setImages] = useState([]);
+    const [previewImages, setPreviewImages] = useState([]);
     const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImage(file);
-                setPreviewImage(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
+        const files = Array.from(event.target.files);
+        setImages(files);
 
-    // publish picture
-    const handlePublish = () => {
-        if (Image) {
-            console.log("Published:", Image);
-        }
+        const previewFiles = files.map(file => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            return new Promise(resolve => {
+                reader.onloadend = () => {
+                    resolve(reader.result);
+                };
+            });
+        });
+
+        Promise.all(previewFiles).then(images => {
+            setPreviewImages(images);
+        });
+
     };
 
     // publish product
@@ -71,7 +72,10 @@ function AddNewItem(){
         formData.append('Category', Category);
         formData.append('Price', Price);
         formData.append('Description', Description);
-        formData.append('image', Image);
+
+        images.forEach((image) => {
+            formData.append('image', image); 
+        });
 
         try{
             const token = localStorage.getItem('token');
@@ -133,7 +137,6 @@ function AddNewItem(){
                 {categories.map((category, index) => (
                     <button 
                         key={index} 
-                        //value = {Category}
                         className={`category-button ${selectedCategory === categoryList[index] ? 'selected' : ''}`}
                         onClick={() => {
                             setCategory(categoryList[index]);
@@ -171,17 +174,19 @@ function AddNewItem(){
                 <section className='entry'>
                     <p>Picture:</p>
                 </section>
+                
                 <section className="image-upload-container">
-                    {previewImage ? (
-                        <img src={previewImage} alt="Selected" />
-                    ) : (
-                        <div className="placeholder">
-                            <input type="file" onChange={handleImageChange} />
-                            <div className="plus-icon"><img src={`${process.env.PUBLIC_URL}/addIcon.png`} alt="AddNew"/></div>
+                    {previewImages[0] ? ( // only preview the first image
+                        <div className="image-preview">
+                            <img src={previewImages[0]} alt="Preview 1" />
                         </div>
+                    ): (
+                    <div className="placeholder">
+                        <input type="file" onChange={handleImageChange} multiple accept="image/*" />
+                        <div className="plus-icon"><img src={`${process.env.PUBLIC_URL}/addIcon.png`} alt="AddNew"/></div>
+                    </div>
                     )}
                 </section>
-                <button onClick={handlePublish}>Upload Picture</button>
 
                 <section>
                     {errorMessage && <p className="error">{errorMessage}</p>}
@@ -194,3 +199,14 @@ function AddNewItem(){
 }
 
 export default AddNewItem;
+
+/*
+{previewImage ? (
+                        <img src={previewImage} alt="Selected" />
+                    ) : (
+                        <div className="placeholder">
+                            <input type="file" onChange={handleImageChange} />
+                            <div className="plus-icon"><img src={`${process.env.PUBLIC_URL}/addIcon.png`} alt="AddNew"/></div>
+                        </div>
+                    )}
+                    */
