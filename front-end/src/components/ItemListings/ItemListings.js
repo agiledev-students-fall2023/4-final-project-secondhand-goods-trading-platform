@@ -3,7 +3,6 @@ import "./ItemListings.css";
 import { Link } from "react-router-dom";
 
 function Item(props) {
-    //const imageUrl = props.details.imagePath || process.env.PUBLIC_URL + '/listing-placeholder.png';
     const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePaths[0]}`;
     const productName = props.details.productName;
     const productId = props.details._id; // Assuming MongoDB's default _id is used as the unique identifier
@@ -29,9 +28,10 @@ function ItemListings({ items }) {
                 try {
                     const response = await fetch('http://167.172.230.126:3001/api/item-listings');
                     if (response.ok) {
-                        const items = await response.json();
-                        console.log(items); // Logging the fetched data
-                        setData(items);
+                        const fetchedItems = await response.json();
+                        console.log(fetchedItems); // Logging the fetched data
+                        const availableItems = fetchedItems.filter(item => item.status === 'Available');
+                        setData(availableItems);
                     } else {
                         throw new Error('Network response was not ok.');
                     }
