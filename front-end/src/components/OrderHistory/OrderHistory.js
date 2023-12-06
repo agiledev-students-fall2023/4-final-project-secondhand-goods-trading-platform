@@ -23,6 +23,7 @@ function OrderHistory() {
 
         const response = await axios.get(`http://localhost:3001/api/order-history?username=${username}`);
         if (response.status === 200) {
+          console.log("Order History:", response.data);
           setOrders(response.data);
         } else {
           console.error('Error fetching order history:', response.statusText);
