@@ -14,7 +14,7 @@ const SearchResults = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/api/item-listings');
+                const response = await axios.get('http://167.172.230.126:3001/api/item-listings');
                 setData(response.data);
             } catch (err) {
                 console.error("Error fetching data:", err);
