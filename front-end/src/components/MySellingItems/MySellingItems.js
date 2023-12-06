@@ -3,7 +3,7 @@ import "./MySellingItems.css";
 import { Link } from "react-router-dom";
 
 function MyItem(props) {
-    const imageUrl = `http://localhost:3001/uploads/${props.details.imagePaths[0]}`;
+    const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePaths[0]}`;
     const productName = props.details.productName;
     const productId = props.details._id;
     return (
@@ -28,7 +28,7 @@ function MySellingItems({ items }) {
                 try {
                     // Send the token in the request to the backend
                     const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-                    const result = await fetch('http://localhost:3001/api/my-selling-items', {
+                    const result = await fetch('http://167.172.230.126:3001/api/my-selling-items', {
                         headers: {
                             'Authorization': `Bearer ${token}`,
                         }

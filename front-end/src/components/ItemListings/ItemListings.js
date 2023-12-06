@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Item(props) {
     //const imageUrl = props.details.imagePath || process.env.PUBLIC_URL + '/listing-placeholder.png';
-    const imageUrl = `http://localhost:3001/uploads/${props.details.imagePaths[0]}`;
+    const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePaths[0]}`;
     const productName = props.details.productName;
     const productId = props.details._id; // Assuming MongoDB's default _id is used as the unique identifier
 
@@ -27,7 +27,7 @@ function ItemListings({ items }) {
         async function fetchData() {
             if (!items) { // Only fetch if items prop is not provided
                 try {
-                    const response = await fetch('http://localhost:3001/api/item-listings');
+                    const response = await fetch('http://167.172.230.126:3001/api/item-listings');
                     if (response.ok) {
                         const items = await response.json();
                         console.log(items); // Logging the fetched data

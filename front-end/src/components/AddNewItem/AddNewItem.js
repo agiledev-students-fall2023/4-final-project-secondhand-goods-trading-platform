@@ -85,7 +85,7 @@ function AddNewItem(){
                 return;
             }
 
-            const response = await fetch('http://localhost:3001/api/add-new-item',{
+            const response = await fetch('http://167.172.230.126:3001/api/add-new-item',{
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
