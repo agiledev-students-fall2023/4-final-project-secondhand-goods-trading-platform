@@ -33,6 +33,44 @@ router.post('/seller-product-detail/:id/status', async (req, res) => {
   }
 });
 
+router.post('/seller-product-detail/:id/approve', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).send('Product not found.');
+    }
+    if (product.status !== 'Pending Purchase Approval') {
+      return res.status(400).send('This item is already sold or not pending approval.');
+    }
+    product.status = 'Sold';
+    await product.save();
+    res.json({ message: 'Purchase approved. Product sold.', product });
+  } catch (error) {
+    console.error('Error approving purchase:', error);
+    res.status(500).send('An error occurred while approving purchase.');
+  }
+});
+
+router.post('/seller-product-detail/:id/deny', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).send('Product not found.');
+    }
+    if (product.status !== 'Pending Purchase Approval') {
+      return res.status(400).send('No pending approval to deny.');
+    }
+    product.status = 'Available';
+    await product.save();
+    res.json({ message: 'Purchase denied. Product is now available.', product });
+  } catch (error) {
+    console.error('Error denying purchase:', error);
+    res.status(500).send('An error occurred while denying purchase.');
+  }
+});
+
 router.delete('/seller-product-detail/:id', async (req, res) => {
   const { id } = req.params;
   try {
