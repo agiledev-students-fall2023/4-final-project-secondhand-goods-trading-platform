@@ -84,7 +84,7 @@ function SellerVerProductDetail() {
         }
 
         if (itemDetails.status === 'Available') {
-            alert('The product is available. No need to approve.');
+            alert('There is no pending approval to approve.');
             return;
         }
 
@@ -109,9 +109,19 @@ function SellerVerProductDetail() {
         }
     };
     const denyPurchase = async () => {
-        if (itemDetails.status !== 'Pending Purchase Approval') {
+        if (itemDetails.status === 'Available') {
             alert('There is no pending approval to deny.');
             return;
+        }
+
+        if (itemDetails.status === 'Sold') {
+            alert('This item is already sold so you cannot deny purchase.');
+            return;
+        }
+
+        const denyApproval = window.confirm('Are you sure you want to deny this purchase?');
+        if (!denyApproval) {
+            return; // If the user clicks "Cancel", stop the function
         }
     
         try {
