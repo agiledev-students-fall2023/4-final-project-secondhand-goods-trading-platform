@@ -3,7 +3,7 @@ import "./MySellingItems.css";
 import { Link } from "react-router-dom";
 
 function MyItem(props) {
-    const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePaths[0]}`;
+    const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePath}`;
     const productName = props.details.productName;
     const productId = props.details._id;
     return (
