@@ -103,3 +103,45 @@
     background-color: #7a24d2;
     color: #ffffff;
 }
+
+.approve-purchase-container {
+    margin-top: 25px; /* Add margin above the buttons */
+    text-align: center; /* Center the buttons */
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Align buttons to center */
+}
+
+.approve-purchase-button {
+    border: 5px solid #ccc;
+    background-color: #e8e0ef;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:maroon;
+    margin-top: 10px;
+    width: 80%; /* Adjust width as needed */
+}
+
+.approve-purchase-button:hover {
+    background-color: #7a24d2;
+    color: #ffffff;
+}
+
+.deny-purchase-button {
+    border: 5px solid #ccc;
+    background-color: #e8e0ef;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:mediumvioletred;
+    margin-top: 25px;
+    width: 80%; /* Adjust width as needed */
+}
+
+.deny-purchase-button:hover {
+    background-color: #7a24d2;
+    color: #ffffff;
+}
