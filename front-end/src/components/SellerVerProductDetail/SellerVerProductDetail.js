@@ -87,7 +87,7 @@ function SellerVerProductDetail() {
             alert('The product is available. No need to approve.');
             return;
         }
-        
+
         const confirmApproval = window.confirm('Are you sure you want to approve this purchase?');
         if (!confirmApproval) {
             return; // If the user clicks "Cancel", stop the function
@@ -107,7 +107,28 @@ function SellerVerProductDetail() {
         } catch (error) {
           console.error('Error approving purchase:', error);
         }
-      };
+    };
+    const denyPurchase = async () => {
+        if (itemDetails.status !== 'Pending Purchase Approval') {
+            alert('There is no pending approval to deny.');
+            return;
+        }
+    
+        try {
+            const response = await fetch(`/api/seller-product-detail/${id}/deny`, {
+                method: 'POST'
+            });
+            const data = await response.json();
+            if (response.ok) {
+                setItemDetails({ ...itemDetails, status: 'Available' });
+                alert('You denied the latest purchase and the product is available now.');
+            } else {
+                alert(data);
+            }
+        } catch (error) {
+            console.error('Error denying purchase:', error);
+        }
+    };
 
     return (
         <div className="product-detail-container"> 
@@ -146,6 +167,7 @@ function SellerVerProductDetail() {
                 </div>
                 <div className="approve-purchase-container">
                     <button className="approve-purchase-button" onClick={approvePurchase}>Approve Purchase</button>
+                    <button className="deny-purchase-button" onClick={denyPurchase}>Deny Purchase</button>
                 </div>
             </div>
         </div>
