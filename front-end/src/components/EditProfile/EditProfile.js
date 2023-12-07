@@ -22,7 +22,7 @@ function EditProfile() {
     }
   
     // Use the account info route to fetch user data, if it's suitable
-    axios.get(`http://localhost:3001/api/account?username=${loggedInUser}`)
+    axios.get(`http://167.172.230.126:3001/api/account?username=${loggedInUser}`)
       .then((response) => {
         const userDataFromApi = response.data.user || {};
         
@@ -45,7 +45,7 @@ function EditProfile() {
 
   const handleSaveClick = () => {
     axios
-      .put(`http://localhost:3001/api/edit-profile?username=${userData.username}`, userData)
+      .put(`http://167.172.230.126:3001/api/edit-profile?username=${userData.username}`, userData)
       .then((response) => {
         const updatedUser = response.data.user;
         setMessage('Account information updated!');

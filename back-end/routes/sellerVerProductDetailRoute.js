@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product.js'); // ensure this path is correct
+const User = require('../models/User.js');
 
 router.get('/seller-product-detail/:id', async (req, res) => {
   const { id } = req.params;
@@ -36,7 +37,7 @@ router.post('/seller-product-detail/:id/status', async (req, res) => {
 router.post('/seller-product-detail/:id/approve', async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await Product.findById(id);
+    const product = await Product.findById(id).populate('buyer');
     if (!product) {
       return res.status(404).send('Product not found.');
     }
@@ -45,6 +46,11 @@ router.post('/seller-product-detail/:id/approve', async (req, res) => {
     }
     product.status = 'Sold';
     await product.save();
+    const buyer = await User.findById(product.buyer._id);
+    if (buyer) {
+      buyer.orderHistory.push(product._id);
+      await buyer.save();
+    }
     res.json({ message: 'Purchase approved. Product sold.', product });
   } catch (error) {
     console.error('Error approving purchase:', error);

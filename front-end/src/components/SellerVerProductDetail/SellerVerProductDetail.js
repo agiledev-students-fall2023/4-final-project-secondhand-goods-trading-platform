@@ -103,17 +103,17 @@ function SellerVerProductDetail() {
           alert('This item is already sold so you cannot approve purchase.');
           return;
         }
-
+      
         if (itemDetails.status === 'Available') {
-            alert('There is no pending approval to approve.');
-            return;
+          alert('There is no pending approval to approve.');
+          return;
         }
-
+      
         const confirmApproval = window.confirm('Are you sure you want to approve this purchase?');
         if (!confirmApproval) {
-            return; // If the user clicks "Cancel", stop the function
+          return; // If the user clicks "Cancel", stop the function
         }
-
+      
         try {
           const response = await fetch(`/api/seller-product-detail/${id}/approve`, {
             method: 'POST'
@@ -128,38 +128,40 @@ function SellerVerProductDetail() {
         } catch (error) {
           console.error('Error approving purchase:', error);
         }
-    };
-    const denyPurchase = async () => {
+      };
+      
+      const denyPurchase = async () => {
         if (itemDetails.status === 'Available') {
-            alert('There is no pending approval to deny.');
-            return;
+          alert('There is no pending approval to deny.');
+          return;
         }
-
+      
         if (itemDetails.status === 'Sold') {
-            alert('This item is already sold so you cannot deny purchase.');
-            return;
+          alert('This item is already sold so you cannot deny purchase.');
+          return;
         }
-
+      
         const denyApproval = window.confirm('Are you sure you want to deny this purchase?');
         if (!denyApproval) {
-            return; // If the user clicks "Cancel", stop the function
+          return; // If the user clicks "Cancel", stop the function
         }
-    
+      
         try {
-            const response = await fetch(`/api/seller-product-detail/${id}/deny`, {
-                method: 'POST'
-            });
-            const data = await response.json();
-            if (response.ok) {
-                setItemDetails({ ...itemDetails, status: 'Available' });
-                alert('You denied the latest purchase and the product is available now.');
-            } else {
-                alert(data);
-            }
+          const response = await fetch(`/api/seller-product-detail/${id}/deny`, {
+            method: 'POST'
+          });
+          const data = await response.json();
+          if (response.ok) {
+            setItemDetails({ ...itemDetails, status: 'Available' });
+            alert('You denied the latest purchase, and the product is available now.');
+          } else {
+            alert(data);
+          }
         } catch (error) {
-            console.error('Error denying purchase:', error);
+          console.error('Error denying purchase:', error);
         }
-    };
+      };
+      
 
     function prepareImageUrls(imagePaths) {
         const urls = imagePaths.map(path => `http://167.172.230.126:3001/uploads/${path}`);
