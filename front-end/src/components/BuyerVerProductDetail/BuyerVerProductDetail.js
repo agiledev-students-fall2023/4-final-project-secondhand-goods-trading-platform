@@ -98,6 +98,15 @@ function BuyerVerProductDetail() {
         }
     };
     
+    function prepareImageUrls(imagePaths) {
+        const urls = imagePaths.map(path => `http://167.172.230.126:3001/uploads/${path}`);
+        while (urls.length < 4) {
+            urls.push(urls[0]); // Repeat the first image if less than 4 images are provided
+        }
+        return urls;
+    }
+
+    const imageUrls = itemDetails ? prepareImageUrls(itemDetails.imagePaths) : [];
 
     return (
         <div className="product-detail-container"> 
@@ -109,21 +118,12 @@ function BuyerVerProductDetail() {
                         <span>Status: {productStatus}</span>
                     </div>
                     <Slider {...settings}>
-                        <div className="each-pic">
-                            <img src={`http://167.172.230.126:3001/uploads/${itemDetails.imagePaths[0]}`} alt={productName}/>
-                        </div>
-                        {/* Additional images can be added here if available */}
-                        <div className="each-pic">
-                            <img src={`http://167.172.230.126:3001/uploads/${itemDetails.imagePaths[1]}`} alt={productName}/>
-                        </div>
-                        <div className="each-pic">
-                            <img src={`http://167.172.230.126:3001/uploads/${itemDetails.imagePaths[2]}`} alt={productName}/>
-                        </div>
-                        <div className="each-pic">
-                            <img src={`http://167.172.230.126:3001/uploads/${itemDetails.imagePaths[3]}`} alt={productName}/>
-                        </div>
+                        {imageUrls.map((url, index) => (
+                            <div className="each-pic" key={index}>
+                                <img src={url} alt={`Product ${index + 1}`} />
+                            </div>
+                        ))}
                     </Slider>
-
                 </div>
                 <div className="product-info">
                     <p><strong>Name:</strong> {productName}</p>
