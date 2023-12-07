@@ -19,6 +19,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).array('image', 4); // Allow up to 4 images
 
+// validate user entry in back-end
 const productValidationMiddlewares = [
     body('productName').trim().isLength({ min: 1, max: 20 }).withMessage('Please enter a valid ame.'),
     body('Category').not().isEmpty().withMessage('Please select a category.'),
