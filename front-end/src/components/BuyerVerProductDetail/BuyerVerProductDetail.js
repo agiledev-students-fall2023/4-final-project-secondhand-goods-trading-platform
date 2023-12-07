@@ -38,13 +38,35 @@ function BuyerVerProductDetail() {
 
     // Event handler function for copying the hyperlink
     const copyLinkHandler = () => {
-        navigator.clipboard.writeText(window.location.href)
-            .then(() => {
-                alert('The link for this product is copied to clipboard!'); // A feedback for the user
-            })
-            .catch(err => {
-                console.error('Error copying text: ', err);
-            });
+        // Construct the URL manually
+        const baseUrl = 'http://167.172.230.126'; // Replace with your deployment's base URL
+        const productPath = `/buyerverproductdetail/for/${id}`;
+        const fullUrl = baseUrl + productPath;
+    
+        // Use Clipboard API if available
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(fullUrl)
+                .then(() => {
+                    alert('The link for this product is copied to clipboard!');
+                })
+                .catch(err => {
+                    console.error('Error copying text: ', err);
+                });
+        } else {
+            // Fallback method: Copy using a temporary text area
+            const textArea = document.createElement("textarea");
+            textArea.value = fullUrl;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert('The link for this product is copied to clipboard!');
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+        }
     };
 
     const settings = {
@@ -57,42 +79,47 @@ function BuyerVerProductDetail() {
 
     const buyProduct = async () => {
         if (itemDetails.status !== 'Available') {
-            if (itemDetails.status === 'Pending Purchase Approval') {
-                alert('This Product is pending for purchase approval. Cannot buy Now.');
-            } else if (itemDetails.status === 'Sold') {
-                alert('This product has already been sold. You cannot buy it anymore.');
-            }
-            return;
+          if (itemDetails.status === 'Pending Purchase Approval') {
+            alert('This Product is pending for purchase approval. Cannot buy Now.');
+          } else if (itemDetails.status === 'Sold') {
+            alert('This product has already been sold. You cannot buy it anymore.');
+          }
+          return;
         }
-    
+      
         const confirmPurchase = window.confirm('Are you sure you want to buy this product?');
         if (!confirmPurchase) {
-            return; // If the user clicks "Cancel", stop the function
+          return; // If the user clicks "Cancel", stop the function
         }
-        
-        const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-
+      
+        const token = localStorage.getItem('token');
+      
         try {
-            const response = await fetch(`/api/product-detail/${id}/buy`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                }
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                setItemDetails({ ...itemDetails, status: 'Pending Purchase Approval' });
-                alert(data.message);
-            } else {
-                const errorData = await response.json(); // Retrieve error message from response
-                alert(errorData.message); // Display the specific error message from the server
+          const response = await fetch(`/api/product-detail/${id}/buy`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`,
             }
+          });
+      
+          if (response.ok) {
+            const data = await response.json();
+            setItemDetails({ ...itemDetails, status: 'Pending Purchase Approval', buyer: data.buyer });
+            alert(data.message);
+          } else {
+            if (response.status === 400) {
+              const data = await response.json();
+              alert(data); // Display the specific error message from the server
+            } else {
+              alert('Failed to process the purchase request.');
+            }
+          }
         } catch (error) {
-            console.error('Error buying product:', error);
-            alert('Failed to process this purchase request.');
+          console.error('Error buying product:', error);
+          alert('Failed to process this purchase request. You cannot buy your own product.');
         }
-    };
+      };
+      
     
     function prepareImageUrls(imagePaths) {
         const urls = imagePaths.map(path => `http://167.172.230.126:3001/uploads/${path}`);
