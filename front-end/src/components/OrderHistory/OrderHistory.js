@@ -18,11 +18,13 @@ function OrderHistory() {
       return;
     }
 
-    const response = await axios.get(`http://localhost:3001/api/order-history`, {
+    // Existing line in OrderHistory.js
+    const response = await axios.get(`http://167.172.230.126:3001/api/order-history`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       }
     });
+
         if (response.status === 200) {
           console.log("Order History:", response.data);
           setOrders(response.data);
