@@ -36,6 +36,7 @@ const SignUp = () => {
             if (response.ok) {
                 alert(data.message); // Show a success message
                 localStorage.setItem('loggedInUser', username);
+                localStorage.setItem('token', data.token);
                 navigate('/home');
             } else if (response.status === 400) {
                 console.log("validation error.");
