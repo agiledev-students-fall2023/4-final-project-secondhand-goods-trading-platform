@@ -1,0 +1,64 @@
+.signup-page {
+    font-family: Georgia, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.signup-page h2 {
+    margin-bottom: 20px;
+}
+
+.signup-page form {
+    width: 100%;
+    max-width: 400px;
+}
+
+.signup-page form div {
+    margin: 10px 0;
+    position: relative;
+}
+
+.signup-page label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.signup-page input[type="text"], .signup-page input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #D3D3D3;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    background: transparent;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.signup-page input[type="text"]:focus, .signup-page input[type="password"]:focus {
+    border-color: #b279e7;
+}
+
+.signup-page button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #b279e7;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.signup-page button:hover {
+    background-color: #7a24d2;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}

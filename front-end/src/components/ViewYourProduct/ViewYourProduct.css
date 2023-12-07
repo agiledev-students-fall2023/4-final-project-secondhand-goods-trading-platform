@@ -1,0 +1,35 @@
+.viewyourproduct {
+    margin-top: 12px;
+    margin-left: 12px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;  
+    padding: 5px;
+
+    justify-content: space-between;
+    
+  }
+
+  .add-new-item-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border: none;  
+    background-color: transparent;
+    padding: 5px 2vm;
+    width: 50%; 
+    border-radius: 25px; 
+    font-size: 18px; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: auto;
+    margin-right: 25%;
+    
+    }
+
+  .add-new-item-button img {
+    height: 28px;
+    width: 28px;
+   }

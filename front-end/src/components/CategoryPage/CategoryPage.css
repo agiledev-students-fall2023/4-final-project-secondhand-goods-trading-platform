@@ -1,0 +1,31 @@
+.categorypage {
+    margin-top: 12px;
+    margin-left: 12px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;  
+    padding: 5px;
+    font-size: 17px; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    
+  }
+
+.categoryname {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border: 1px solid #ccc;  
+    background-color: transparent;
+    padding: 5px 2vm;
+    width: 85%; 
+    height: 25px;
+    border-radius: 25px; 
+    font-size: 16px; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: auto;
+    margin-right: auto;
+}

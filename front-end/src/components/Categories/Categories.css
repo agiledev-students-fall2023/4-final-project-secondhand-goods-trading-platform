@@ -1,0 +1,24 @@
+.categories {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .category-icon-button img {
+    width: 70px;  
+    height: 70px; 
+  }
+
+  .category-icon-button {
+    background-color:transparent;
+
+    border: none;
+
+    &:hover {
+      background-color: #7a24d2;
+    }
+
+    &:active {
+      background-color: #BFA9C7;
+    }
+  }
