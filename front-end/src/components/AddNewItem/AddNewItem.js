@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './AddNewItem.css';
 import Menu from '../Menu/Menu';
 
@@ -43,7 +43,7 @@ function AddNewItem(){
         e.preventDefault();
 
         // input validation in front-end
-        if (productName.length == 0 || productName.length > 20){
+        if (productName.length === 0 || productName.length > 20){
             setErrorMessage('Please enter a valid name.');
             return;
         }
