@@ -36,17 +36,34 @@ function SellerVerProductDetail() {
     // Event handler function for copying the hyperlink
     const copyLinkHandler = () => {
         // Construct the URL manually
-        const baseUrl = 'http://167.172.230.126'; // Replace with deployment's base URL
+        const baseUrl = 'http://167.172.230.126'; // Replace with your deployment's base URL
         const productPath = `/buyerverproductdetail/for/${id}`;
         const fullUrl = baseUrl + productPath;
     
-        navigator.clipboard.writeText(fullUrl)
-            .then(() => {
+        // Use Clipboard API if available
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(fullUrl)
+                .then(() => {
+                    alert('The link for this product is copied to clipboard!');
+                })
+                .catch(err => {
+                    console.error('Error copying text: ', err);
+                });
+        } else {
+            // Fallback method: Copy using a temporary text area
+            const textArea = document.createElement("textarea");
+            textArea.value = fullUrl;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
                 alert('The link for this product is copied to clipboard!');
-            })
-            .catch(err => {
-                console.error('Error copying text: ', err);
-            });
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+        }
     };
 
     const settings = {
