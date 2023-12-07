@@ -37,24 +37,26 @@ router.post('/seller-product-detail/:id/status', async (req, res) => {
 router.post('/seller-product-detail/:id/approve', async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await Product.findById(id).populate('buyer');
+    const product = await Product.findById(id);
     if (!product) {
-      return res.status(404).send('Product not found.');
+      return res.status(404).json({ error: 'Product not found.' });
     }
     if (product.status !== 'Pending Purchase Approval') {
-      return res.status(400).send('This item is already sold or not pending approval.');
+      return res.status(400).json({ error: 'This item is already sold or not pending approval.' });
     }
     product.status = 'Sold';
     await product.save();
-    const buyer = await User.findById(product.buyer._id);
+    const buyer = await User.findById(product.buyer);
     if (buyer) {
+      console.log(buyer)
       buyer.orderHistory.push(product._id);
       await buyer.save();
     }
     res.json({ message: 'Purchase approved. Product sold.', product });
   } catch (error) {
     console.error('Error approving purchase:', error);
-    res.status(500).send('An error occurred while approving purchase.');
+
+    res.status(500).json({ error: 'An error occurred while approving purchase.' });
   }
 });
 
