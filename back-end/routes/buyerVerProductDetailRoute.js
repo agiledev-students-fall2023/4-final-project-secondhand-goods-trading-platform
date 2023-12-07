@@ -50,6 +50,8 @@ router.post('/product-detail/:id/buy', authenticate, async (req, res) => {
         return res.status(400).send('Product is not available for purchase.');
     }
     product.status = 'Pending Purchase Approval';
+    product.buyer = req.user.id;
+    console.log(product.buyer);
     await product.save();
     res.json({ message: 'Please wait for seller\'s approval.', product });
   } catch (error) {

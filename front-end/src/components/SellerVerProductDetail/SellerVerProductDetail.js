@@ -127,6 +127,7 @@ function SellerVerProductDetail() {
           }
         } catch (error) {
           console.error('Error approving purchase:', error);
+
         }
       };
       
