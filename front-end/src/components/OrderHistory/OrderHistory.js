@@ -19,7 +19,7 @@ function OrderHistory() {
     }
 
     // Existing line in OrderHistory.js
-    const response = await axios.get(`http://167.172.230.126:3001/api/order-history`, {
+    const response = await axios.get(`/api/order-history`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       }
