@@ -10,6 +10,11 @@ const productSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User' // Reference to the User model
   },
+  buyer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User', // Reference to the User model who is the buyer
+    default: null // Initially set to null, meaning no buyer yet
+  },
   status: {
     type: String,
     default: 'Available', // Default status is 'Available'

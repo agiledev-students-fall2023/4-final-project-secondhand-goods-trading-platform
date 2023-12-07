@@ -36,8 +36,12 @@ const UserSchema = new Schema({
   products: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product' 
+  }],
+  orderHistory: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Product'
   }]
-})
+});
 
 // hash the password before the user is saved
 // mongoose provides hooks that allow us to run code before or after specific events
