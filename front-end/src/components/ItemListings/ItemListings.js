@@ -3,6 +3,7 @@ import "./ItemListings.css";
 import { Link } from "react-router-dom";
 
 function Item(props) {
+    // to show the first picture of all 4 pictures as the cover
     const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePaths[0]}`;
     const productName = props.details.productName;
     const productId = props.details._id; 
@@ -30,6 +31,7 @@ function ItemListings({ items }) {
                     if (response.ok) {
                         const fetchedItems = await response.json();
                         console.log(fetchedItems); // Logging the fetched data
+                        //only display available products in the home page
                         const availableItems = fetchedItems.filter(item => item.status === 'Available');
                         setData(availableItems);
                     } else {

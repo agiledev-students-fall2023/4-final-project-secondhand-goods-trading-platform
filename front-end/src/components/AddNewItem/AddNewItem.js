@@ -42,6 +42,7 @@ function AddNewItem(){
     const handlePublishProduct = async (e) => {
         e.preventDefault();
 
+        // input validation in front-end
         if (productName.length == 0 || productName.length > 20){
             setErrorMessage('Please enter a valid name.');
             return;
@@ -73,11 +74,12 @@ function AddNewItem(){
         formData.append('Price', Price);
         formData.append('Description', Description);
 
-        images.forEach((image) => {
+        images.forEach((image) => { // there will be at most 4 images
             formData.append('image', image); 
         });
 
         try{
+            // authentication
             const token = localStorage.getItem('token');
 
             if(!token) {
@@ -199,14 +201,3 @@ function AddNewItem(){
 }
 
 export default AddNewItem;
-
-/*
-{previewImage ? (
-                        <img src={previewImage} alt="Selected" />
-                    ) : (
-                        <div className="placeholder">
-                            <input type="file" onChange={handleImageChange} />
-                            <div className="plus-icon"><img src={`${process.env.PUBLIC_URL}/addIcon.png`} alt="AddNew"/></div>
-                        </div>
-                    )}
-                    */

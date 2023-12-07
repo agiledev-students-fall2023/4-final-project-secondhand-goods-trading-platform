@@ -3,6 +3,7 @@ import "./MySellingItems.css";
 import { Link } from "react-router-dom";
 
 function MyItem(props) {
+    // to show the first picture of all four pictures as the cover
     const imageUrl = `http://167.172.230.126:3001/uploads/${props.details.imagePaths[0]}`;
     const productName = props.details.productName;
     const productId = props.details._id;

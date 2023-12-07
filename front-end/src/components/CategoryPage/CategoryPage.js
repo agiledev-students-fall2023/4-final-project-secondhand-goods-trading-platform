@@ -28,6 +28,7 @@ function Item(props) {
 function CategoryPage() {
     let { category } = useParams();
 
+    // for URL clean up
     if (category === 'StudySupplies') {
         category = 'Study Supplies';
     }
@@ -43,15 +44,12 @@ function CategoryPage() {
             } catch (error) {
                 console.error('Error fetching items from the category:', error);
             }
-            
         }
-
         fetchData();
     }, [category]);
 
-    //const displayItems = items || data; 
-
-    //const filteredItems = category ? displayItems.filter(item => getCategory(item.author) === category) : displayItems;
+    // only display available products in category page
+    const availableItems = data.filter(item => item.status === 'Available');
 
     return (
         <div>
@@ -63,7 +61,7 @@ function CategoryPage() {
             </section>
 
             <section className="item-listings">
-                {data.map((item, index) => (
+                {availableItems.map((item, index) => (
                     <Item key={item._id || index} details={item} />
                 ))}
             </section>
