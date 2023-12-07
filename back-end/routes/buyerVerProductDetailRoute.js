@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Product = require('../models/Product.js');
 const jwt = require('jsonwebtoken');
+const User = require('../models/User.js');
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -50,6 +51,8 @@ router.post('/product-detail/:id/buy', authenticate, async (req, res) => {
         return res.status(400).send('Product is not available for purchase.');
     }
     product.status = 'Pending Purchase Approval';
+    product.buyer = req.user.id;
+
     await product.save();
     res.json({ message: 'Please wait for seller\'s approval.', product });
   } catch (error) {

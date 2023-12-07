@@ -11,17 +11,18 @@ function OrderHistory() {
   useEffect(() => {
     async function fetchOrderHistory() {
       try {
-        const loggedInUserData = localStorage.getItem('loggedInUser');
-        if (!loggedInUserData) {
-          console.error('User not authenticated');
-          setLoading(false);
-          return;
-        }
+        const token = localStorage.getItem('token'); // Assuming you store the JWT token in localStorage
+    if (!token) {
+      console.error('User not authenticated');
+      setLoading(false);
+      return;
+    }
 
-        // Directly use username from local storage in Axios request
-        const username = typeof loggedInUserData === 'string' ? loggedInUserData : JSON.parse(loggedInUserData).username; // Adjust based on your storage format
-
-        const response = await axios.get(`http://localhost:3001/api/order-history?username=${username}`);
+    const response = await axios.get(`http://localhost:3001/api/order-history`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    });
         if (response.status === 200) {
           console.log("Order History:", response.data);
           setOrders(response.data);

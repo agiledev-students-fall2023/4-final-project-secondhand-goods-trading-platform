@@ -85,16 +85,12 @@ function BuyerVerProductDetail() {
                 setItemDetails({ ...itemDetails, status: 'Pending Purchase Approval' });
                 alert(data.message);
             } else {
-                if (response.status === 400) {
-                    const data = await response.json();
-                    alert(data); // Display the specific error message from the server
-                } else {
-                    alert('Failed to process the purchase request.');
-                }
+                const errorData = await response.json(); // Retrieve error message from response
+                alert(errorData.message); // Display the specific error message from the server
             }
         } catch (error) {
             console.error('Error buying product:', error);
-            alert('Failed to process this purchase request. You cannot buy your own product.');
+            alert('Failed to process this purchase request.');
         }
     };
     
