@@ -38,9 +38,14 @@ function BuyerVerProductDetail() {
 
     // Event handler function for copying the hyperlink
     const copyLinkHandler = () => {
-        navigator.clipboard.writeText(window.location.href)
+        // Construct the URL manually
+        const baseUrl = 'http://167.172.230.126'; // Replace with deployment's base URL
+        const productPath = `/buyerverproductdetail/for/${id}`;
+        const fullUrl = baseUrl + productPath;
+    
+        navigator.clipboard.writeText(fullUrl)
             .then(() => {
-                alert('The link for this product is copied to clipboard!'); // A feedback for the user
+                alert('The link for this product is copied to clipboard!');
             })
             .catch(err => {
                 console.error('Error copying text: ', err);
