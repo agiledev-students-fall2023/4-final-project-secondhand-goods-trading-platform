@@ -69,20 +69,32 @@ function BuyerVerProductDetail() {
         if (!confirmPurchase) {
             return; // If the user clicks "Cancel", stop the function
         }
-    
+        
+        const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+
         try {
             const response = await fetch(`/api/product-detail/${id}/buy`, {
-                method: 'POST'
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
             });
-            const data = await response.json();
+
             if (response.ok) {
+                const data = await response.json();
                 setItemDetails({ ...itemDetails, status: 'Pending Purchase Approval' });
                 alert(data.message);
             } else {
-                alert(data);
+                if (response.status === 400) {
+                    const data = await response.json();
+                    alert(data); // Display the specific error message from the server
+                } else {
+                    alert('Failed to process the purchase request.');
+                }
             }
         } catch (error) {
             console.error('Error buying product:', error);
+            alert('Failed to process this purchase request. You cannot buy your own product.');
         }
     };
     
